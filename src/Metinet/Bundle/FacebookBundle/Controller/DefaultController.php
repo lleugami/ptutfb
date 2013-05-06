@@ -18,4 +18,15 @@ class DefaultController extends Controller
 
         return array("friends" => $friends['data']);
     }
+
+    /**
+     * @Route("/admin", name="admin")
+     * @Template()
+     */
+    public function adminAction()
+    {
+        return array();
+    }
+
+
 }

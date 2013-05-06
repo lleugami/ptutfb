@@ -9,58 +9,11 @@
         <strong>ID Facebook</strong>: {{ user.fb_uid }}<br />
         <strong>Créé en BDD le</strong>: {{ user.created_at|date('d/m/Y H:i') }}
     </p>
-    <hr />
-    <div>Partager l'application avec une liste   <input type="button" value="Partager" onclick="sendRequestViaMultiFriendSelector();"/></div>
-    <hr />
-    <br />
 
-    {% for friend in friends %}
-    <div style='float: left; margin: 5px 10px;'>
-        <img src="https://graph.facebook.com/{{ friend.id }}/picture" alt="{{ friend.name }}" title="{{ friend.name }}" onclick="test({{ friend.id }})" />
-    </div>
-    {% endfor %}
+
+
+    <a href="{{ path('admin') }}">Se connecter en admin</a>
 {% endblock %}
 
-{% block javascripts %}
-{{ parent() }}
-<script type="text/javascript">
-function test(id){
-FB.ui(
-{
-	method: 'feed',
-	name: 'Person of Interest: Je suis fan !',
-	link: 'http://apps.facebook.com/messeriestv/',
-	picture: 'http://fbptut.lp13.fr/monImg.jpg',
-	caption: 'Les meilleures séries TV',
-	description: 'Découvrez les meilleures séries TV dumoment et les séries préférées par vos amis.',
-	to : id
-},
 
-function(response) {
-if (response && response.post_id) {
-alert('Le message a bien été publié.');
-} else {
-alert('Erreur: Le message n’a pas été publié…');
-}
-}
-);
-}
-
-
-function sendRequestViaMultiFriendSelector() {
-FB.ui({method: 'apprequests',
-message: 'Viens choisir tes séries préférées !',
-}, requestCallback);
-}
-
-function requestCallback(response) {
-if (response && response.post_id) {
-alert('Le message a bien été publié.');
-} else {
-alert('Erreur: Le message n’a pas été publié…');
-}
-}
-
-</script>
-{% endblock %}
 
