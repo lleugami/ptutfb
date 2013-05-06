@@ -20,7 +20,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/log", name="log")
      * @Template()
      */
     public function adminAction()

@@ -10,12 +10,28 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends Controller
 {
+	/**
+	 * @Route("/admin", name="admin")
+	 * @Template()
+	 */
+    public function indexAction() {
+    	$repository = $this->getDoctrine()
+    	->getRepository('MetinetFacebookBundle:User');;
+    	$tot = $repository->createQueryBuilder('a')
+ 				->select('COUNT(a)')
+ 				->getQuery()
+ 				->getSingleScalarResult();;
+    	
+    	return array('nombretotal' => $tot);
+    }
+    
     /**
      * @Route("/admin/ajouterquizz", name="ajouterQuizz")
      * @Template()
      */
     public function ajouterQuizzAction(Request $request)
     {
+
         // crée une tâche et lui donne quelques données par défaut pour cet exemple
         $quizz = new Quizz();
 
@@ -53,6 +69,7 @@ class AdminController extends Controller
         }else{
             return array('form' => $form->createView(),'resultat_id' => "null");
         }
+
     }
 
     /**
@@ -72,6 +89,20 @@ class AdminController extends Controller
         }else{
             return array('quizz' => $quizz);
         }
+    }
+    
+    /**
+     * @Route("/admin/listertheme", name="listerTheme")
+     * @Template()
+     * 
+     */
+    public function listerThemeAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('FacebookBundle:Theme');
+        $themes = $repository->findAll();
+        
+        return array("themes" => $themes);
+        
     }
 
 }
