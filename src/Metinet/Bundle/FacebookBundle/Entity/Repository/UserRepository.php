@@ -1,6 +1,6 @@
 <?php
 
-namespace Metinet\Bundle\FacebookBundle\Repository;
+namespace Metinet\Bundle\FacebookBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

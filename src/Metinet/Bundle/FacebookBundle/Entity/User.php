@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Metinet\Bundle\FacebookBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Metinet\Bundle\FacebookBundle\Entity\Repository\UserRepository")
  */
 class User
 {
@@ -24,7 +24,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="fb_uid", type="string", length=100)
+     * @ORM\Column(name="fb_uid", type="string", length=50)
      */
     private $fbUid;
 
@@ -38,9 +38,16 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=150)
+     * @ORM\Column(name="lastname", type="string", length=100)
      */
     private $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=100, nullable=true)
+     */
+    private $username;
 
     /**
      * @var string
@@ -50,11 +57,25 @@ class User
     private $picture;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="email", type="string", length=150)
+     * @ORM\Column(name="points", type="float", nullable=true)
      */
-    private $email;
+    private $points;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="average_time", type="float", nullable=true)
+     */
+    private $averageTime;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="nb_quizz", type="float", nullable=true)
+     */
+    private $nbQuizz;
 
     /**
      * @var \DateTime
@@ -64,13 +85,33 @@ class User
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserWatch", mappedBy="user", cascade={"remove", "persist"})
+     * @var \DateTime
+     *
+     * @ORM\Column(name="lastconnect_at", type="datetime", nullable=true)
      */
-    protected $userwatchs;
+    private $lastconnectAt;
 
-    public function __toString()
+    /**
+     * @ORM\OneToMany(targetEntity="QuizzResult", mappedBy="user", cascade={"remove", "persist"})
+     */
+    protected $quizzResults;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Answer", inversedBy="users")
+     * @ORM\JoinTable(name="user_answer")
+     */
+    private $answers;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        return $this->firstname." ".$this->lastname;
+        $this->quizzResults = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->points = 0;
+        $this->createdAt = new \DateTime();
+        $this->averageTime = 0;
     }
 
     /**
@@ -153,6 +194,29 @@ class User
     }
 
     /**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
      * Set picture
      *
      * @param string $picture
@@ -176,26 +240,72 @@ class User
     }
 
     /**
-     * Set email
+     * Set points
      *
-     * @param string $email
+     * @param float $points
      * @return User
      */
-    public function setEmail($email)
+    public function setPoints($points)
     {
-        $this->email = $email;
+        $this->points = $points;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get points
      *
-     * @return string
+     * @return float
      */
-    public function getEmail()
+    public function getPoints()
     {
-        return $this->email;
+        return $this->points;
+    }
+
+    /**
+     * Set averageTime
+     *
+     * @param float $averageTime
+     * @return User
+     */
+    public function setAverageTime($averageTime)
+    {
+        $this->averageTime = $averageTime;
+
+        return $this;
+    }
+
+    /**
+     * Get averageTime
+     *
+     * @return float
+     */
+    public function getAverageTime()
+    {
+        return $this->averageTime;
+    }
+
+    /**
+     * Set nbQuizz
+     *
+     * @param float $nbQuizz
+     * @return User
+     */
+    public function setNbQuizz($nbQuizz)
+    {
+        $this->nbQuizz = $nbQuizz;
+
+        return $this;
+    }
+
+    /**
+     * Get nbQuizz
+     *
+     * @return float
+     */
+    public function getNbQuizz()
+    {
+        return $this->nbQuizz;
     }
 
     /**
@@ -219,5 +329,94 @@ class User
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set lastconnectAt
+     *
+     * @param \DateTime $lastconnectAt
+     * @return User
+     */
+    public function setLastconnectAt($lastconnectAt)
+    {
+        $this->lastconnectAt = $lastconnectAt;
+
+        return $this;
+    }
+
+    /**
+     * Get lastconnectAt
+     *
+     * @return \DateTime
+     */
+    public function getLastconnectAt()
+    {
+        return $this->lastconnectAt;
+    }
+
+    /**
+     * Add quizzResults
+     *
+     * @param \Metinet\Bundle\FacebookBundle\Entity\QuizzResult $quizzResults
+     * @return User
+     */
+    public function addQuizzResult(\Metinet\Bundle\FacebookBundle\Entity\QuizzResult $quizzResults)
+    {
+        $this->quizzResults[] = $quizzResults;
+
+        return $this;
+    }
+
+    /**
+     * Remove quizzResults
+     *
+     * @param \Metinet\Bundle\FacebookBundle\Entity\QuizzResult $quizzResults
+     */
+    public function removeQuizzResult(\Metinet\Bundle\FacebookBundle\Entity\QuizzResult $quizzResults)
+    {
+        $this->quizzResults->removeElement($quizzResults);
+    }
+
+    /**
+     * Get quizzResults
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuizzResults()
+    {
+        return $this->quizzResults;
+    }
+
+    /**
+     * Add answers
+     *
+     * @param \Metinet\Bundle\FacebookBundle\Entity\Answer $answers
+     * @return User
+     */
+    public function addAnswer(\Metinet\Bundle\FacebookBundle\Entity\Answer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \Metinet\Bundle\FacebookBundle\Entity\Answer $answers
+     */
+    public function removeAnswer(\Metinet\Bundle\FacebookBundle\Entity\Answer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
     }
 }
