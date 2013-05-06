@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin/editerquizz", name="editerQuizz")
+     * @Route("/admin/ajouterquizz", name="ajouterQuizz")
      * @Template()
      */
-    public function editerQuizzAction(Request $request)
+    public function ajouterQuizzAction(Request $request)
     {
         // crée une tâche et lui donne quelques données par défaut pour cet exemple
         $quizz = new Quizz();
@@ -68,7 +68,7 @@ class AdminController extends Controller
 
         if (!$quizz)
         {
-            throw $this->createNotFoundException('Aucun produit trouvé');
+            throw $this->createNotFoundException('Aucun quizz trouvé');
         }else{
             return array('quizz' => $quizz);
         }
