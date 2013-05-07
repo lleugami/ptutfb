@@ -17,9 +17,12 @@ class AdminController extends Controller
     public function indexAction() {
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:User');;
-    	$users = $repository->findAll();
-    	var_dump($users);exit;
-    	return array();
+    	$tot = $repository->createQueryBuilder('a')
+ 				->select('COUNT(a)')
+ 				->getQuery()
+ 				->getSingleScalarResult();;
+    	
+    	return array('nombretotal' => $tot);
     }
     
     /**
