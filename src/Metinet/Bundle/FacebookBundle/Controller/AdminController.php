@@ -22,7 +22,27 @@ class AdminController extends Controller
  				->getQuery()
  				->getSingleScalarResult();;
     	
-    	return array('nombretotal' => $tot);
+    	$datesept = date("Y-m-d H:i:s", strtotime("-7 days"));
+    	$repository = $this->getDoctrine()
+    	->getRepository('MetinetFacebookBundle:User');;
+    	$totsept = $repository->createQueryBuilder('a')
+    	->select('COUNT(a)')
+    	->where('a.createdAt >= :created_at')
+    	->setParameter('created_at', $datesept)
+    	->getQuery()
+    	->getSingleScalarResult();;
+    	
+    	$datetrente = date("Y-m-d H:i:s", strtotime("-30 days"));
+    	$repository = $this->getDoctrine()
+    	->getRepository('MetinetFacebookBundle:User');;
+    	$tottrente = $repository->createQueryBuilder('a')
+    	->select('COUNT(a)')
+    	->where('a.createdAt >= :created_at')
+    	->setParameter('created_at', $datetrente)
+    	->getQuery()
+    	->getSingleScalarResult();;
+    	
+    	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente);
     }
     
     /**
