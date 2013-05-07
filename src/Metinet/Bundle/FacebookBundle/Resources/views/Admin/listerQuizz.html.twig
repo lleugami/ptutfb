@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h1>Lister les Quizz</h1>
+
+
+{% for valeur in quizz %}
+	{{ valeur.title }}
+{% endfor %}
+
+
+{% endblock %}
+

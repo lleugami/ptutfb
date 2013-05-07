@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h1>Editer les Quizz</h1>
+
+<form action="{{ path('editerQuizz') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" value="Editer"/>
+</form>
+
+<p> Id du résultat: {{ resultat_id }}</p>
+{% endblock %}
