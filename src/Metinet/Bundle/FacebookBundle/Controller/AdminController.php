@@ -10,18 +10,24 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends Controller
 {
+	/**
+	 * @Route("/admin", name="admin")
+	 * @Template()
+	 */
+    public function indexAction() {
+    	$repository = $this->getDoctrine()
+    	->getRepository('MetinetFacebookBundle:User');;
+    	$users = $repository->findAll();
+    	var_dump($users);exit;
+    	return array();
+    }
+    
     /**
      * @Route("/admin/editerquizz", name="editerQuizz")
      * @Template()
      */
     public function editerQuizzAction(Request $request)
     {
-
-    	$repository = $this->getDoctrine()
-    	->getRepository('MetinetFacebookBundle:User');;
-    	$users = $repository->findAll();
-    	var_dump($users);exit;
-        return array();
 
         // crée une tâche et lui donne quelques données par défaut pour cet exemple
         $quizz = new Quizz();
