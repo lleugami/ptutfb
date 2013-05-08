@@ -74,5 +74,3 @@ fos_facebook:
     secret: %fb_app_secret%
     cookie: true
     permissions: [email,publish_actions]
-
-

@@ -419,4 +419,8 @@ class User
     {
         return $this->answers;
     }
+    
+    public function __toString() {
+        return $this->firstname.' '.$this->lastname;
+    }
 }
