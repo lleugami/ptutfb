@@ -597,4 +597,8 @@ class Quizz
     {
         return $this->theme;
     }
+    
+    public function __toString() {
+        return $this->title;
+    }
 }
