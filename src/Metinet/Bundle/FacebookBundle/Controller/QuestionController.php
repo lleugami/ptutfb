@@ -50,6 +50,9 @@ class QuestionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $entity->upload();
+            
             $em->persist($entity);
             $em->flush();
 
@@ -154,6 +157,9 @@ class QuestionController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+
+            $entity->upload();
+            
             $em->persist($entity);
             $em->flush();
 
