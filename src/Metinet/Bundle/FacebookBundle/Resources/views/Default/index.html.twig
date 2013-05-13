@@ -4,12 +4,22 @@
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-    <p>Votre classement : {{ classement }}</p>
+    <p>Votre classement : {{ classement }} ème</p>
     <p>
         <strong>ID SQL</strong>: {{ user.id }}<br />
         <strong>ID Facebook</strong>: {{ user.fb_uid }}<br />
         <strong>Créé en BDD le</strong>: {{ user.created_at|date('d/m/Y H:i') }}
     </p>
+<hr>
+    <div>
+    <h3>List des Thèmes</h3>
+    	<ul>
+	    {% for theme in themes %}
+            <li><img src="/uploads/images/mini/theme/mini_{{ theme.picture }}" /> {{ theme.title }} <a href="{{ path('list_quizz',{"id": theme.id}) }}">Voir les quizz</a> </li>
+	    {% endfor %}
+	    </ul>
+    </div>
+
 
 {% endblock %}
 
