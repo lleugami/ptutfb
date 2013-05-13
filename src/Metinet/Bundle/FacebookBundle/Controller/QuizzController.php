@@ -117,10 +117,17 @@ class QuizzController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
+        
+        /*Récuperation des Questions d'un Quizz */
+        $listeQuestion = $em->getRepository('MetinetFacebookBundle:Question')->findBy(array('quizz'=>$id));
+        
+        if(!$listeQuestion){
+            $listeQuestion = null;
+        }
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'listeQuestion'=> $listeQuestion
         );
     }
 
