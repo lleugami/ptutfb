@@ -7,20 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Metinet\Bundle\FacebookBundle\Entity\Quizz;
-use Metinet\Bundle\FacebookBundle\Form\QuizzType;
+use Metinet\Bundle\FacebookBundle\Entity\Question;
+use Metinet\Bundle\FacebookBundle\Form\QuestionType;
 
 /**
- * Quizz controller.
+ * Question controller.
  *
- * @Route("/admin/quizz")
+ * @Route("/admin/question")
  */
-class QuizzController extends Controller
+class QuestionController extends Controller
 {
     /**
-     * Lists all Quizz entities.
+     * Lists all Question entities.
      *
-     * @Route("/", name="quizz")
+     * @Route("/", name="admin_question")
      * @Method("GET")
      * @Template()
      */
@@ -28,51 +28,32 @@ class QuizzController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MetinetFacebookBundle:Quizz')->findAll();
-        
-        $nbUserByQuizz = null;
-        $tauxReussite = null;
-        if(count($entities) != 0)
-        {
-            foreach ($entities as $entitie)
-            {
-                $nbUser = $em->getRepository('MetinetFacebookBundle:Quizz')->getNbUserByQuizz($entitie->getId());
-                $nbUserByQuizz[$entitie->getId()] = count($nbUser);
-                $tauxReussite[$entitie->getId()] = $em->getRepository('MetinetFacebookBundle:Quizz')->getTauxReussiteMoyen($nbUser,$entitie->getId());
-                
-            }
-            
-        }
-        
+        $entities = $em->getRepository('MetinetFacebookBundle:Question')->findAll();
+
         return array(
             'entities' => $entities,
-            'nbUserByQuizz' => $nbUserByQuizz,
-            'tauxReussite' => $tauxReussite
         );
     }
 
     /**
-     * Creates a new Quizz entity.
+     * Creates a new Question entity.
      *
-     * @Route("/", name="quizz_create")
+     * @Route("/", name="admin_question_create")
      * @Method("POST")
-     * @Template("MetinetFacebookBundle:Quizz:new.html.twig")
+     * @Template("MetinetFacebookBundle:Question:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new Quizz();
-        $form = $this->createForm(new QuizzType(), $entity);
+        $entity  = new Question();
+        $form = $this->createForm(new QuestionType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $entity->upload();
-
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('quizz_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_question_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -82,16 +63,16 @@ class QuizzController extends Controller
     }
 
     /**
-     * Displays a form to create a new Quizz entity.
+     * Displays a form to create a new Question entity.
      *
-     * @Route("/new", name="quizz_new")
+     * @Route("/new", name="admin_question_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Quizz();
-        $form   = $this->createForm(new QuizzType(), $entity);
+        $entity = new Question();
+        $form   = $this->createForm(new QuestionType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -100,9 +81,9 @@ class QuizzController extends Controller
     }
 
     /**
-     * Finds and displays a Quizz entity.
+     * Finds and displays a Question entity.
      *
-     * @Route("/{id}", name="quizz_show")
+     * @Route("/{id}", name="admin_question_show")
      * @Method("GET")
      * @Template()
      */
@@ -110,10 +91,10 @@ class QuizzController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MetinetFacebookBundle:Quizz')->find($id);
+        $entity = $em->getRepository('MetinetFacebookBundle:Question')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Quizz entity.');
+            throw $this->createNotFoundException('Unable to find Question entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -125,9 +106,9 @@ class QuizzController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Quizz entity.
+     * Displays a form to edit an existing Question entity.
      *
-     * @Route("/{id}/edit", name="quizz_edit")
+     * @Route("/{id}/edit", name="admin_question_edit")
      * @Method("GET")
      * @Template()
      */
@@ -135,13 +116,13 @@ class QuizzController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MetinetFacebookBundle:Quizz')->find($id);
+        $entity = $em->getRepository('MetinetFacebookBundle:Question')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Quizz entity.');
+            throw $this->createNotFoundException('Unable to find Question entity.');
         }
 
-        $editForm = $this->createForm(new QuizzType(), $entity);
+        $editForm = $this->createForm(new QuestionType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -152,34 +133,31 @@ class QuizzController extends Controller
     }
 
     /**
-     * Edits an existing Quizz entity.
+     * Edits an existing Question entity.
      *
-     * @Route("/{id}", name="quizz_update")
+     * @Route("/{id}", name="admin_question_update")
      * @Method("PUT")
-     * @Template("MetinetFacebookBundle:Quizz:edit.html.twig")
+     * @Template("MetinetFacebookBundle:Question:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MetinetFacebookBundle:Quizz')->find($id);
+        $entity = $em->getRepository('MetinetFacebookBundle:Question')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Quizz entity.');
+            throw $this->createNotFoundException('Unable to find Question entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new QuizzType(), $entity);
+        $editForm = $this->createForm(new QuestionType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-
-            $entity->upload();
-
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('quizz_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_question_edit', array('id' => $id)));
         }
 
         return array(
@@ -190,9 +168,9 @@ class QuizzController extends Controller
     }
 
     /**
-     * Deletes a Quizz entity.
+     * Deletes a Question entity.
      *
-     * @Route("/{id}", name="quizz_delete")
+     * @Route("/{id}", name="admin_question_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -202,21 +180,21 @@ class QuizzController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MetinetFacebookBundle:Quizz')->find($id);
+            $entity = $em->getRepository('MetinetFacebookBundle:Question')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Quizz entity.');
+                throw $this->createNotFoundException('Unable to find Question entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('quizz'));
+        return $this->redirect($this->generateUrl('admin_question'));
     }
 
     /**
-     * Creates a form to delete a Quizz entity by id.
+     * Creates a form to delete a Question entity by id.
      *
      * @param mixed $id The entity id
      *

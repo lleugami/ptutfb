@@ -42,7 +42,43 @@ class AdminController extends Controller
     	->getQuery()
     	->getSingleScalarResult();;
     	
-    	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente);
+    	$repository = $this->getDoctrine()
+    	->getRepository('MetinetFacebookBundle:Quizz');;
+    	$totquizz = $repository->createQueryBuilder('a')
+    	->select('COUNT(a)')
+    	->getQuery()
+    	->getSingleScalarResult();;
+    	
+    	
+    	$repository = $this->getDoctrine()
+    	->getRepository('MetinetFacebookBundle:QuizzResult');;
+    	$somme = $repository->createQueryBuilder('a')
+    	->select('SUM(a.winPoints)')
+    	->getQuery()
+    	->getSingleScalarResult();;
+    	if(!isset($somme)) {
+    		$somme = 0;
+    	} else {
+    		$somme = (int)$somme;
+    	}
+    	
+    	if(!isset($tot)) {
+    		$tot = 0;
+    	} else {
+    		$tot = (int)$tot;
+    	}
+    	$resultatmoyen = $somme/$tot;
+    	
+    	$repository = $this->getDoctrine()
+    	->getRepository('MetinetFacebookBundle:QuizzResult');;
+    	$totquizzlance = $repository->createQueryBuilder('a')
+    	->select('COUNT(a)')
+    	->where('a.dateEnd = :date_end')
+    	->setParameter('date_end', '')
+    	->getQuery()
+    	->getSingleScalarResult();;
+    	
+    	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente, 'nbquizz' => $totquizz, 'scoremoyen' => $resultatmoyen, 'totquizzlancer' => $totquizzlance);
     }
 
 }
