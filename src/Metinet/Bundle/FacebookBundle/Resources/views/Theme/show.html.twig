@@ -47,4 +47,19 @@
         </form>
     </li>
 </ul>
+    
+{% if listeQuizz %}
+<h2>Liste des Quizz</h2>
+<ul>
+{% for quizz in listeQuizz %}
+    <li>
+        {{ quizz.title }}
+        <a href="{{ path('quizz_edit', { 'id': quizz.id }) }}">
+            Editer
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+    
 {% endblock %}

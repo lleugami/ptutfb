@@ -62,6 +62,38 @@ class QuizzRepository extends EntityRepository
             return 0;
         }
         
+
+    }
+    
+    public function quatreDernierQuizz()
+    {
+        $query = $this->getEntityManager()
+        ->createQuery('
+            SELECT q FROM MetinetFacebookBundle:Quizz q
+            ORDER BY q.id ASC'
+        )->setMaxResults(4);
+        
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+    
+    public function dernierQuizzPromo()
+    {
+        $query = $this->getEntityManager()
+        ->createQuery('
+            SELECT q FROM MetinetFacebookBundle:Quizz q
+            WHERE q.isPromoted = 1'
+        )->setMaxResults(1);
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+
     }   
     
     public function getTotQuizz() {    	
