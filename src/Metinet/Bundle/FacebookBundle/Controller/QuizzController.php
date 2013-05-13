@@ -29,9 +29,28 @@ class QuizzController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MetinetFacebookBundle:Quizz')->findAll();
+        
+        $nbUserByQuizz = null;
+        $tauxReussite = null;
+        if(count($entities) != 0)
+        {
+            foreach ($entities as $entitie)
+            {
+                $nbUser = $em->getRepository('MetinetFacebookBundle:Quizz')->getNbUserByQuizz($entitie->getId());
+                $nbUserByQuizz[$entitie->getId()] = count($nbUser);
+                $tauxReussite[$entitie->getId()] = $em->getRepository('MetinetFacebookBundle:Quizz')->getTauxReussiteMoyen($nbUser,$entitie->getId());
+                
+            }
+
+            
+            
+        }
+        
 
         return array(
             'entities' => $entities,
+            'nbUserByQuizz' => $nbUserByQuizz,
+            'tauxReussite' => $tauxReussite
         );
     }
 
