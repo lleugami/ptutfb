@@ -94,9 +94,16 @@
 
 {% if listeQuestion %}
     <h2>Liste des Questions</h2>
+    <ul>
     {% for question in listeQuestion %}
-        <p>{{ question.title }}</p>
+        <li>
+            {{ question.title }}
+            <a href="{{ path('admin_question_edit', { 'id': question.id }) }}">
+                Editer
+            </a>
+        </li>
     {% endfor %}
+    </ul>
 {% endif %}
 
 {% endblock %}
