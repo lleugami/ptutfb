@@ -15,14 +15,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-	$user = $this->container->get('metinet.manager.fbuser')->getUserFb();
+	   $user = $this->container->get('metinet.manager.fbuser')->getUserFb();
         //$friends = $this->container->get('metinet.manager.fbuser')->getUserFriends("me");
         $repository = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User');
         $classement = $repository->getClassement($user['id']);
 
         $themes = $this->showThemeAction();
+        $nb_quizz = $this->countQuizzAction();;
 
-        return array('classement' => $classement,'themes' => $themes);
+        return array('classement' => $classement,'themes' => $themes,'nb_quizz' => $nb_quizz);
     }
 
     /**
@@ -45,22 +46,23 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('Unable to find Question entity.');
         }
 
-
-                
-        foreach ($entity as $key => $value) {
-            if($value->getQuizzes() != "")
-            {
-                $tab[] = $value->getTitle();
-            }
-           
-        }
-
-        print_r($tab);
-        exit();
-
-
-
         return $entity;
+    }
+
+    public function countQuizzAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('MetinetFacebookBundle:Theme')->findAll();
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Question entity.');
+        }else{
+            foreach ($entity as $key => $value) {
+                $tab[$value->getId()] = count($value->getQuizzes());
+            }
+        }
+        return $tab;
     }
 
 
