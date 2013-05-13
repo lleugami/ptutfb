@@ -197,4 +197,9 @@ class Theme
     {
         return $this->quizzes;
     }
+    
+    public function __toString()
+    {
+        return $this->title;
+    }
 }

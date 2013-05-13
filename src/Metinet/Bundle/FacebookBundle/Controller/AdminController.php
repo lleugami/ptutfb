@@ -25,19 +25,4 @@ class AdminController extends Controller
     	return array('nombretotal' => $tot);
     }
 
-    /**
-     * @Route("/admin/listertheme", name="listerTheme")
-     * @Template()
-     * 
-     */
-
-    public function listerThemeAction()
-    {
-        $repository = $this->getDoctrine()->getRepository('FacebookBundle:Theme');
-        $themes = $repository->findAll();
-        
-        return array("themes" => $themes);
-        
-    }
-
 }
