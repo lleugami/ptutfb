@@ -1,0 +1,94 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Quizz</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ entity.picture }}</td>
+            </tr>
+            <tr>
+                <th>Shortdesc</th>
+                <td>{{ entity.shortDesc }}</td>
+            </tr>
+            <tr>
+                <th>Longdesc</th>
+                <td>{{ entity.longDesc }}</td>
+            </tr>
+            <tr>
+                <th>Winpoints</th>
+                <td>{{ entity.winPoints }}</td>
+            </tr>
+            <tr>
+                <th>Averagetime</th>
+                <td>{{ entity.averageTime }}</td>
+            </tr>
+            <tr>
+                <th>Txtwin1</th>
+                <td>{{ entity.txtWin1 }}</td>
+            </tr>
+            <tr>
+                <th>Txtwin3</th>
+                <td>{{ entity.txtWin3 }}</td>
+            </tr>
+            <tr>
+                <th>Txtwin2</th>
+                <td>{{ entity.txtWin2 }}</td>
+            </tr>
+            <tr>
+                <th>Txtwin4</th>
+                <td>{{ entity.txtWin4 }}</td>
+            </tr>
+            <tr>
+                <th>Sharewalltitle</th>
+                <td>{{ entity.shareWallTitle }}</td>
+            </tr>
+            <tr>
+                <th>Sharewalldesc</th>
+                <td>{{ entity.shareWallDesc }}</td>
+            </tr>
+            <tr>
+                <th>Ispromoted</th>
+                <td>{{ entity.isPromoted }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ entity.state }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('quizz') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('quizz_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('quizz_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}
