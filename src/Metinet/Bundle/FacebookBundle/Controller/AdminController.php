@@ -17,20 +17,19 @@ class AdminController extends Controller
     public function indexAction() {
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:User');;
-    	$tot = $repository->createQueryBuilder('a')
- 				->select('COUNT(a)')
- 				->getQuery()
- 				->getSingleScalarResult();;
+    	$tot = $repository->getAllUsers();
+    	
     	
     	$datesept = date("Y-m-d H:i:s", strtotime("-7 days"));
-    	$repository = $this->getDoctrine()
+    	$totsept = $repository->getSeptAllUsers($datesept);
+    	/*$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:User');;
     	$totsept = $repository->createQueryBuilder('a')
     	->select('COUNT(a)')
     	->where('a.createdAt >= :created_at')
     	->setParameter('created_at', $datesept)
     	->getQuery()
-    	->getSingleScalarResult();;
+    	->getSingleScalarResult();;*/
     	
     	$datetrente = date("Y-m-d H:i:s", strtotime("-30 days"));
     	$repository = $this->getDoctrine()
@@ -78,12 +77,14 @@ class AdminController extends Controller
     	->getQuery()
     	->getSingleScalarResult();;
     	
-		$arrayquizz = $repository->getTopQuizzPopulaires(3, "DESC");
-		foreach ($arrayquizz as $quizz) {
+		$arrayquizzpop = $repository->getTopQuizzPopulaires(3, "DESC");
+		foreach ($arrayquizzpop as $quizz) {
 			echo $quizz->getId();
 			
 		}
-    	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente, 'nbquizz' => $totquizz, 'scoremoyen' => $resultatmoyen, 'totquizzlancer' => $totquizzlance);
+		
+		$arrayquizzflop = $repository->getTopQuizzPopulaires(3, "ASC");
+    	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente, 'nbquizz' => $totquizz, 'scoremoyen' => $resultatmoyen, 'totquizzlancer' => $totquizzlance, 'tabquizzpop' => $arrayquizzpop, 'tabquizzflop' => $arrayquizzflop);
     }
 
 }
