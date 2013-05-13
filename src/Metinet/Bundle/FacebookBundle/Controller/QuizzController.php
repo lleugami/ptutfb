@@ -41,12 +41,9 @@ class QuizzController extends Controller
                 $tauxReussite[$entitie->getId()] = $em->getRepository('MetinetFacebookBundle:Quizz')->getTauxReussiteMoyen($nbUser,$entitie->getId());
                 
             }
-
-            
             
         }
         
-
         return array(
             'entities' => $entities,
             'nbUserByQuizz' => $nbUserByQuizz,
@@ -69,6 +66,9 @@ class QuizzController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $entity->upload();
+
             $em->persist($entity);
             $em->flush();
 
@@ -180,6 +180,9 @@ class QuizzController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+
+            $entity->upload();
+
             $em->persist($entity);
             $em->flush();
 
