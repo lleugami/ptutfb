@@ -596,7 +596,6 @@ class Quizz
     {
         return $this->theme;
     }
-<<<<<<< HEAD
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////       UPLOAD     ////////////////////////////////////////////
@@ -685,10 +684,9 @@ class Quizz
 
         // On enregistre la miniature sous le nom "mini_couchersoleil.jpg"
         imagejpeg($destination, '/home/metinet/ptutfb/web/uploads/images/mini/mini_'.$mini);
-=======
+    }
     
     public function __toString() {
         return $this->title;
->>>>>>> 04776fb887fd92b2c3114c36af7f42afe5636b75
     }
 }
