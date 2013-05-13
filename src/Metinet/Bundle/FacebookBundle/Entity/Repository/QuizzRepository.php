@@ -63,4 +63,20 @@ class QuizzRepository extends EntityRepository
         }
         
     }   
+    
+    public function getTotQuizz() {    	
+    	$query = $this->getEntityManager()
+    	->createQuery('
+                SELECT count(q) FROM MetinetFacebookBundle:Quizz q'
+    	);
+    	try {
+    		$result = $query->getSingleResult();
+    	} catch (\Doctrine\ORM\NoResultException $e) {
+    		return null;
+    	}
+    	$bal = $result[1];
+    	return $bal;
+    	
+    
+    }
 }
