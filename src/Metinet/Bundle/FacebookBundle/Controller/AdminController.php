@@ -29,6 +29,7 @@ class AdminController extends Controller
      * @Route("/admin/ajouterquizz", name="ajouterQuizz")
      * @Template()
      */
+    /*
     public function ajouterQuizzAction(Request $request)
     {
 
@@ -71,11 +72,12 @@ class AdminController extends Controller
         }
 
     }
-
+    */
     /**
      * @Route("/admin/listerquizz", name="listerQuizz")
      * @Template()
      */
+    /*
     public function listerQuizzAction()
     {
         
@@ -90,12 +92,13 @@ class AdminController extends Controller
             return array('quizz' => $quizz);
         }
     }
-    
+    */
     /**
      * @Route("/admin/listertheme", name="listerTheme")
      * @Template()
      * 
      */
+    
     public function listerThemeAction()
     {
         $repository = $this->getDoctrine()->getRepository('FacebookBundle:Theme');
