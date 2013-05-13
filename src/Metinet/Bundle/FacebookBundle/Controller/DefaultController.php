@@ -15,18 +15,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-<<<<<<< HEAD
-	   $user = $this->container->get('metinet.manager.fbuser')->getUserFb();
-        //$friends = $this->container->get('metinet.manager.fbuser')->getUserFriends("me");
-        $repository = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User');
-        $classement = $repository->getClassement($user['id']);
 
         $themes = $this->showThemeAction();
         $nb_quizz = $this->countQuizzAction();;
 
-        return array('classement' => $classement,'themes' => $themes,'nb_quizz' => $nb_quizz);
-=======
-	$userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
+	    $userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
         $user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
 
         //$friends = $this->container->get('metinet.manager.fbuser')->getClassementAvecAmis($user->getFbUid());
@@ -40,8 +33,7 @@ class DefaultController extends Controller
         $listeDernierQuizz = $repository->quatreDernierQuizz();
         $dernierQuizzPromo = $repository->dernierQuizzPromo();
                
-        return array('classement' => $classement, 'listeDernierQuizz' => $listeDernierQuizz, 'dernierQuizzPromo' => $dernierQuizzPromo);
->>>>>>> e99111f61577a4aa61f730fd5ccb5345e646915a
+        return array('classement' => $classement, 'listeDernierQuizz' => $listeDernierQuizz, 'dernierQuizzPromo' => $dernierQuizzPromo,'themes' => $themes,'nb_quizz' => $nb_quizz);
     }
 
     /**
