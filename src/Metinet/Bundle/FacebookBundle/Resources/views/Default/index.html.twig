@@ -2,7 +2,7 @@
 
 {% block body %}
     {% set user = app.session.get('user') %}
-    <h2>Hello {{ user.firstname }} {{ user.lastname }}</h2>
+    <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
     <p>
         <strong>ID SQL</strong>: {{ user.id }}<br />

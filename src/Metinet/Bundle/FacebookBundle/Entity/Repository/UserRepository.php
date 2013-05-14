@@ -12,4 +12,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function getClassement($id){
+        
+        $query = $this->getEntityManager()
+        ->createQuery('
+            SELECT u FROM MetinetFacebookBundle:User u
+            ORDER BY u.points DESC'
+        );
+
+        try {
+            $users = $query->getResult();
+            
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+        
+        if(is_object($users)){
+            
+            return 1;
+        }
+        
+        $i = 1;
+        foreach ($users as $user){
+            
+            if($user->getId() == $id){
+                
+                return $i;
+            }
+            $i ++;
+        }
+    }
 }
