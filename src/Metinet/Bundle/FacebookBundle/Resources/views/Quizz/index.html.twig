@@ -32,7 +32,7 @@
             <tr>
                 <td><a href="{{ path('quizz_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.title }}</td>
-                <td><img src="/uploads/images/mini/mini_{{ entity.picture }}" /></td>
+                <td><img src="/uploads/images/mini/quizz/mini_{{ entity.picture }}" /></td>
                 <td>{{ nbUserByQuizz[entity.id] }}</td>
                 <td>{{ tauxReussite[entity.id] }} %</td>
                 <td>{{ entity.shortDesc }}</td>
