@@ -29,7 +29,7 @@ class QuestionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MetinetFacebookBundle:Question')->findAll();
-
+        
         return array(
             'entities' => $entities,
         );
@@ -102,9 +102,16 @@ class QuestionController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        /*Récuperation des Reponse d'une Quesrion */
+        $listeReponse = $em->getRepository('MetinetFacebookBundle:Answer')->findBy(array('question'=>$id));
+        
+        if(!$listeReponse){
+            $listeReponse = null;
+        }
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'listeReponse' => $listeReponse
         );
     }
 

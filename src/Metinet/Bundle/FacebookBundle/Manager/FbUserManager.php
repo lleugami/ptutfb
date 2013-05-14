@@ -109,5 +109,10 @@ class FbUserManager
             return null;
         }
     }
+    
+    public function getUserFb()
+    {
+        return $this->facebook->api('/me');
+    }
 
 }

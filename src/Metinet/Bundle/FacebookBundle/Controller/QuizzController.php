@@ -32,6 +32,7 @@ class QuizzController extends Controller
         
         $nbUserByQuizz = null;
         $tauxReussite = null;
+        
         if(count($entities) != 0)
         {
             foreach ($entities as $entitie)

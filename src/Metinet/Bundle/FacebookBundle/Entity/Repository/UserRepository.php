@@ -35,7 +35,7 @@ class UserRepository extends EntityRepository
         $i = 1;
         foreach ($users as $user){
             
-            if($user->getId() == $id){
+            if($user->getFbUid() == $id){
                 
                 return $i;
             }
