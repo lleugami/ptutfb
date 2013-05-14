@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuestionRepository extends EntityRepository
 {
+	
+	public function getCountQuestionsByQuizz($id) {
+		$query = $this->getEntityManager()
+		->createQuery('
+                SELECT count(q) FROM MetinetFacebookBundle:Question q
+				 WHERE quizzId = :quizz_id'
+		)->setParameter('quizz_id', $id);
+		try {
+			$result = $query->getSingleResult();
+		} catch (\Doctrine\ORM\NoResultException $e) {
+			return null;
+		}
+		$bal = $result[1];
+		return $bal;
+	}
 }
