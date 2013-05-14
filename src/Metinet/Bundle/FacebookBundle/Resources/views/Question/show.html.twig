@@ -39,4 +39,17 @@
         </form>
     </li>
 </ul>
+{% if listeReponse %}
+<h2>Liste des Réponses</h2>
+<ul>
+{% for reponse in listeReponse %}
+    <li>
+        {{ reponse.title }}
+        <a href="{{ path('admin_reponse_edit', { 'id': reponse.id }) }}">
+            Editer
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

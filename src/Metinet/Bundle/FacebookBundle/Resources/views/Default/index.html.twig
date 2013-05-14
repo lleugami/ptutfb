@@ -4,6 +4,7 @@
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+    <p>Votre classement : {{ classement }}</p>
     <p>
         <strong>ID SQL</strong>: {{ user.id }}<br />
         <strong>ID Facebook</strong>: {{ user.fb_uid }}<br />
