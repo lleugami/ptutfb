@@ -78,6 +78,11 @@ class AdminController extends Controller
     	->getQuery()
     	->getSingleScalarResult();;
     	
+		$arrayquizz = $repository->getTopQuizzPopulaires(3, "DESC");
+		foreach ($arrayquizz as $quizz) {
+			echo $quizz->getId();
+			
+		}
     	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente, 'nbquizz' => $totquizz, 'scoremoyen' => $resultatmoyen, 'totquizzlancer' => $totquizzlance);
     }
 

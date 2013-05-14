@@ -12,4 +12,28 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuizzResultRepository extends EntityRepository
 {
+	public function getTopQuizzPopulaires($limit, $ordre){
+		
+		if(isset($limit) && $limit > 0 && isset($ordre) && ($ordre == "ASC" || $ordre == "DESC")){
+		    $arrayQuizz = array();
+			$qb = $this->_em->createQueryBuilder();
+			$qb->select('qr')
+				->addSelect('COUNT(q.id) as nbTimesPlayed')
+				->from('MetinetFacebookBundle:QuizzResult', 'qr')
+				->leftJoin('qr.quizz', 'q')
+				->groupBy('q.id')
+				->orderBy('nbTimesPlayed', $ordre)
+				->setMaxResults($limit);
+				//var_dump($qb->getQuery()->getResult());
+		
+			
+			$result =  $qb->getQuery()->getResult();
+			foreach($result as $row){
+				$quizz = $row[0]->getQuizz();
+				$arrayQuizz[] = $quizz;
+				//var_dump($quizz);die();
+			}
+		}
+		return $arrayQuizz;
+	}
 }
