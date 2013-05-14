@@ -124,11 +124,11 @@ class DefaultController extends Controller
             $nb_question[$value->getId()] = count($entity2); 
 
             $entity3 = $em->getRepository('MetinetFacebookBundle:QuizzResult')->findBy(array('quizz' => $value->getId()));
-
+           
             foreach ($entity3 as $key => $value2) 
             {
                 $img_user[$value->getId()][] =  $value2->getUser();
-            }                
+            }          
         }
 
         $nb_quizz = count($entity);
