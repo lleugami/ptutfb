@@ -105,6 +105,7 @@ class DefaultController extends Controller
             $desc_theme =  $value->getTheme()->getLongDesc();
             $entity2 = $em->getRepository('MetinetFacebookBundle:Question')->findBy(array('quizz' => $value->getId()));
             $nb_question[$value->getId()] = count($entity2); 
+            
         }
 
         $nb_quizz = count($entity);
