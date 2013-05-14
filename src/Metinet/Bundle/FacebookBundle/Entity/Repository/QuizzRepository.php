@@ -93,10 +93,10 @@ class QuizzRepository extends EntityRepository
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }
-
     }   
     
-    public function getTotQuizz() {    	
+
+    public function getCountTotQuizz() {    	
     	$query = $this->getEntityManager()
     	->createQuery('
                 SELECT count(q) FROM MetinetFacebookBundle:Quizz q'
@@ -108,9 +108,9 @@ class QuizzRepository extends EntityRepository
     	}
     	$bal = $result[1];
     	return $bal;
-    	
-    
     }
+
+
 
     public function getQuizzTrier($id) {
 
