@@ -9,8 +9,18 @@
 	Nombre de quizz : {{ nbquizz }}<br/>
 	Score moyen des joueurs : {{ scoremoyen }}<br/>
 	Nombre de quizz lancés par les joueurs : {{ totquizzlancer }}<br/>
-	Le TOP 3 des quizz les plus populaires : <br/>
-	Le TOP 3 des quizz les moins utilisés : <br/>
+	<h3>Le TOP 3 des quizz les plus populaires : </h3> <br/>
+		<ul>
+			{% for entity in tabquizzpop %}
+				<li><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</li>
+			{% endfor %}
+		</ul>
+	<h3>Le TOP 3 des quizz les moins utilisés :</h3> <br/>
+		<ul>
+			{% for entity in tabquizzflop %}
+				<li><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</li>
+			{% endfor %}
+		</ul>
 
 
 <a href="{{ path('quizz') }}">Gestion des Quizz</a>

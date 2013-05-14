@@ -42,4 +42,36 @@ class UserRepository extends EntityRepository
             $i ++;
         }
     }
+    
+    public function getAllUsers() {
+    	
+    	$query = $this->getEntityManager()
+            ->createQuery('
+                SELECT count(a) FROM MetinetFacebookBundle:User a'
+            );
+    	try {
+    		$result = $query->getSingleResult();
+    	} catch (\Doctrine\ORM\NoResultException $e) {
+    		return null;
+    	}
+    	$bal = $result[1];
+    	return $bal;
+    }
+    
+    public function getSeptAllUsers($date) {
+    	 
+    		$query = $this->getEntityManager()
+            ->createQuery('
+                SELECT count(a) FROM MetinetFacebookBundle:User a
+                WHERE a.createdAt >= :created_at'
+            )->setParameter('created_at', $date);
+
+            try {
+                $result = $query->getSingleResult();
+            } catch (\Doctrine\ORM\NoResultException $e) {
+                return null;
+            }
+    	$bal = $result[1];
+    	return $bal;
+    }
 }
