@@ -111,4 +111,34 @@ class QuizzRepository extends EntityRepository
     	
     
     }
+
+    public function getQuizzTrier($id) {
+
+        $query = $this->getEntityManager()
+        ->createQuery('
+                SELECT q FROM MetinetFacebookBundle:Quizz q
+                WHERE q.theme = :id
+                ORDER BY q.createdAt DESC'
+        )->setParameter('id', $id);
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+
+
+    /*public function getQuizzImage($id) {
+
+        $query = $this->getEntityManager()
+        ->createQuery('
+                SELECT qr FROM MetinetFacebookBundle:QuizzResult qr
+                WHERE qr.quizz = :id
+        )->setParameter('id', $id);
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }*/
 }
