@@ -72,7 +72,7 @@ class DefaultController extends Controller
                 $tab[$value->getId()] = count($value->getQuizzes());
             }
         }
-        
+
         return $tab;
     }
 

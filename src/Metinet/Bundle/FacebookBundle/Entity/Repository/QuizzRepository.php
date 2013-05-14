@@ -126,19 +126,4 @@ class QuizzRepository extends EntityRepository
             return null;
         }
     }
-
-
-    /*public function getQuizzImage($id) {
-
-        $query = $this->getEntityManager()
-        ->createQuery('
-                SELECT qr FROM MetinetFacebookBundle:QuizzResult qr
-                WHERE qr.quizz = :id
-        )->setParameter('id', $id);
-        try {
-            return $query->getResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-            return null;
-        }
-    }*/
 }
