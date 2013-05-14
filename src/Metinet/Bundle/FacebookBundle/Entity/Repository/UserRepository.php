@@ -83,7 +83,7 @@ class UserRepository extends EntityRepository
             ->createQuery('
                 SELECT u FROM MetinetFacebookBundle:User u
                 ORDER BY u.points DESC'
-            )->setFirstResult($idUser - 2)
+            )->setFirstResult($idUser)
              ->setMaxResults(4);
 
             try {
