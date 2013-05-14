@@ -19,10 +19,14 @@ class DefaultController extends Controller
         $themes = $this->showThemeAction();
         $nb_quizz = $this->countQuizzAction();;
 
-	    $userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
+        $userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
+
         $user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
 
-        //$friends = $this->container->get('metinet.manager.fbuser')->getClassementAvecAmis($user->getFbUid());
+        $friends = $this->container->get('metinet.manager.fbuser')->getUserFriendsUsingApp('me');
+        
+        
+        $classementAvecAmis = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementAvecAmis($friends,$user->getId());
         
         /* Classement */
         $repository = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User');
@@ -33,7 +37,7 @@ class DefaultController extends Controller
         $listeDernierQuizz = $repository->quatreDernierQuizz();
         $dernierQuizzPromo = $repository->dernierQuizzPromo();
                
-        return array('classement' => $classement, 'listeDernierQuizz' => $listeDernierQuizz, 'dernierQuizzPromo' => $dernierQuizzPromo,'themes' => $themes,'nb_quizz' => $nb_quizz);
+        return array('classement' => $classement, 'classementAvecAmis' => $classementAvecAmis, 'listeDernierQuizz' => $listeDernierQuizz, 'dernierQuizzPromo' => $dernierQuizzPromo,'themes' => $themes,'nb_quizz' => $nb_quizz);
     }
 
     /**
@@ -74,6 +78,19 @@ class DefaultController extends Controller
         }
 
         return $tab;
+    }
+    
+    /**
+     * @Route("/detailquizz/{id}", name="detail")
+     * @Template()
+     */
+    public function detailsquizzAction($id) {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('MetinetFacebookBundle:Quizz')->find($id);
+    	if (!$entity) {
+    		throw $this->createNotFoundException('Unable to find Quizz entity.');
+    	}
+    	return array('quizz' => $entity);
     }
 
 

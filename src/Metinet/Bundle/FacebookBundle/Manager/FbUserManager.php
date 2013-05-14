@@ -110,12 +110,38 @@ class FbUserManager
         }
     }
     
-   /* public function getClassementAvecAmis($id)
+    public function getUserFriendsUsingApp($fbId)
     {
-        $friends = $this->getUserFriends($id);
+            // Méthode 1
+            $lstFriends = $this->facebook->api('/'.$fbId."/friends?fields=installed");
+            
+            $tab = null;
+            foreach ($lstFriends['data'] as $friend){
+                
+                if(isset($friend['installed'])){
+                    
+                    $tab[] =  $friend['id'];
+                    
+                }
+            }
+            // Méthode 2
+            //$myQuery = "SELECT uid2 FROM friend WHERE uid1=me()";
+            //$lstFriends = $this->facebook->api( "/fql?q=" . urlencode($myQuery) );
+            
+            return $tab;
+            
+    }
+    
+   public function getClassementAvecAmis($id)
+    {
+        $friends = $this->getUserFriendsUsingApp($id);
         
         $i = 0;
+        
         foreach ($friends as $friend){
+            var_dump($friend);
+        }
+        /*foreach ($friends as $friend){
             
             $dbal = $this->em->getConnection();
             
@@ -131,8 +157,8 @@ class FbUserManager
             }
             
             $i ++;
-        }
-    }*/
+        }*/
+    }
     
     public function getUserFb()
     {
