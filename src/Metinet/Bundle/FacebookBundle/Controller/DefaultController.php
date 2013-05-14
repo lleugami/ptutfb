@@ -15,10 +15,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-		
-        $friends = $this->container->get('metinet.manager.fbuser')->getUserFriends("me");
-
-        return array("friends" => $friends['data']);
+	$user = $this->container->get('metinet.manager.fbuser')->findUserByFbId('me');
+        //$friends = $this->container->get('metinet.manager.fbuser')->getUserFriends("me");
+        $repository = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User');
+        $classement = $repository->getClassement($user['id']);
+        echo 'Classement '.$classement;
+        return array(null);
     }
 
     /**
