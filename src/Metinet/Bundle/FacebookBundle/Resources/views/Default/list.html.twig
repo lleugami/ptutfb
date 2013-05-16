@@ -9,9 +9,15 @@
 			<ol><b>Description :</b> {{ quizzs.longDesc }} </ol>
 			<ol><b>Nombre de question :</b> {{ nb_question[quizzs.id] }} </ol>
 			<ol><b>Nombre de points :</b> {{ quizzs.winPoints }} </ol>
-			<ol>Participant : A faire
+			<ol>
+			{% if user[quizzs.id] is defined and user[quizzs.id]|length != 0 %}
+			Participant :
+				{% for users in user[quizzs.id] %}
+	        		<img src="{{ users }}" />
+		    	{% endfor %}
+	    	{% endif %}
 			</ol>
-			<ol><a href="#">Défier ses amis !</a></ol>
+			<ol><a href="#">Jouer</a></ol>
 		</li>
 		<br />
 		<br />

@@ -10,7 +10,7 @@ class DefaultController extends Controller
 {
 	
       /**
-     * @Route("/")
+     * @Route("/", name="index")
      * @Template()
      */
     public function indexAction()
@@ -113,12 +113,7 @@ class DefaultController extends Controller
 
         if (!$entity) 
         {
-            throw $this->createNotFoundException('Unable to find Quizz entity.');
-            
-            if (!$entity3) 
-            {
-                throw $this->createNotFoundException('Unable to find Question entity.');
-            }
+             return $this->redirect($this->generateUrl('index'));
         }
 
         foreach ($entity as $key => $value) 
@@ -127,12 +122,21 @@ class DefaultController extends Controller
             $img_theme =  $value->getTheme()->getPicture();
             $desc_theme =  $value->getTheme()->getLongDesc();
             $entity2 = $em->getRepository('MetinetFacebookBundle:Question')->findBy(array('quizz' => $value->getId()));
-            $nb_question[$value->getId()] = count($entity2);      
+            $nb_question[$value->getId()] = count($entity2);
+
+            $entity3 = $em->getRepository('MetinetFacebookBundle:QuizzResult')->findBy(array('quizz' => $value->getId()));
+        
+            $user[$value->getId()] = null;
+            foreach ($entity3 as $key => $value3) 
+            {
+                $user[$value->getId()][] =  $value3->getUser()->getPicture();
+            }
+
         }
 
         $nb_quizz = count($entity);
 
-        return  array('quizz' => $entity,'titre_theme' => $titre_theme,'nb_quizz' => $nb_quizz,'img_theme' => $img_theme,'desc_theme' => $desc_theme,'nb_question' => $nb_question);
+        return  array('quizz' => $entity,'titre_theme' => $titre_theme,'nb_quizz' => $nb_quizz,'img_theme' => $img_theme,'desc_theme' => $desc_theme,'nb_question' => $nb_question, 'user' => $user);
     }
 
 }
