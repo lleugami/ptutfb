@@ -17,17 +17,18 @@ class AdminController extends Controller
     public function indexAction() {
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:User');;
-    	$tot = $repository->getAllUsers();
+    	$tot = $repository->getCountAllUsers();
+    	$lasttenusers = $repository->getLastTenUsers();
     	$datesept = date("Y-m-d H:i:s", strtotime("-7 days"));
-    	$totsept = $repository->getDateAllUsers($datesept);
+    	$totsept = $repository->getCountDateAllUsers($datesept);
     	$datetrente = date("Y-m-d H:i:s", strtotime("-30 days"));
-    	$tottrente = $repository->getDateAllUsers($datetrente);
+    	$tottrente = $repository->getCountDateAllUsers($datetrente);
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:Quizz');;
-    	$totquizz = $repository->getTotQuizz();  	
+    	$totquizz = $repository->getCountTotQuizz();  	
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:QuizzResult');;
-    	$somme = $repository->getPointMoyen();
+    	$somme = $repository->getSommePoint();
     	if(!isset($somme)) {
     		$somme = 0;
     	} else {
@@ -40,14 +41,12 @@ class AdminController extends Controller
     		$tot = (int)$tot;
     	}
     	$resultatmoyen = $somme/$tot;
-    	$totquizzlance = $repository->getQuizzLancer();
+    	$totquizzlance = $repository->getCountQuizzLancer();
 		$arrayquizzpop = $repository->getTopQuizzPopulaires(3, "DESC");
-		/*foreach ($arrayquizzpop as $quizz) {
-			echo $quizz->getId();
-			
-		}*/
+
 		$arrayquizzflop = $repository->getTopQuizzPopulaires(3, "ASC");
-    	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente, 'nbquizz' => $totquizz, 'scoremoyen' => $resultatmoyen, 'totquizzlancer' => $totquizzlance, 'tabquizzpop' => $arrayquizzpop, 'tabquizzflop' => $arrayquizzflop);
+		
+    	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente, 'nbquizz' => $totquizz, 'scoremoyen' => $resultatmoyen, 'totquizzlancer' => $totquizzlance, 'tabquizzpop' => $arrayquizzpop, 'tabquizzflop' => $arrayquizzflop, 'tablasttenpers' => $lasttenusers);
     }
 
 }

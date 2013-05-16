@@ -37,7 +37,7 @@ class QuizzResultRepository extends EntityRepository
 		return $arrayQuizz;
 	}
 	
-	public function getPointMoyen() {
+	public function getSommePoint() {
 		
 		$query = $this->getEntityManager()
 		->createQuery('
@@ -52,7 +52,7 @@ class QuizzResultRepository extends EntityRepository
 		return $bal;
 	}
 	
-	public function getQuizzLancer() {
+	public function getCountQuizzLancer() {
 
 		$query = $this->getEntityManager()
 		->createQuery('

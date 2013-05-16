@@ -64,7 +64,7 @@ class QuizzRepository extends EntityRepository
         
     }   
     
-    public function getTotQuizz() {    	
+    public function getCountTotQuizz() {    	
     	$query = $this->getEntityManager()
     	->createQuery('
                 SELECT count(q) FROM MetinetFacebookBundle:Quizz q'
