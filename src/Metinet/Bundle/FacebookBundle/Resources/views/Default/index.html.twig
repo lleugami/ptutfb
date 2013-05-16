@@ -4,8 +4,18 @@
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+    <p>Votre classement : {{ classement }}</p>
+    <table>
+        <tr>
+            {% for user in classementAvecAmis %}
+                <td>
+                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+                    <p>{{ user.points }} pts </p>
+                </td>
+            {% endfor %}
+        </tr>
+    </table>
 
-    <p>Votre classement : {{ classement }} ème</p>
 <hr>
     <div>
     <h3>List des Thèmes</h3>
@@ -15,8 +25,6 @@
 	    {% endfor %}
 	    </ul>
     </div>
-
-    <p>Votre classement : {{ classement }}</p>
     
     
     {% if listeDernierQuizz %}
