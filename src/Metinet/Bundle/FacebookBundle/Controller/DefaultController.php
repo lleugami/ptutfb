@@ -68,7 +68,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('MetinetFacebookBundle:Theme')->findAll();
-
+ 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Question entity.');
         }else{
@@ -91,6 +91,12 @@ class DefaultController extends Controller
     	}
     	$repositoryQuestion = $em->getRepository('MetinetFacebookBundle:Question');
     	$countQuestion = $repositoryQuestion->getCountQuestionsByQuizz($entity->getId());
+    	
+    	$repositoryUsers = $em->getRepository('MetinetFacebookBundle:User');
+    	$userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
+    	$user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
+    	$friends = $this->container->get('metinet.manager.fbuser')->getUserFriendsUsingApp('me');
+    	$classementAmis = $repositoryUsers->getClassementAvecAmisByQuizz($friends, $user->getId());
     	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion);
     }
 
