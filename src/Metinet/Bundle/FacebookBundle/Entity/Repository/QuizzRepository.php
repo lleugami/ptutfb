@@ -62,8 +62,40 @@ class QuizzRepository extends EntityRepository
             return 0;
         }
         
+
+    }
+    
+    public function quatreDernierQuizz()
+    {
+        $query = $this->getEntityManager()
+        ->createQuery('
+            SELECT q FROM MetinetFacebookBundle:Quizz q
+            ORDER BY q.id ASC'
+        )->setMaxResults(4);
+        
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+    
+    public function dernierQuizzPromo()
+    {
+        $query = $this->getEntityManager()
+        ->createQuery('
+            SELECT q FROM MetinetFacebookBundle:Quizz q
+            WHERE q.isPromoted = 1'
+        )->setMaxResults(1);
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
     }   
     
+
     public function getCountTotQuizz() {    	
     	$query = $this->getEntityManager()
     	->createQuery('
@@ -76,7 +108,37 @@ class QuizzRepository extends EntityRepository
     	}
     	$bal = $result[1];
     	return $bal;
-    	
-    
     }
+
+
+
+    public function getQuizzTrier($id) {
+
+        $query = $this->getEntityManager()
+        ->createQuery('
+                SELECT q FROM MetinetFacebookBundle:Quizz q
+                WHERE q.theme = :id
+                ORDER BY q.createdAt DESC'
+        )->setParameter('id', $id);
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+
+
+    /*public function getQuizzImage($id) {
+
+        $query = $this->getEntityManager()
+        ->createQuery('
+                SELECT qr FROM MetinetFacebookBundle:QuizzResult qr
+                WHERE qr.quizz = :id
+        )->setParameter('id', $id);
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }*/
 }

@@ -44,8 +44,11 @@
 <ul>
 {% for reponse in listeReponse %}
     <li>
-        {{ reponse.title }}
-        <a href="{{ path('admin_reponse_edit', { 'id': reponse.id }) }}">
+        {{ reponse.title }} 
+            {% if reponse.isCorrect == 1 %}
+                - Réponse juste -
+            {% endif %}
+        <a href="{{ path('admin_answer_edit', { 'id': reponse.id }) }}">
             Editer
         </a>
     </li>
