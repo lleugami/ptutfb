@@ -75,6 +75,19 @@ class DefaultController extends Controller
         
         return $tab;
     }
+    
+    /**
+     * @Route("/detailquizz/{id}", name="detail")
+     * @Template()
+     */
+    public function detailsquizzAction($id) {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('MetinetFacebookBundle:Quizz')->find($id);
+    	if (!$entity) {
+    		throw $this->createNotFoundException('Unable to find Quizz entity.');
+    	}
+    	return array('quizz' => $entity);
+    }
 
 
     /**
