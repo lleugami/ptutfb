@@ -110,6 +110,30 @@ class FbUserManager
         }
     }
     
+   /* public function getClassementAvecAmis($id)
+    {
+        $friends = $this->getUserFriends($id);
+        
+        $i = 0;
+        foreach ($friends as $friend){
+            
+            $dbal = $this->em->getConnection();
+            
+            $idFb = $friend[$i]['id'];
+            $query = sprintf('SELECT u.* FROM user u WHERE u.fb_uid = 2');
+
+            $std = $dbal->query($query);
+
+            $user = $std->fetch(\PDO::FETCH_ASSOC);
+            
+            if(is_object($user)){
+                echo $user->getId();
+            }
+            
+            $i ++;
+        }
+    }*/
+    
     public function getUserFb()
     {
         return $this->facebook->api('/me');

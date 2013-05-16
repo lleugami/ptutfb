@@ -102,9 +102,17 @@ class ThemeController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        /*Récuperation des Quizz d'un Theme */
+        $listeQuizz = $em->getRepository('MetinetFacebookBundle:Quizz')->findBy(array('theme'=>$id));
+        
+        if(!$listeQuizz){
+            $listeQuizz = null;
+        }
+        
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'listeQuizz' => $listeQuizz
         );
     }
 

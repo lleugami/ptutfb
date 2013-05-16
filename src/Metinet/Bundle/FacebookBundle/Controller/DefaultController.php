@@ -15,12 +15,21 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-	$user = $this->container->get('metinet.manager.fbuser')->getUserFb();
-        //$friends = $this->container->get('metinet.manager.fbuser')->getUserFriends("me");
-        $repository = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User');
-        $classement = $repository->getClassement($user['id']);
+	$userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
+        $user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
+
+        //$friends = $this->container->get('metinet.manager.fbuser')->getClassementAvecAmis($user->getFbUid());
         
-        return array('classement' => $classement);
+        /* Classement */
+        $repository = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User');
+        $classement = $repository->getClassement($userFb['id']);
+        
+        /* Dernier Quizz */
+        $repository = $this->getDoctrine()->getRepository('MetinetFacebookBundle:Quizz');
+        $listeDernierQuizz = $repository->quatreDernierQuizz();
+        $dernierQuizzPromo = $repository->dernierQuizzPromo();
+               
+        return array('classement' => $classement, 'listeDernierQuizz' => $listeDernierQuizz, 'dernierQuizzPromo' => $dernierQuizzPromo);
     }
 
     /**
