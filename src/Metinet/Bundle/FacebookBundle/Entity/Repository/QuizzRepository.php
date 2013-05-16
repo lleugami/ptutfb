@@ -62,6 +62,7 @@ class QuizzRepository extends EntityRepository
             return 0;
         }
         
+
     }
     
     public function quatreDernierQuizz()
@@ -92,5 +93,22 @@ class QuizzRepository extends EntityRepository
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }
+
+    }   
+    
+    public function getTotQuizz() {    	
+    	$query = $this->getEntityManager()
+    	->createQuery('
+                SELECT count(q) FROM MetinetFacebookBundle:Quizz q'
+    	);
+    	try {
+    		$result = $query->getSingleResult();
+    	} catch (\Doctrine\ORM\NoResultException $e) {
+    		return null;
+    	}
+    	$bal = $result[1];
+    	return $bal;
+    	
+    
     }
 }

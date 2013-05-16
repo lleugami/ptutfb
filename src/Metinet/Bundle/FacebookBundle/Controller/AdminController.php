@@ -18,43 +18,16 @@ class AdminController extends Controller
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:User');;
     	$tot = $repository->getAllUsers();
-    	
-    	
     	$datesept = date("Y-m-d H:i:s", strtotime("-7 days"));
-    	$totsept = $repository->getSeptAllUsers($datesept);
-    	/*$repository = $this->getDoctrine()
-    	->getRepository('MetinetFacebookBundle:User');;
-    	$totsept = $repository->createQueryBuilder('a')
-    	->select('COUNT(a)')
-    	->where('a.createdAt >= :created_at')
-    	->setParameter('created_at', $datesept)
-    	->getQuery()
-    	->getSingleScalarResult();;*/
-    	
+    	$totsept = $repository->getDateAllUsers($datesept);
     	$datetrente = date("Y-m-d H:i:s", strtotime("-30 days"));
-    	$repository = $this->getDoctrine()
-    	->getRepository('MetinetFacebookBundle:User');;
-    	$tottrente = $repository->createQueryBuilder('a')
-    	->select('COUNT(a)')
-    	->where('a.createdAt >= :created_at')
-    	->setParameter('created_at', $datetrente)
-    	->getQuery()
-    	->getSingleScalarResult();;
-    	
+    	$tottrente = $repository->getDateAllUsers($datetrente);
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:Quizz');;
-    	$totquizz = $repository->createQueryBuilder('a')
-    	->select('COUNT(a)')
-    	->getQuery()
-    	->getSingleScalarResult();;
-    	
-    	
+    	$totquizz = $repository->getTotQuizz();  	
     	$repository = $this->getDoctrine()
     	->getRepository('MetinetFacebookBundle:QuizzResult');;
-    	$somme = $repository->createQueryBuilder('a')
-    	->select('SUM(a.winPoints)')
-    	->getQuery()
-    	->getSingleScalarResult();;
+    	$somme = $repository->getPointMoyen();
     	if(!isset($somme)) {
     		$somme = 0;
     	} else {
@@ -67,22 +40,12 @@ class AdminController extends Controller
     		$tot = (int)$tot;
     	}
     	$resultatmoyen = $somme/$tot;
-    	
-    	$repository = $this->getDoctrine()
-    	->getRepository('MetinetFacebookBundle:QuizzResult');;
-    	$totquizzlance = $repository->createQueryBuilder('a')
-    	->select('COUNT(a)')
-    	->where('a.dateEnd = :date_end')
-    	->setParameter('date_end', '')
-    	->getQuery()
-    	->getSingleScalarResult();;
-    	
+    	$totquizzlance = $repository->getQuizzLancer();
 		$arrayquizzpop = $repository->getTopQuizzPopulaires(3, "DESC");
-		foreach ($arrayquizzpop as $quizz) {
+		/*foreach ($arrayquizzpop as $quizz) {
 			echo $quizz->getId();
 			
-		}
-		
+		}*/
 		$arrayquizzflop = $repository->getTopQuizzPopulaires(3, "ASC");
     	return array('nombretotal' => $tot, 'nombretotalsept' => $totsept, 'nombretotaltrente' => $tottrente, 'nbquizz' => $totquizz, 'scoremoyen' => $resultatmoyen, 'totquizzlancer' => $totquizzlance, 'tabquizzpop' => $arrayquizzpop, 'tabquizzflop' => $arrayquizzflop);
     }
