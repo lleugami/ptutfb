@@ -76,7 +76,6 @@ class DefaultController extends Controller
                 $tab[$value->getId()] = count($value->getQuizzes());
             }
         }
-
         return $tab;
     }
     
@@ -90,7 +89,9 @@ class DefaultController extends Controller
     	if (!$entity) {
     		throw $this->createNotFoundException('Unable to find Quizz entity.');
     	}
-    	return array('quizz' => $entity);
+    	$repositoryQuestion = $em->getRepository('MetinetFacebookBundle:Question');
+    	$countQuestion = $repositoryQuestion->getCountQuestionsByQuizz($entity->getId());
+    	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion);
     }
 
 
