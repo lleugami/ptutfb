@@ -43,7 +43,7 @@ class UserRepository extends EntityRepository
         }
     }
     
-    public function getAllUsers() {
+    public function getCountAllUsers() {
     	
     	$query = $this->getEntityManager()
             ->createQuery('
@@ -58,9 +58,9 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
-    public function getDateAllUsers($date) {
+    public function getCountDateAllUsers($date) {
     	 
-            $query = $this->getEntityManager()
+    		$query = $this->getEntityManager()
             ->createQuery('
                 SELECT count(a) FROM MetinetFacebookBundle:User a
                 WHERE a.createdAt >= :created_at'
@@ -161,6 +161,7 @@ class UserRepository extends EntityRepository
         
     }
     
+
     function sort_by_key($array, $index, $desc = 1) {
         $sort = array();
 
@@ -186,6 +187,20 @@ class UserRepository extends EntityRepository
         }
 
         return $output;
+
+    public function getLastTenUsers() {
+    	$query = $this->getEntityManager()
+    	->createQuery('
+                SELECT a FROM MetinetFacebookBundle:User a
+                ORDER BY a.createdAt DESC'
+    	);
+    	try {
+    		$result = $query->getResult();
+    	} catch (\Doctrine\ORM\NoResultException $e) {
+    		return null;
+    	}
+    	return $result;
+
     }
     
 }
