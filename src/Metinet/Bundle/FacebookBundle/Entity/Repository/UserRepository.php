@@ -58,7 +58,7 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
-    public function getSeptAllUsers($date) {
+    public function getDateAllUsers($date) {
     	 
     		$query = $this->getEntityManager()
             ->createQuery('

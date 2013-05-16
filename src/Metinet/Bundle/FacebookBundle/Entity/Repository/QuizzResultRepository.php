@@ -36,4 +36,35 @@ class QuizzResultRepository extends EntityRepository
 		}
 		return $arrayQuizz;
 	}
+	
+	public function getPointMoyen() {
+		
+		$query = $this->getEntityManager()
+		->createQuery('
+                SELECT SUM(qr.winPoints) FROM MetinetFacebookBundle:QuizzResult qr'
+		);
+		try {
+			$result = $query->getSingleResult();
+		} catch (\Doctrine\ORM\NoResultException $e) {
+			return null;
+		}
+		$bal = $result[1];
+		return $bal;
+	}
+	
+	public function getQuizzLancer() {
+
+		$query = $this->getEntityManager()
+		->createQuery('
+                SELECT COUNT(qr) FROM MetinetFacebookBundle:QuizzResult qr
+				 WHERE qr.dateEnd = :date_end'
+		)->setParameter('date_end', '');
+		try {
+			$result = $query->getSingleResult();
+		} catch (\Doctrine\ORM\NoResultException $e) {
+			return null;
+		}
+		$bal = $result[1];
+		return $bal;
+	}
 }
