@@ -187,6 +187,7 @@ class UserRepository extends EntityRepository
         }
 
         return $output;
+    }
 
     public function getLastTenUsers() {
     	$query = $this->getEntityManager()
