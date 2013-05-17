@@ -115,5 +115,14 @@ class DefaultController extends Controller
 
         return  array('quizz' => $entity,'titre_theme' => $titre_theme,'nb_quizz' => $nb_quizz,'img_theme' => $img_theme,'desc_theme' => $desc_theme,'nb_question' => $nb_question);
     }
+    
+    /**
+     * @Route("quizz/{id}", name="start_quizz")
+     * @Template()
+     */
+    public function startQuizzAction($id)
+    {
+        echo 'lol';
+    }
 
 }
