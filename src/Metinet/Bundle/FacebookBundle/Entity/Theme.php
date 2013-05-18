@@ -239,14 +239,14 @@ class Theme
     protected function getUploadRootDir()
     {
         // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
-        return '/home/metinet/ptutfb/web/'.$this->getUploadDir();
+        return asset('/').$this->getUploadDir();
     }
 
     protected function getUploadDir()
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
-        return 'uploads/images/theme';
+        return asset('/uploads/images/theme/');
     }
 
     public function upload()
@@ -277,7 +277,7 @@ class Theme
     private function miniature($mini)
     {
 
-        $source = imagecreatefromjpeg("/home/metinet/ptutfb/web/uploads/images/theme/".$mini); // La photo est la source
+        $source = imagecreatefromjpeg(asset('/uploads/images/theme/').$mini); // La photo est la source
         $destination = imagecreatetruecolor(50, 50); // On crée la miniature vide
 
         // Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d'une image
@@ -290,6 +290,6 @@ class Theme
         imagecopyresampled($destination, $source, 0, 0, 0, 0, $largeur_destination, $hauteur_destination, $largeur_source, $hauteur_source);
 
         // On enregistre la miniature sous le nom "mini_couchersoleil.jpg"
-        imagejpeg($destination, '/home/metinet/ptutfb/web/uploads/images/mini/theme/mini_'.$mini);
+        imagejpeg($destination, asset('/uploads/images/mini/theme/').'mini_'.$mini);
     }
 }
