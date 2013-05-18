@@ -15,7 +15,7 @@ body {
 }
 
 h1 {
-	color: #ffba00;
+	color: #ff3c00;
 	font-size: 48px;
 	margin: 15px 15px 15px 90px;
 	font-weight: bold;
@@ -31,20 +31,64 @@ h3 {
 	font-size: 30pt;
 }
 
+li {
+	list-style-type: none;
+}
+
+li a {
+	text-decoration: none;
+	color: #ff7800;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	padding: 5px;
+	margin: 5px;
+}
+
 #topQuizz {
 	display: inline-block;
-	width: 400px;
+	width: 450px;
+	margin-left: 20px;
 }
 
 #flopQuizz {
 	display: inline-block;
-	width: 400px;
+	width: 450px;
+}
+
+#lastUser li {
+	display: inline;
+	margin: 0 5px 0 5px;
+}
+
+#lastUser h3 {
+	margin: 20px 5px 15px 5px;
+}
+
+#lastUser {
+	margin-left: 25px;
+}
+
+.listQuizz {
+	width: 300px;
+	color: #ff7800;
+	background-color: white;
+	box-shadow: 3px 3px 8px #aaa;
+	margin: 20px 20px 20px 20px;
+	padding: 5px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .rankQuizz {
 	vertical-align: top;
-	margin: 15px;
-	padding: 15px;
+	margin: 5px;
+	padding: 35px 5px;
 	float: left;
 }
 
@@ -68,4 +112,9 @@ h3 {
 
 .spanresult {
 	font-weight: bold;
+}
+
+.lastUser {
+	float: left;
+	margin: 0px 15px 0px 5px;
 }

@@ -160,37 +160,60 @@ class UserRepository extends EntityRepository
     public function getClassementAvecAmisByQuizz($friends,$idUser, $idquizz) {
     	$i = 0;
     	//var_dump($idquizz);exit;
+    	$cpt = 0;
+    	$users= null;
+		//var_dump($friends);exit;
     	foreach ($friends as $friend){
-    		
-    		
     		$query = $this->getEntityManager()
     		->createQuery('
-                SELECT u as user,q as question FROM MetinetFacebookBundle:User u JOIN  MetinetFacebookBundle:QuizzResult q
+                SELECT u as user FROM MetinetFacebookBundle:User u JOIN  MetinetFacebookBundle:QuizzResult q
                 WHERE u.fbUid = :iduser AND q.quizz = :idquizz AND q.dateEnd != :test'
     		)->setParameters(array(
-    			'iduser' => '1383338550',
+    			'iduser' => $friend,
     			//'iduser' => $friend,
     			'idquizz'  => $idquizz,
     			'test'  => ''
 			));
-    		
     		try {
     			//L'éxecuton de cette requête permet de savor sz 
     			$tmp = $query->getResult();
     			//var_dump($tmp);exit;
+    			
     			if(sizeof($tmp) >0) {
+    				
     				foreach($tmp as $row){
-						$test = $row["user"]->getId();
-						var_dump($test);
-    					//var_dump($quizz);die();
+						
+    					//$users[$cpt]["user"] =  $row["user"];
+    					$query2 = $this->getEntityManager()
+    						->createQuery('
+			                SELECT q FROM MetinetFacebookBundle:QuizzResult q 
+    						WHERE q.user = :iduser AND q.quizz = :idquizz AND q.dateEnd != :test'
+    					)->setParameters(array(
+				    			'iduser' => $row["user"]->getId(),
+				    			//'iduser' => $friend,
+				    			'idquizz'  => $idquizz,
+				    			'test'  => ''
+						));
+    					$tmp2 = $query2->getResult();
+    				
+    					foreach($tmp2 as $row2){
+							//var_dump($row["user"]->getId());
+    						//var_dump($row2->getWinPoints());exit;
+    						//$users[$cpt]['points'] = $row2->getWinPoints();
+    						$users[$cpt] = array('id' => $row["user"]->getId(), 'firstname' => $row["user"]->getFirstname(), 'lastname' => $row["user"]->getLastname(), 'picture' => $row["user"]->getPicture(), 'points' => $row2->getWinPoints());
+    					}
+    					$cpt++;
+						//var_dump($users);
     				}
     			}
     		} catch (\Doctrine\ORM\NoResultException $e) {
-    			echo "salut";exit;
     			return null;
     		}
     		$i ++;
     	}
+
+    	$users = $this->sort_by_key($users, 'points');
+    	return $users;
     }
     
 

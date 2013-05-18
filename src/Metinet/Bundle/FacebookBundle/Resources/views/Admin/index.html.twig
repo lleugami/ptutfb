@@ -12,32 +12,39 @@
 	<div class="infoAppli">
 	Nombre de quizz :  <span class="spanresult">{{ nbquizz }}</span><br/>
 	Score moyen des joueurs : <span class="spanresult"> {{ scoremoyen }} </span><br/>
-	Nombre de quizz lancés : <span class="spanresult"> {{ totquizzlancer }} </span><br/>
+	Nombre de quizz en cours : <span class="spanresult"> {{ totquizzlancer }} </span><br/>
 	</div>
 	<div id="topQuizz">
 	<img class="rankQuizz" src="{{asset('/bundles/metinetgalery/image/Upload.png')}}">
-	<h3>Le TOP 3 des quizz : </h3> <br/>
-		<ul>
-			{% for entity in tabquizzpop %}
-				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}"><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
-			{% endfor %}
-		</ul>
+	<h3>Le TOP 3 des quizz : </h3>
+		<div class="listQuizz">
+			<ul>
+				{% for entity in tabquizzpop %}
+					<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}">{{ entity.id }} - {{ entity.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
 	</div>
 	<div id="flopQuizz">
 	<img class="rankQuizz" src="{{asset('/bundles/metinetgalery/image/Download.png')}}">
-	<h3>Le FLOP 3 des quizz :</h3> <br/>
+	<h3>Le FLOP 3 des quizz :</h3>
+		<div class="listQuizz">
+			<ul>
+				{% for entity in tabquizzflop %}
+					<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}">{{ entity.id }} - {{ entity.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div id="lastUser">
+		<img class="lastUser" src="{{asset('/bundles/metinetgalery/image/Temporary.png')}}">
+		<h3>Les 10 Derniers Joueurs inscrits</h3>
 		<ul>
-			{% for entity in tabquizzflop %}
-				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}"><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
+			{% for entity in tablasttenpers %}
+				<li><a><img src = "{{ entity.picture }}"></a></li>
 			{% endfor %}
 		</ul>
 	</div>
-	<h3>Les 10 Derniers Joueurs inscrits</h3>
-		<ul>
-			{% for entity in tablasttenpers %}
-				<li><img src = "{{ entity.picture }}">{{ entity.id }} - {{ entity.firstname }}  {{ entity.lastname }}</a></li>
-			{% endfor %}
-		</ul>
 
 <a href="{{ path('quizz') }}">Gestion des Quizz</a>
 <br />
@@ -48,4 +55,3 @@
 <a href="{{ path('admin_answer') }}">Gestion des Réponses</a>
 
 {% endblock %}
-
