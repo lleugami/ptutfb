@@ -1,0 +1,71 @@
+@font-face {
+    font-family: JustAnotherFont;
+    src: url(../font/JustAnotherFont.ttf);
+}
+
+@font-face {
+    font-family: DimboRegular;
+    src: url(../font/DimboRegular.ttf);
+}
+
+body {
+	background-color: #fff0b0;
+	font-family: DimboRegular;
+	font-size: 24pt;
+}
+
+h1 {
+	color: #ffba00;
+	font-size: 48px;
+	margin: 15px 15px 15px 90px;
+	font-weight: bold;
+	font-family: JustAnotherFont;
+	-webkit-text-stroke: 2px #ff3c00;
+    -webkit-text-fill-color: #ffba00;
+}
+
+h3 {
+	color: #ff3c00;
+	font-weight: bold;
+	font-family: DimboRegular;
+	font-size: 30pt;
+}
+
+#topQuizz {
+	display: inline-block;
+	width: 400px;
+}
+
+#flopQuizz {
+	display: inline-block;
+	width: 400px;
+}
+
+.rankQuizz {
+	vertical-align: top;
+	margin: 15px;
+	padding: 15px;
+	float: left;
+}
+
+.infoImage {
+	margin: 15px;
+	padding: 15px;
+	float: left;
+}
+
+.infoAppli {
+	width: 650px;
+	color: #ff2a00;
+	background-color: white;
+	box-shadow: 3px 3px 8px #aaa;
+	margin: 20px 20px 20px 90px;
+	padding: 10px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.spanresult {
+	font-weight: bold;
+}
