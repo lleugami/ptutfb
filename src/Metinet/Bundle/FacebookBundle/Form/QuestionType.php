@@ -12,7 +12,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('file',array('required' => false))
+            ->add('file')
             ->add('quizz')
         ;
     }
