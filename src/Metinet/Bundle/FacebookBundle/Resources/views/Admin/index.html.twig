@@ -1,18 +1,50 @@
 {% extends '::base.html.twig' %}
 {% block body %}
+	<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
 	<h1>Tableau De Bord</h1>
-
-	<img class="infoImage" src="{{asset('/bundles/metinetgalery/image/User.png')}}">
+	<div id="menu-gestion">
+		<ul class="ca-menu">
+		    <li>
+		        <a href="{{ path('quizz') }}">
+		            <div class="ca-content">
+		                <h3 class="ca-sub">Gestion des quizz</h3>
+		            </div>
+		        </a>
+		    </li>
+		    <li>
+		        <a href="{{ path('theme') }}">
+		            <div class="ca-content">
+		                <h3 class="ca-sub">Gestion des thèmes</h3>
+		            </div>
+		        </a>
+		    </li>
+		    <li>
+		        <a href="{{ path('admin_question') }}">
+		            <div class="ca-content">
+		                <h3 class="ca-sub">Gestion des questions</h3>
+		            </div>
+		        </a>
+		    </li>
+		    <li>
+		        <a href="{{ path('admin_answer') }}">
+		            <div class="ca-content">
+		                <h3 class="ca-sub">Gestion des réponses</h3>
+		            </div>
+		        </a>
+		    </li>
+		</ul>
+	</div>	
 	<div class="infoAppli">
-	Nombre total de joueur : <span class="spanresult">{{ nombretotal }}</span><br/>
-	Nouveaux joueurs ces 7 derniers jours :  <span class="spanresult">{{ nombretotalsept }}</span><br/>
-	Nouveaux joueurs ces 30 derniers jours :  <span class="spanresult">{{ nombretotaltrente }}</span><br/>
+		<img class="infoImage" src="{{asset('/bundles/metinetgalery/image/User.png')}}">
+		Nombre total de joueur : <span class="spanresult">{{ nombretotal }}</span><br/>
+		Nouveaux joueurs ces 7 derniers jours :  <span class="spanresult">{{ nombretotalsept }}</span><br/>
+		Nouveaux joueurs ces 30 derniers jours :  <span class="spanresult">{{ nombretotaltrente }}</span><br/>
 	</div>
-	<img class="infoImage" src="{{asset('/bundles/metinetgalery/image/Stats.png')}}">
 	<div class="infoAppli">
-	Nombre de quizz :  <span class="spanresult">{{ nbquizz }}</span><br/>
-	Score moyen des joueurs : <span class="spanresult"> {{ scoremoyen }} </span><br/>
-	Nombre de quizz en cours : <span class="spanresult"> {{ totquizzlancer }} </span><br/>
+		<img class="infoImage" src="{{asset('/bundles/metinetgalery/image/Stats.png')}}">
+		Nombre de quizz :  <span class="spanresult">{{ nbquizz }}</span><br/>
+		Score moyen des joueurs : <span class="spanresult"> {{ scoremoyen }} </span><br/>
+		Nombre de quizz en cours : <span class="spanresult"> {{ totquizzlancer }} </span><br/>
 	</div>
 	<div id="topQuizz">
 	<img class="rankQuizz" src="{{asset('/bundles/metinetgalery/image/Upload.png')}}">
@@ -41,17 +73,8 @@
 		<h3>Les 10 Derniers Joueurs inscrits</h3>
 		<ul>
 			{% for entity in tablasttenpers %}
-				<li><a><img src = "{{ entity.picture }}"></a></li>
+				<li><a><img src = "{{ entity.picture }}" title="{{ entity.firstname }} {{ entity.lastname }}"></a></li>
 			{% endfor %}
 		</ul>
 	</div>
-
-<a href="{{ path('quizz') }}">Gestion des Quizz</a>
-<br />
-<a href="{{ path('theme') }}">Gestion des Thémes</a>
-<br/>
-<a href="{{ path('admin_question') }}">Gestion des Questions</a>
-<br/>
-<a href="{{ path('admin_answer') }}">Gestion des Réponses</a>
-
 {% endblock %}
