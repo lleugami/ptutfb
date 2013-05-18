@@ -44,7 +44,7 @@
         <table>
             {% for quizz in listeDernierQuizz %}
                 <tr>
-                <td><img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}"/></td><td>{{ quizz.title }}</td>
+                <td><img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}"/></td><td><a href="{{ path("detail", {"id":quizz.id}) }}">{{ quizz.title }}</a></td>
                 </tr>
             {% endfor %}
         </table>
@@ -56,7 +56,7 @@
             {% for promo in dernierQuizzPromo %}
             <tr>
                 <td><img src="/uploads/images/mini/quizz/mini_{{ promo.picture }}" alt="{{ promo.title }}"/></td>
-                <td>{{ promo.title }}</td>
+                <td><a href="{{ path("detail", {"id":promo.id}) }}">{{ promo.title }}</a></td>
             </tr>
             {% endfor %} 
         </table>
