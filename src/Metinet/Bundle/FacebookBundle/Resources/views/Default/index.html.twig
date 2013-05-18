@@ -11,7 +11,7 @@
 {% block body %}
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
-    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /> <input type="button" value="Inviter vos amis" onclick="rejoindre("Participez aux Quizzs et défiez vos amis");" />
     <p>Votre classement : {{ classement }}</p>
     <table>
         <tr>
@@ -23,17 +23,7 @@
             {% endfor %}
         </tr>
     </table>
-<hr>
-
-    Modifier le lien pour la page a liké :<div class="fb-like" data-href="http://apps.facebook.com/quizzenfolie/2gfsqfsdf" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-    <br />
-    Bouton de partage d'un lien(page courante) : <input type="button" value="Partager ce lien" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + location.href, 'sharer', 'width=626,height=400');" />
-    <br />
-    Bouton de publication sur son mur : <input type="button" value="Publier sur son mur" onclick="publier();" />
-    <br />
-    Bouton invitation a rejoindre l'appli : <input type="button" value="Inviter vos amis" onclick="rejoindre();" />
-
-<hr>
+   
     <div>
     <h3>Liste des Thèmes</h3>
     	<ul>
