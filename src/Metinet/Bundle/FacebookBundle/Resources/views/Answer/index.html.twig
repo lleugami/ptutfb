@@ -1,14 +1,13 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Answer list</h1>
-
+    <img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
+    <h1>Liste des réponses</h1>
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Iscorrect</th>
+                <th>Titre</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,14 +16,13 @@
             <tr>
                 <td><a href="{{ path('admin_answer_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.title }}</td>
-                <td>{{ entity.isCorrect }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('admin_answer_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('admin_answer_show', { 'id': entity.id }) }}"><img src="{{asset('/bundles/metinetgalery/image/search.png')}}" title="En savoir plus..."></a>
                     </li>
                     <li>
-                        <a href="{{ path('admin_answer_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('admin_answer_edit', { 'id': entity.id }) }}"><img src="{{asset('/bundles/metinetgalery/image/app.png')}}" title="Modifier"></a>
                     </li>
                 </ul>
                 </td>
@@ -32,12 +30,22 @@
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('admin_answer_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <div id="btnNewTheme">
+        <ul class="ca-menu">
+            <li>
+                <a href="{{ path('admin_answer_new') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Créer une réponse</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Tableau De Bord</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
     {% endblock %}

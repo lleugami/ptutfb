@@ -8,6 +8,11 @@
     src: url(../font/PoetsenOne-Regular.ttf);
 }
 
+@font-face {
+    font-family: Simplicity;
+    src: url(../font/Simplicity.ttf);
+}
+
 body {
 	background-color: #fff0b0;
 	font-family: DimboRegular;
@@ -46,6 +51,33 @@ a {
 ul {
 	padding: 5px;
 	margin: 5px;
+}
+
+table {
+	font-size: 20px;
+	font-family: Simplicity;
+	font-weight: bold;
+	width:100%;
+	padding: 15px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px #aaa;
+    background-color: white;
+}
+
+table tbody tr:nth-child(odd){
+  background-color: #FFE6D9;
+}
+
+thead {
+	background-color: #FFC5A8;
+	color: #D94800;
+}
+
+td { 
+	width:5%;
+	text-align: center;
 }
 
 #menu-gestion {
