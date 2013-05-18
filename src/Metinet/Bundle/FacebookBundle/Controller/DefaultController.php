@@ -121,19 +121,12 @@ class DefaultController extends Controller
             $img_theme =  $value->getTheme()->getPicture();
             $desc_theme =  $value->getTheme()->getLongDesc();
             $entity2 = $em->getRepository('MetinetFacebookBundle:Question')->findBy(array('quizz' => $value->getId()));
-            $nb_question[$value->getId()] = count($entity2); 
-
-            $entity3 = $em->getRepository('MetinetFacebookBundle:QuizzResult')->findBy(array('quizz' => $value->getId()));
-           
-            foreach ($entity3 as $key => $value2) 
-            {
-                $img_user[$value->getId()][] =  $value2->getUser();
-            }          
+            $nb_question[$value->getId()] = count($entity2);      
         }
 
         $nb_quizz = count($entity);
 
-        return  array('quizz' => $entity,'titre_theme' => $titre_theme,'nb_quizz' => $nb_quizz,'img_theme' => $img_theme,'desc_theme' => $desc_theme,'nb_question' => $nb_question,'img_user' => $img_user);
+        return  array('quizz' => $entity,'titre_theme' => $titre_theme,'nb_quizz' => $nb_quizz,'img_theme' => $img_theme,'desc_theme' => $desc_theme,'nb_question' => $nb_question);
     }
 
 }
