@@ -4,12 +4,13 @@
 {% block body %}
 <script>
 
-    publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','Quizz:{{ quizz.title }}   Votre score:{{ quizzResult.winPoints}} ');
-
     var idQuizz = 0;
     var nbQuestion = 0;
     var questionArray = null;
     var tmpQuestionIndex = 0;
+    var seconde = -1;
+    var minute = 0;
+    var timer;
     
     function getQuestion(){
         
@@ -33,9 +34,10 @@
             data: {id : 1},
             dataType: "html"
         }).done(function( html ) {
+            timer=setInterval("Horloge()", 1000);
             questionArray = html.split('|');
             nbQuestion = questionArray.length;
-            $('#button_start').remove();
+            $('#button_start').remove();      
             getQuestion();
             
         }); 
@@ -61,6 +63,9 @@
     
     function getResult(){
     
+    window.clearInterval(timer);
+    $('#timer').remove();
+    
         $.ajax({
             url: "{{ path('get_result')}}",
             type: "POST",
@@ -69,11 +74,23 @@
         }).done(function( html ) {
             $('#div_question').remove();
             $('body').append('<div>'+html+'</div>');
-             publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','Quizz:{{ quizz.title }}  Votre score:{{ quizzResult.winPoints}} ');
+                      
         });  
     }
-</script>
+    
+    function Horloge() {
+        seconde ++;
+        if(seconde == 60){
+          minute ++;
+          seconde = 0;
+        }
+       $('#timer').html(minute+' : '+seconde);
+    }
 
+</script>
+    
+    <div id="timer"></div>
+    
     <h1>{{ quizz.theme.title }}</h1>
     {% if quizz.picture %}
         <img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}" />
@@ -88,7 +105,7 @@
         </table>
 
         <br />
-       <input type="button" value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/', 'sharer', 'width=626,height=400');" />
+        <input type="button" value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/', 'sharer', 'width=626,height=400');" />
         <br />
         <div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 
