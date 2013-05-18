@@ -12,7 +12,7 @@ class QuizzType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('file')
+            ->add('file',array('required' => false))
             ->add('shortDesc')
             ->add('longDesc')
             ->add('winPoints')
