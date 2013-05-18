@@ -17,7 +17,7 @@ class QuestionRepository extends EntityRepository
 		$query = $this->getEntityManager()
 		->createQuery('
                 SELECT count(q) FROM MetinetFacebookBundle:Question q
-				 WHERE quizzId = :quizz_id'
+				WHERE q.quizz = :quizz_id'
 		)->setParameter('quizz_id', $id);
 		try {
 			$result = $query->getSingleResult();
