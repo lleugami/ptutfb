@@ -12,7 +12,7 @@ class ThemeType extends AbstractType
     {
         $builder
             ->add('title', 'text', array("label" => "Titre"))
-            ->add('file', 'file', array("label" => "Image"))
+            ->add('file')
             ->add('shortDesc', 'text', array("label" => "Description courte"))
             ->add('longDesc', 'text', array("label" => "Description longue"))
         ;
