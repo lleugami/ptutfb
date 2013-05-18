@@ -85,7 +85,7 @@
 
 
         <br />
-        <input type="button" value="Publier son Score" onclick="publier("Quizz en Folie", "http://apps.facebook.com/quizz_en_folie/", "http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg","Les meilleures Quizz",'Quizz: '.{{ quizz.title }}.'<br />Votre Score:'.{{ quizzResult.winPoints}}.'réalisé en'.{{ quizzResult.average }}.'sd');" />
+        <input type="button" value="Publier son Score" onclick="publier("Quizz en Folie", "http://apps.facebook.com/quizz_en_folie/", "http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg","Les meilleures Quizz","Quizz: {{ quizz.title }} \n Votre Score:{{ quizzResult.winPoints}}réalisé en{{ quizzResult.average }}sd);" />
         <br />
         <input type="button" value="Inviter vos amis" onclick="rejoindre("Venez tester les Quizz en Folie mis à votre disposition");" />
         <br />
