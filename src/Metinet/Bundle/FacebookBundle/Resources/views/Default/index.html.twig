@@ -27,12 +27,15 @@
     <div>
     <h3>Liste des Thèmes</h3>
     	<ul>
-	    {% for theme in themes %}
-           {% if theme.quizzes|length != 0 %}
-            <li><img src="/uploads/images/mini/theme/mini_{{ theme.picture }}" /> {{ theme.title }} <a href="{{ path('list_quizz',{"id": theme.id}) }}">Voir les quizz</a> / Nombre de quizz: {{ nb_quizz[theme.id] }} </li>
+            <table>
+            {% for theme in themes %}
+            {% if theme.quizzes|length != 0 %}
+                <td><img src="/uploads/images/mini/theme/mini_{{ theme.picture }}" /></td>
+                <td>{{ theme.title }}</td>
+                <td><a href="{{ path('list_quizz',{"id": theme.id}) }}">Voir les quizz</a></td>
             {% endif %}
-	    {% endfor %}
-	    </ul>
+            {% endfor %}
+            </table>
     </div>
     
     
