@@ -5,6 +5,13 @@
             <title>{% block title %}Mes Series TV - LP Metinet 2013{% endblock %}</title>
             {% block stylesheets %}{% endblock %}
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            {% block boutonjaime %}
+              <meta property="og:title" content="Quizz en folie" />
+              <meta property="og:type" content="game" />
+              <meta property="og:url" content="http://apps.facebook.com/quizzenfolie/" />
+              <meta property="og:image" content="http://apps.facebook.com/uploads/images/quizz.jpg" />
+              <meta property="og:description" content="Le Quizz de folie a remplir très vite !!!" />
+            {% endblock %}
         </head>
         <body>
             <div id="fb-root"></div>
@@ -28,10 +35,37 @@
                  var js, fjs = d.getElementsByTagName(s)[0];
                  if (d.getElementById(id)) {return;}
                  js = d.createElement(s); js.id = id;
-                 js.src = "//connect.facebook.net/en_US/all.js";
+                 js.src = "//connect.facebook.net/fr_FR/all.js";
                  fjs.parentNode.insertBefore(js, fjs);
                }(document, 'script', 'facebook-jssdk'));
+
+
+              function publier(){
+                FB.ui(
+                {
+                  method: 'feed',
+                  name: 'Nouvelle publication sur Quizz en Folie !',
+                  link: 'http://apps.facebook.com/quizzenfolie/',
+                  picture: 'http://192.168.88.132/uploads/images/quizz.jpg',
+                  caption: 'Les meilleures Quizz',
+                  description: 'Découvrez les meilleures Quizz.'
+                }
+                );
+              }
+
+              function rejoindre(test){
+                FB.ui(
+                {
+                  method: 'apprequests',
+                  message: 'Invite tes amis pour te défier aux quizz !',
+                }, requestCallback);
+              }
+
+              function requestCallback(){}
+
             </script>
             {% endblock %}
         </body>
     </html>
+
+

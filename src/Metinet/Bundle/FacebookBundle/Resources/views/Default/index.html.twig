@@ -1,5 +1,14 @@
 {% extends '::base.html.twig' %}
 
+{% block boutonjaime %}
+  <meta property="og:title" content="Quizz en folie dfsfsfsdf" />
+  <meta property="og:type" content="game" />
+  <meta property="og:url" content="http://apps.facebook.com/quizzenfolie/" />
+  <meta property="og:image" content="http://apps.facebook.com/uploads/images/quizz.jpg" />
+  <meta property="og:description" content="Le Quizz de folie a remplir très vite !!!" />
+{% endblock %}
+
+
 {% block body %}
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
@@ -15,6 +24,16 @@
             {% endfor %}
         </tr>
     </table>
+
+<hr>
+
+    Modifier le lien pour la page a liké :<div class="fb-like" data-href="http://apps.facebook.com/quizzenfolie/2gfsqfsdf" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+    <br />
+    Bouton de partage d'un lien(page courante) : <input type="button" value="Partager ce lien" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + location.href, 'sharer', 'width=626,height=400');" />
+    <br />
+    Bouton de publication sur son mur : <input type="button" value="Publier sur son mur" onclick="publier();" />
+    <br />
+    Bouton invitation a rejoindre l'appli : <input type="button" value="Inviter vos amis" onclick="rejoindre('12');" />
 
 <hr>
     <div>

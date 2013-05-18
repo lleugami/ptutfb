@@ -41,7 +41,8 @@ class FacebookSecurityListener
         }
 
         if (strpos($request->getPathinfo(), '/admin') === 0 ||
-            strpos($request->getPathinfo(), '/_profiler') === 0 ) {
+            strpos($request->getPathinfo(), '/_profiler') === 0
+            || preg_match("/facebook/", $_SERVER['HTTP_USER_AGENT']) ) {
 
             $request->attributes->set('check-fb', true);
             return;
