@@ -3,8 +3,10 @@
         <head>
             <meta charset="UTF-8" />
             <title>{% block title %}Mes Series TV - LP Metinet 2013{% endblock %}</title>
-            {% block stylesheets %}{% endblock %}
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            {% block stylesheets %}
+            <link type="text/css" rel="stylesheet" href="{{ asset('/bundles/metinetgalery/css/style.css')}}" />
+            {% endblock %}
 
             <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -15,7 +17,6 @@
               <meta property="og:image" content="http://apps.facebook.com/uploads/images/quizz.jpg" />
               <meta property="og:description" content="Le Quizz de folie a remplir très vite !!!" />
             {% endblock %}
-
         </head>
         <body>
             <div id="fb-root"></div>
