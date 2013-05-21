@@ -157,30 +157,38 @@ class UserRepository extends EntityRepository
         
     }
     
-    public function getClassementAvecAmisByQuizz($friends,$idUser) {
+    public function getClassementAvecAmisByQuizz($friends,$idUser, $idquizz) {
     	$i = 0;
-    	var_dump($friends);exit;
+    	//var_dump($idquizz);exit;
     	foreach ($friends as $friend){
     		
     		
     		$query = $this->getEntityManager()
     		->createQuery('
-                SELECT u FROM MetinetFacebookBundle:User u JOIN  MetinetFacebookBundle:QuizzResult q ON q.User = u.id
-                WHERE u.fbUid = :iduser AND q.id = :idquizz'
+                SELECT u as user,q as question FROM MetinetFacebookBundle:User u JOIN  MetinetFacebookBundle:QuizzResult q
+                WHERE u.fbUid = :iduser AND q.quizz = :idquizz AND q.dateEnd != :test'
     		)->setParameters(array(
-    			'iduser' => $friend,
-    			'idquizz'  => $quizz,
+    			'iduser' => '1383338550',
+    			//'iduser' => $friend,
+    			'idquizz'  => $idquizz,
+    			'test'  => ''
 			));
+    		
     		try {
-    			$tmp = $query->getSingleResult();
-    			if($tmp->getPoints() != 0 && $tmp->getPoints() != null){
-    				$users[$i] = Array('id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+    			//L'éxecuton de cette requête permet de savor sz 
+    			$tmp = $query->getResult();
+    			//var_dump($tmp);exit;
+    			if(sizeof($tmp) >0) {
+    				foreach($tmp as $row){
+						$test = $row["user"]->getId();
+						var_dump($test);
+    					//var_dump($quizz);die();
+    				}
     			}
-    	
     		} catch (\Doctrine\ORM\NoResultException $e) {
+    			echo "salut";exit;
     			return null;
     		}
-    	
     		$i ++;
     	}
     }
