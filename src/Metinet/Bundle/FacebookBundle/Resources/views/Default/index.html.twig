@@ -9,7 +9,10 @@
 {% endblock %}
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 191ad2f59c0bf368a83e87ba8ae433bc0bd2cea7
 {% block body %}
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
@@ -38,7 +41,7 @@
 
 <hr>
     <div>
-    <h3>List des Thèmes</h3>
+    <h3>Liste des Thèmes</h3>
     	<ul>
 	    {% for theme in themes %}
            {% if theme.quizzes|length != 0 %}
@@ -61,7 +64,7 @@
     {% endif %}
         
     {% if dernierQuizzPromo %}
-        <h2>Pourquoi ne pas tanter ... </h2>
+        <h2>Pourquoi ne pas tenter ... </h2>
         <table>
             {% for promo in dernierQuizzPromo %}
             <tr>
