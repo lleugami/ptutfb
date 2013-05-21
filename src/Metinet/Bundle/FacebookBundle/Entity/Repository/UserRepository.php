@@ -85,21 +85,17 @@ class UserRepository extends EntityRepository
                 ORDER BY u.points DESC'
             )->setFirstResult($idUser)
              ->setMaxResults(4);
-
             try {
                 $Userstmp = $query->getResult();
+                $users = null;
                 foreach($Userstmp as $tmp){
                     $users[] = Array('id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                 }
-
+                return $users;
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
             }              
-            
-            return $users;
-        }
-        
-        else{
+        } else{
             
             $i = 0;
             foreach ($friends as $friend){
@@ -161,6 +157,34 @@ class UserRepository extends EntityRepository
         
     }
     
+    public function getClassementAvecAmisByQuizz($friends,$idUser) {
+    	$i = 0;
+    	var_dump($friends);exit;
+    	foreach ($friends as $friend){
+    		
+    		
+    		$query = $this->getEntityManager()
+    		->createQuery('
+                SELECT u FROM MetinetFacebookBundle:User u JOIN  MetinetFacebookBundle:QuizzResult q ON q.User = u.id
+                WHERE u.fbUid = :iduser AND q.id = :idquizz'
+    		)->setParameters(array(
+    			'iduser' => $friend,
+    			'idquizz'  => $quizz,
+			));
+    		try {
+    			$tmp = $query->getSingleResult();
+    			if($tmp->getPoints() != 0 && $tmp->getPoints() != null){
+    				$users[$i] = Array('id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+    			}
+    	
+    		} catch (\Doctrine\ORM\NoResultException $e) {
+    			return null;
+    		}
+    	
+    		$i ++;
+    	}
+    }
+    
 
     function sort_by_key($array, $index, $desc = 1) {
         $sort = array();
@@ -203,5 +227,7 @@ class UserRepository extends EntityRepository
     	return $result;
 
     }
+    
+    
     
 }
