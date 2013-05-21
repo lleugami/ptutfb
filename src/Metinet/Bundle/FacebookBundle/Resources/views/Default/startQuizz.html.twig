@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+<script>
+    var idQuizz = 0;
+    var nbQuestion = 0;
+    var questionArray = null;
+    var tmpQuestionIndex = 0;
+    
+    function getQuestion(){
+        
+       if(tmpQuestionIndex < nbQuestion){
+            $('body').append('<div id="div_question">'+questionArray[tmpQuestionIndex]+'</div>');
+       }
+        else{
+            getResult();
+        }
+        
+        tmpQuestionIndex ++;       
+    }
+    
+    function ajaxGetQuestions(id){
+        
+        idQuizz = id;
+        
+        $.ajax({
+            url: "{{ path('get_questions')}}",
+            type: "POST",
+            data: {id : 1},
+            dataType: "html"
+        }).done(function( html ) {
+            questionArray = html.split('|');
+            nbQuestion = questionArray.length;
+            $('#button_start').remove();
+            getQuestion();
+            
+        }); 
+ 
+    }
+    
+    function ajaxSetAnswer(){
+    
+       id = $('#id').val();
+       answer = $('input:radio[name=answer]:checked').val();
+       
+        $.ajax({
+            url: "{{ path('set_answer')}}",
+            type: "POST",
+            data: {id : id, answer : answer},
+            dataType: "html"
+        }).done(function( ) {
+            $('#div_question').remove();
+            getQuestion();
+        }); 
+        
+    }
+    
+    function getResult(){
+    
+        $.ajax({
+            url: "{{ path('get_result')}}",
+            type: "POST",
+            data: {id : idQuizz },
+            dataType: "html"
+        }).done(function( html ) {
+            $('#div_question').remove();
+            $('body').append('<div>'+html+'</div>');
+        });  
+    }
+</script>
+
+    <h1>{{ quizz.theme.title }}</h1>
+    {% if quizz.picture %}
+        <img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}" />
+    {% endif %}
+    <h2>{{ quizz.title }}</h2>
+    
+    {% if quizzResult is defined %}
+        <p>Vous avez déjà répondu à ce Quizz</p>
+        <table>
+            <tr><td>Points gagnés</td><td>{{ quizzResult.winPoints}} pts</td></tr>
+            <tr><td>Temps de réponse</td><td>{{ quizzResult.average }} s</td></tr>
+        </table>
+    {% else %}
+        <input id="button_start" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/>
+    {% endif %}
+        
+{% endblock %}

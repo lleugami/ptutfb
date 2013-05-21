@@ -19,7 +19,7 @@
 	<h3>Le TOP 3 des quizz : </h3> <br/>
 		<ul>
 			{% for entity in tabquizzpop %}
-				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}""><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
+				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}"><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
 			{% endfor %}
 		</ul>
 	</div>
@@ -28,7 +28,7 @@
 	<h3>Le FLOP 3 des quizz :</h3> <br/>
 		<ul>
 			{% for entity in tabquizzflop %}
-				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}""><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
+				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}"><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
 			{% endfor %}
 		</ul>
 	</div>

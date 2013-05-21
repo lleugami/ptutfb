@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+
 <h3>List des Quizz </h3>
 <h5><img src="/uploads/images/mini/theme/mini_{{ img_theme }}" /> <br />Thème : {{ titre_theme }} <br />Nombre de quizz : {{ nb_quizz }} quizz <br /> Description :{{ desc_theme }} </h5>
 	<ul>
@@ -9,9 +10,15 @@
 			<ol><b>Description :</b> {{ quizzs.longDesc }} </ol>
 			<ol><b>Nombre de question :</b> {{ nb_question[quizzs.id] }} </ol>
 			<ol><b>Nombre de points :</b> {{ quizzs.winPoints }} </ol>
-			<ol>Participant : A faire
+			<ol>
+			{% if user[quizzs.id] is defined and user[quizzs.id]|length != 0 %}
+			Participant :
+				{% for users in user[quizzs.id] %}
+	        		<img src="{{ users }}" />
+		    	{% endfor %}
+	    	{% endif %}
 			</ol>
-			<ol><a href="#">Défier ses amis !</a></ol>
+			<ol><a href="#">Jouer</a></ol>
 		</li>
 		<br />
 		<br />

@@ -85,21 +85,17 @@ class UserRepository extends EntityRepository
                 ORDER BY u.points DESC'
             )->setFirstResult($idUser)
              ->setMaxResults(4);
-
             try {
                 $Userstmp = $query->getResult();
+                $users = null;
                 foreach($Userstmp as $tmp){
                     $users[] = Array('id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                 }
-
+                return $users;
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
             }              
-            
-            return $users;
-        }
-        
-        else{
+        } else{
             
             $i = 0;
             foreach ($friends as $friend){
@@ -161,6 +157,42 @@ class UserRepository extends EntityRepository
         
     }
     
+    public function getClassementAvecAmisByQuizz($friends,$idUser, $idquizz) {
+    	$i = 0;
+    	//var_dump($idquizz);exit;
+    	foreach ($friends as $friend){
+    		
+    		
+    		$query = $this->getEntityManager()
+    		->createQuery('
+                SELECT u as user,q as question FROM MetinetFacebookBundle:User u JOIN  MetinetFacebookBundle:QuizzResult q
+                WHERE u.fbUid = :iduser AND q.quizz = :idquizz AND q.dateEnd != :test'
+    		)->setParameters(array(
+    			'iduser' => '1383338550',
+    			//'iduser' => $friend,
+    			'idquizz'  => $idquizz,
+    			'test'  => ''
+			));
+    		
+    		try {
+    			//L'éxecuton de cette requête permet de savor sz 
+    			$tmp = $query->getResult();
+    			//var_dump($tmp);exit;
+    			if(sizeof($tmp) >0) {
+    				foreach($tmp as $row){
+						$test = $row["user"]->getId();
+						var_dump($test);
+    					//var_dump($quizz);die();
+    				}
+    			}
+    		} catch (\Doctrine\ORM\NoResultException $e) {
+    			echo "salut";exit;
+    			return null;
+    		}
+    		$i ++;
+    	}
+    }
+    
 
     function sort_by_key($array, $index, $desc = 1) {
         $sort = array();
@@ -203,5 +235,7 @@ class UserRepository extends EntityRepository
     	return $result;
 
     }
+    
+    
     
 }
