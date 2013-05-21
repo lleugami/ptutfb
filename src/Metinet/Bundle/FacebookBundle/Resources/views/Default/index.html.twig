@@ -1,6 +1,4 @@
 {% extends '::base.html.twig' %}
-<<<<<<< HEAD
-=======
 
 {% block boutonjaime %}
   <meta property="og:title" content="Quizz en folie dfsfsfsdf" />
@@ -11,7 +9,7 @@
 {% endblock %}
 
 
->>>>>>> 0c6d4b5440b1aa9f3310d296d8db23475c9920b1
+
 {% block body %}
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
@@ -70,7 +68,7 @@
                 <td><img src="/uploads/images/mini/quizz/mini_{{ promo.picture }}" alt="{{ promo.title }}"/></td>
                 <td>{{ promo.title }}</td>
             </tr>
-            {% endfor %}
+            {% endfor %} 
         </table>
     {% endif %}
     
