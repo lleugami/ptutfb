@@ -86,11 +86,11 @@ class DefaultController extends Controller
     	$userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
     	$user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
     	$friends = $this->container->get('metinet.manager.fbuser')->getUserFriendsUsingApp('me');
-    	$classementAmis = $repositoryUsers->getClassementAvecAmisByQuizz($friends, $user->getId());
+    	$classementAmis = $repositoryUsers->getClassementAvecAmisByQuizz($friends, $user->getId(), $id);
     	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion);
     }
 
-
+ 
     /**
      * @Route("/{id}", name="list_quizz")
      * @Template()
