@@ -1,26 +1,37 @@
 {% extends '::base.html.twig' %}
-
 {% block body %}
 	<h1>Tableau De Bord</h1>
 
-	Nombre total de joueur: {{ nombretotal }}<br/>
-	Nombre de joueurs inscrits ces septs derniers jours: {{ nombretotalsept }}<br/>
-	Nombre de joueurs inscrits ces 30 dernuers jours: {{ nombretotaltrente }}<br/>
-	Nombre de quizz : {{ nbquizz }}<br/>
-	Score moyen des joueurs : {{ scoremoyen }}<br/>
-	Nombre de quizz lancés par les joueurs : {{ totquizzlancer }}<br/>
-	<h3>Le TOP 3 des quizz les plus populaires : </h3> <br/>
+	<img class="infoImage" src="{{asset('/bundles/metinetgalery/image/User.png')}}">
+	<div class="infoAppli">
+	Nombre total de joueur : <span class="spanresult">{{ nombretotal }}</span><br/>
+	Nouveaux joueurs ces 7 derniers jours :  <span class="spanresult">{{ nombretotalsept }}</span><br/>
+	Nouveaux joueurs ces 30 derniers jours :  <span class="spanresult">{{ nombretotaltrente }}</span><br/>
+	</div>
+	<img class="infoImage" src="{{asset('/bundles/metinetgalery/image/Stats.png')}}">
+	<div class="infoAppli">
+	Nombre de quizz :  <span class="spanresult">{{ nbquizz }}</span><br/>
+	Score moyen des joueurs : <span class="spanresult"> {{ scoremoyen }} </span><br/>
+	Nombre de quizz lancés : <span class="spanresult"> {{ totquizzlancer }} </span><br/>
+	</div>
+	<div id="topQuizz">
+	<img class="rankQuizz" src="{{asset('/bundles/metinetgalery/image/Upload.png')}}">
+	<h3>Le TOP 3 des quizz : </h3> <br/>
 		<ul>
 			{% for entity in tabquizzpop %}
 				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}""><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
 			{% endfor %}
 		</ul>
-	<h3>Le TOP 3 des quizz les moins utilisés :</h3> <br/>
+	</div>
+	<div id="flopQuizz">
+	<img class="rankQuizz" src="{{asset('/bundles/metinetgalery/image/Download.png')}}">
+	<h3>Le FLOP 3 des quizz :</h3> <br/>
 		<ul>
 			{% for entity in tabquizzflop %}
 				<li><a href = "{{ path('quizz_show', { 'id': entity.id }) }}""><img src = "/uploads/images/mini/quizz/mini_{{ entity.picture }}">{{ entity.id }} - {{ entity.title }}</a></li>
 			{% endfor %}
 		</ul>
+	</div>
 	<h3>Les 10 Derniers Joueurs inscrits</h3>
 		<ul>
 			{% for entity in tablasttenpers %}

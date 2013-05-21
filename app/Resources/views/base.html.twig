@@ -3,8 +3,10 @@
         <head>
             <meta charset="UTF-8" />
             <title>{% block title %}Mes Series TV - LP Metinet 2013{% endblock %}</title>
-            {% block stylesheets %}{% endblock %}
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            {% block stylesheets %}
+            <link type="text/css" rel="stylesheet" href="{{ asset('/bundles/metinetgalery/css/style.css')}}" />
+            {% endblock %}
         </head>
         <body>
             <div id="fb-root"></div>

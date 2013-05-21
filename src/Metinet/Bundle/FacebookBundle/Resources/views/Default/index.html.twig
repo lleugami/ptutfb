@@ -1,5 +1,4 @@
 {% extends '::base.html.twig' %}
-
 {% block body %}
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
