@@ -147,7 +147,7 @@ class DefaultController extends Controller
         $quizzResult = $this->getDoctrine()->getRepository('MetinetFacebookBundle:QuizzResult')->findOneBy(array('user' => $user->getId(), 'quizz' => $quizz->getId()));
         
         if(is_object($quizzResult) && $quizzResult->getDateEnd() != null){
-            return Array('quizz' => $quizz, 'quizzResult' => $quizzResult);
+            return $this->redirect( $this->generateUrl('detail', array('id' => $quizz->getId())) );
         }
         else{
             return Array('quizz' => $quizz);
@@ -341,6 +341,9 @@ class DefaultController extends Controller
                 <tr><td>'.$messageAverage.'</td><td>'.$pointAverage.' pts</td></tr>
             </table><h1>TOTAL : '.$totalPoints.' pts</h1><p>'.$message.'</p>';
                     
+        echo "<script> publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','J'ai répondu au Quizz : ".$quizz->getTitle()."  Mon score : ".$totalPoints." pts ') </script>";
         exit();
+        
+        
     }
 }

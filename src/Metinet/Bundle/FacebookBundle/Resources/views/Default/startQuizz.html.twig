@@ -4,8 +4,6 @@
 {% block body %}
 <script>
 
-    publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','Quizz:{{ quizz.title }}   Votre score:{{ quizzResult.winPoints}} ');
-
     var idQuizz = 0;
     var nbQuestion = 0;
     var questionArray = null;
@@ -69,7 +67,7 @@
         }).done(function( html ) {
             $('#div_question').remove();
             $('body').append('<div>'+html+'</div>');
-             publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','Quizz:{{ quizz.title }}  Votre score:{{ quizzResult.winPoints}} ');
+            
         });  
     }
 </script>
