@@ -9,21 +9,53 @@
 {% endblock %}
 
 {% block body %}
+<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
+<h1>Quizz en folie</h1>
+  <div id="menu-gestion" style="margin: 0 0 0 40px">
+    <ul class="ca-menu">
+        <li>
+            <a href="{{ path('index') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Accueil</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('classement') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Classement</h3>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div><br/>
+
     {% set user = app.session.get('user') %}
-    <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
-    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /> <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
-    <p>Votre classement : {{ classement }}</p>
+    <div id="profilUser">
+        <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+        <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
+        <div id="userRank">     
+            <p>Votre score : {{ user.points }} pts</p>
+            <p>Votre classement : {{ classement }} {% if classement != 1 %}ème{% else %}er{% endif %}</p>
+        </div>
+        <hr/>
+        <div id="btnInvit">
+        <a href="#" class="button-bevel orange"><input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" /></a>
+        </div>
+    </div>
+
+  <h2>Classement amis</h2>
     <table>
-        <tr>
-            {% for user in classementAvecAmis %}
-                <td>
-                    <p>{{ user.rang }}</p>
-                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-                    <p>{{ user.points }} pts </p>
-                </td>
-            {% endfor %}
-        </tr>
-    </table>
+      <tr>
+          {% for user in classementAvecAmis %}
+              <td>
+                  <p>{{ user.rang }}<br/>
+                  <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /><br/>
+                  {{ user.points }} pts </p>
+              </td>
+          {% endfor %}
+      </tr>
+  </table>
    
     <h2>Liste des Thèmes</h2>
     <table>

@@ -211,17 +211,19 @@ class DefaultController extends Controller
                           
             if($nope != 1){
                 if( count($question->getAnswers()) >= 1){
-                    $return .= '<form id="form_question" action="#" method="post">';
-                    $return .= '<input id="id" type="hidden" value="'.$quizz->getId().'"/>';
-                    $return .= '<img src="/uploads/images/mini/question/mini_'.$question->getPicture().'" alt="'.$question->getTitle().'" />';
+                    $return .= '<div style="position:absolute; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0,0.5); z-index: 0;">';
+                    $return .= '<form id="form_question" action="#" method="post" style="position:absolute; top: 100px; left: 33%; background-color: white; padding: 10px; margin:auto; border-radius: 10px; box-shadow: 0 0 10px black; width: 33%; z-index: 10;">';
+                    $return .= '<center><img src="/uploads/images/mini/question/mini_'.$question->getPicture().'" alt="'.$question->getTitle().'" /></center>';
                     $return .= '<p>'.$question->getTitle().'</p>';
-
                     foreach ($question->getAnswers() as $answer){
-                        $return .= '<label for="answer'.$answer->getId().'">'.$answer->getTitle().'</label>';
-                        $return .= '<input onclick="ajaxSetAnswer()" id="answer" type="radio" name="answer" value="'.$answer->getId().'" id="answer'.$answer->getId().'"/>';
-
+                        $return .= '<div style="width:auto">';
+                        $return .= '<label for="answer'.$answer->getId().'" style="text-align:left; width:auto;">'.$answer->getTitle().'</label>';
+                        $return .= '<input onclick="ajaxSetAnswer()" id="answer'.$answer->getId().'" type="radio" name="answer" value="'.$answer->getId().'" id="answer'.$answer->getId().'"/>';
+                        $return .= '</div>';
                     }
-                    $return .= '</form>|';
+                    $return .= '<input id="id" type="hidden" value="'.$quizz->getId().'"/>';
+                    $return .= '</form>';
+                    $return .= '</div>|';
                 }
             }
         }
