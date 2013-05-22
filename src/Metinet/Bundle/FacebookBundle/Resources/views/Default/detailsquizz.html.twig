@@ -1,8 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Détails d'un quizz</h1>
-
+    <h1>D&eacute;tails d'un quizz</h1>
     <table class="record_properties">
         <tbody>
             <tr>
@@ -11,7 +10,7 @@
             </tr>
             <tr>
                 <th>Image du quizz</th>
-                <td><img src="/uploads/images/quizz/{{ quizz.picture }}" /></td>
+                <td><img src="/uploads/images/quizz/mini/mini_{{ quizz.picture }}" /></td>
             </tr>
             <tr>
                 <th>Description du quizz</th>
@@ -23,14 +22,20 @@
             </tr>
        </tbody>
     </table>
-    <table>
-        <tr>
-            {% for user in classementAvecAmis %}
-                <td>
-                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-                    <p>{{ user.points }} pts </p>
-                </td>
-            {% endfor %}
-        </tr>
-    </table>
+    {% if countclassementamis > 0 %}
+    	<h4>Classement entre amis</h4>
+	    <table>
+	        <tr>
+	        	
+	            {% for user in classementAvecAmis %}
+	                <td>
+	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+	                    <p>{{ user.points }} pts </p>
+	                </td>
+	            {% endfor %}
+	        </tr>
+	    </table>
+	{% else %}
+		<a href = "#">D&eacute;fier un ami!</a>
+	{% endif %}
 {% endblock %}
