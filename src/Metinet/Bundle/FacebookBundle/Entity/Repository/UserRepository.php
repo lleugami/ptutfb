@@ -146,6 +146,7 @@ class UserRepository extends EntityRepository
             
             $users = $this->sort_by_key($users, 'points');
             
+            var_dump($users);
             $i = 0;
             foreach ($users as $user){
                 if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
