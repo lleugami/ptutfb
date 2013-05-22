@@ -75,7 +75,35 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
-    public function getClassementAvecAmis($friends,$idUser){    
+    public function getClassementUsers($idUser,$nbUsers = 5){
+         
+        if($idUser - $nbUsers <= 0){
+            $offset = $idUser;
+        }
+        else{
+            $offset = $idUser - $nbUsers;
+        }
+            
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT u FROM MetinetFacebookBundle:User u
+                ORDER BY u.points DESC'
+            )->setFirstResult($offset)
+             ->setMaxResults(11);
+            try {
+                $Userstmp = $query->getResult();
+                $users = null;
+                $i = 1;
+                foreach($Userstmp as $tmp){
+                    $users[] = Array('rang' => $i, 'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+                    $i ++;    
+                }
+                return $users;
+            } catch (\Doctrine\ORM\NoResultException $e) {
+                return null;
+            }              
+    }
+    public function getClassementAvecAmis($friends,$idUser,$nbFriends = 2){    
     
         if($friends == null){
             
@@ -91,7 +119,7 @@ class UserRepository extends EntityRepository
                 SELECT u FROM MetinetFacebookBundle:User u
                 ORDER BY u.points DESC'
             )->setFirstResult($offset)
-             ->setMaxResults(4);
+             ->setMaxResults(5);
             try {
                 $Userstmp = $query->getResult();
                 $users = null;
@@ -157,14 +185,16 @@ class UserRepository extends EntityRepository
             
             
             $i = 0;
-            foreach ($users as $user){
-                if($i < $newIdUser - 2 || $i > $newIdUser + 2 ){
-                    $users[$i] = null;
-                    unset($users[$i]);
-                    
+            if($nbFriends != 0){
+                foreach ($users as $user){
+                    if($i < $newIdUser - $nbFriends || $i > $newIdUser + $nbFriends ){
+                        $users[$i] = null;
+                        unset($users[$i]);
+
+                    }
+
+                    $i ++;
                 }
-                
-                $i ++;
             }
             
             return $users;

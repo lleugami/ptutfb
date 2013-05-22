@@ -19,13 +19,15 @@ class DefaultController extends Controller
         $themes = $this->showThemeAction();
         $nb_quizz = $this->countQuizzAction();;
 
+        /* ON RECUP L'USER */
         $userFb = $this->container->get('metinet.manager.fbuser')->getUserFb();
 
         $user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
 
+        /* ON RECUP LES AMIS DE l'USER */
         $friends = $this->container->get('metinet.manager.fbuser')->getUserFriendsUsingApp('me');
         
-        
+        /* CLASSEMENT DE L'USER ET SES AMIS */
         $classementAvecAmis = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementAvecAmis($friends,$user->getId());
         
         /* Classement */
@@ -340,9 +342,30 @@ class DefaultController extends Controller
                 <tr><td>'.$messageAverage.'</td><td>'.$pointAverage.' pts</td></tr>
             </table><h1>TOTAL : '.$totalPoints.' pts</h1><p>'.$message.'</p>';
                     
-        echo "<script> publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','J'ai répondu au Quizz : ".$quizz->getTitle()."  Mon score : ".$totalPoints." pts ') </script>";
+        echo "<script> publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','J\'ai répondu au Quizz : ".$quizz->getTitle()."  Mon score : ".$totalPoints." pts ') </script>";
         exit();
+    
+    }
+    
+        /**
+     * @Route("classement/", name="classement")
+     * @Template()
+     */
+    public function classementAction()
+    {
+        /* ON RECUP L'USER */
+        $userFb = $this->container->get('metinet.manager.fbuser')->getUserFb();
+
+        $user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
+       
+        /* ON RECUP LES AMIS DE l'USER */
+        $friends = $this->container->get('metinet.manager.fbuser')->getUserFriendsUsingApp('me');
         
-        
+        /* CLASSEMENT DE L'USER ET SES AMIS */
+        $classementAvecAmis = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementAvecAmis($friends,$user->getId(),0);
+       
+        $classement = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementUsers($user->getId());
+
+        return(array('classementAvecAmis' => $classementAvecAmis , 'classement' => $classement));
     }
 }
