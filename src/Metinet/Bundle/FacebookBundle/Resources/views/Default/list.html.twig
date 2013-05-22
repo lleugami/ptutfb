@@ -6,31 +6,33 @@
 <h5><img src="/uploads/images/mini/theme/mini_{{ img_theme }}" /> <br />Thème : {{ titre_theme }} <br />Nombre de quizz : {{ nb_quizz }} quizz <br /> Description :{{ desc_theme }} </h5>
 
     <table>
-        <th>
-            <td></td>
-            <td>Titre</td>
-            <td>Description</td>
-            <td>Nombre de quizz</td>
-            <td>Points</td>
-            <td>Participant</td>    
-        </th>
     {% for quizzs in quizz %}
+        
         <tr>
-            <td><img src="/uploads/images/mini/quizz/mini_{{ quizzs.picture }}" /></td>
-            <td>{{ quizzs.title }}</td>
-            <td>{{ quizzs.longDesc }}</td>
-            <td>{{ nb_question[quizzs.id] }}</td>
-            <td>{{ quizzs.winPoints }}</td>
+            <td>
+                <a href="{{ path("detail", {"id":quizzs.id}) }}">
+                <img src="/uploads/images/mini/quizz/mini_{{ quizzs.picture }}" />
+                </a>
+                </td>
+            <td>
+                <a href="{{ path("detail", {"id":quizzs.id}) }}">
+                <p><b>{{ quizzs.title }}</b><br/>
+                {{ quizzs.longDesc }}</p>
+                </a>
+            </td>
+            <td>               
+                <p> Nombre de quizz : {{ nb_question[quizzs.id] }}<br/>
+                Nombre de points : {{ quizzs.winPoints }}</p>
+            </td>
             {% if nb_question[quizzs.id] != 0 %}
             <td>
-            {% if user[quizzs.id] is defined and user[quizzs.id]|length != 0 %}
-                {% for users in user[quizzs.id] %}
-                    <img src="{{ users }}" />
-                {% endfor %}
-            {% endif %}
-            </td>
-            <td>
-                <a href="{{ path("start_quizz", {"id":quizzs.id}) }}">Jouer</a>
+                <p>Participants :<br/>
+                    {% if user[quizzs.id] is defined and user[quizzs.id]|length != 0 %}
+                        {% for users in user[quizzs.id] %}
+                        <img src="{{ users.picture }}" alt="{{ users.firstname }} {{ users.lastname }}" title="{{ users.firstname }} {{ users.lastname }}"/>
+                        {% endfor %}
+                    {% endif %}
+                </p>
             </td>
             {% endif %}
         </tr>
