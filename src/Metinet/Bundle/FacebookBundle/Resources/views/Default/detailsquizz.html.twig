@@ -22,7 +22,7 @@
             </tr>
        </tbody>
     </table>
-
+	 <input id="button_start" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/>
     <div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 
     {% if countclassementamis > 0 %}
