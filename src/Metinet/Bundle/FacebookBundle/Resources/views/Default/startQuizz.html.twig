@@ -31,7 +31,7 @@
         $.ajax({
             url: "{{ path('get_questions')}}",
             type: "POST",
-            data: {id : 1},
+            data: {id : idQuizz},
             dataType: "html"
         }).done(function( html ) {
             timer=setInterval("Horloge()", 1000);
@@ -97,21 +97,6 @@
     {% endif %}
     <h2>{{ quizz.title }}</h2>
     
-    {% if quizzResult is defined %}
-        <p>Vous avez déjà répondu à ce Quizz</p>
-        <table>
-            <tr><td>Points gagnés</td><td>{{ quizzResult.winPoints}} pts</td></tr>
-            <tr><td>Temps de réponse</td><td>{{ quizzResult.average }} s</td></tr>
-        </table>
-
-        <br />
-        <input type="button" value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/', 'sharer', 'width=626,height=400');" />
-        <br />
-        <div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-
-
-    {% else %}
-        <input id="button_start" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/>
-    {% endif %}
+    <input id="button_start" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/>
         
 {% endblock %}

@@ -357,6 +357,7 @@ class UserRepository extends EntityRepository
      */
     public function getClassementTopTenByQuizz($id) {
     	$cpt = 0;
+    	$users= null;
     	$query = $this->getEntityManager()
     	->createQuery('
                 SELECT a FROM MetinetFacebookBundle:User a JOIN MetinetFacebookBundle:QuizzResult q
