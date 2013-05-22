@@ -371,33 +371,32 @@ class UserRepository extends EntityRepository
     	$query = $this->getEntityManager()
     	->createQuery('
                 SELECT a FROM MetinetFacebookBundle:User a JOIN MetinetFacebookBundle:QuizzResult q
-                WHERE q.quizz = :id_quizz AND q.user = a.id ORDER BY q.winPoints DESC'
+                WHERE q.quizz = :id_quizz AND q.user = a.id AND q.dateEnd != :test ORDER BY q.winPoints DESC'
 
-    	)->setParameter('id_quizz', $id)
+    	)->setParameters(array('id_quizz'=> $id, 'test'=>''))
     	 ->setMaxResults(10);
     	try {
     		$result = $query->getResult();
+    		
     		foreach ($result as $row) {	
     		
     			$query = $this->getEntityManager()
     			->createQuery('
                 SELECT q FROM MetinetFacebookBundle:QuizzResult q
-				WHERE q.user = :id_user AND q.quizz = :id_quizz AND q.dateEnd != :test'
+				WHERE q.user = :id_user AND q.quizz = :id_quizz'
     			)->setParameters(array(
     					'id_user' => $row->getId(),
     					//'iduser' => $friend,
-    					'id_quizz'  => $id,
-    					'test'  => ''
-
+    					'id_quizz'  => $id
     			));
     			$quizzResult = $query->getSingleResult();
+
     			$users[$cpt] = array('id' => $row->getId(), 'firstname' => $row->getFirstname(), 'lastname' => $row->getLastname(), 'picture' => $row->getPicture(), 'points' => $quizzResult->getWinPoints());
     			$cpt++;
     		}
-
-    		
     		return $users;
     	} catch (\Doctrine\ORM\NoResultException $e) {
+
     		return null;
     	}
     }
