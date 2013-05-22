@@ -100,8 +100,7 @@ class DefaultController extends Controller
 		
 		//var_dump($useractuelquizz);exit; 
     	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion, 'classementAvecAmis' => $classementAmis, 'countclassementamis' => count($classementAmis), 
-    			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'quizzresult' => $useractuelquizz, 'taux'=>$taux, 'counter' =>$counter,
-    			'nbquizzresult' => count($useractuelquizz));
+    			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'quizzresult' => $useractuelquizz, 'taux'=>$taux, 'counter' =>$counter);
     }
 
  
