@@ -133,6 +133,20 @@ button {
     width: 550px;
 }
 
+#test {
+	display: inline;
+}
+
+#friendRank {
+    float: left;
+    width: 550px;
+}
+
+#container {
+    display: inline-block;
+    width: 100%;
+}
+
 #listQuestion {
 	font-size: 24px;
 	font-weight: bold;
