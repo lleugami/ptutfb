@@ -64,5 +64,39 @@
 	{% else %}
 		Le classement n'est pas encore disponible ...<br/>
 	{% endif %}
+	{% if useractuel != null  %}
+		<b>D&eacute;tails utilisateur</b>
+		<table>
+			<tr>
+				<th>Taux de R&eacute;ussite: </th>
+				<td>{{ taux }} %</td>
+			</tr>
+			<tr>
+				<th>Temps du joueur / Temps total du quizz: </th>
+				<td>{{ useractuel.average }} sec / {{ quizz.averageTime }} sec</td>
+			</tr>
+			<tr>
+				<th>Partager mon score</th>
+				<td><input type="button" value="Défier ses amis" onclick="publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleurs Quizz','J\'ai répondu au Quizz : {{ quizz.title }} Mon score : {{ user.points }} pts ')" /></td>
+			</tr>
+			
+				
+			
+		</table>
+		{% if taux < 25 %}
+					<center>{{ quizz.txtWin1 }}</center>
+		{% elseif taux >= 25 and taux <50 %}
+					<center>{{ quizz.txtWin2 }}</center>
+		{% elseif taux >= 50 and taux <75 %}	
+					<center>{{ quizz.txtWin3 }}</center>
+		{% elseif taux >= 75 and taux < 100 %}
+					<center>{{ quizz.txtWin4 }}</center>
+		{% endif %}
+	{% else %}
+		
+         <a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
+            <input type="button" value="JOUER"/>
+         </a>
+	{% endif %}
 	
 {% endblock %}
