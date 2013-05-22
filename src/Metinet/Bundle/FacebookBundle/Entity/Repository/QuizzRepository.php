@@ -117,7 +117,7 @@ class QuizzRepository extends EntityRepository
         $query = $this->getEntityManager()
         ->createQuery('
                 SELECT q FROM MetinetFacebookBundle:Quizz q
-                WHERE q.theme = :id
+                WHERE q.theme = :id AND q.state = 1
                 ORDER BY q.createdAt DESC'
         )->setParameter('id', $id);
         try {
