@@ -8,6 +8,9 @@
     var nbQuestion = 0;
     var questionArray = null;
     var tmpQuestionIndex = 0;
+    var seconde = -1;
+    var minute = 0;
+    var timer;
     
     function getQuestion(){
         
@@ -31,9 +34,10 @@
             data: {id : 1},
             dataType: "html"
         }).done(function( html ) {
+            timer=setInterval("Horloge()", 1000);
             questionArray = html.split('|');
             nbQuestion = questionArray.length;
-            $('#button_start').remove();
+            $('#button_start').remove();      
             getQuestion();
             
         }); 
@@ -59,6 +63,9 @@
     
     function getResult(){
     
+    window.clearInterval(timer);
+    $('#timer').remove();
+    
         $.ajax({
             url: "{{ path('get_result')}}",
             type: "POST",
@@ -67,11 +74,23 @@
         }).done(function( html ) {
             $('#div_question').remove();
             $('body').append('<div>'+html+'</div>');
-            
+                      
         });  
     }
-</script>
+    
+    function Horloge() {
+        seconde ++;
+        if(seconde == 60){
+          minute ++;
+          seconde = 0;
+        }
+       $('#timer').html(minute+' : '+seconde);
+    }
 
+</script>
+    
+    <div id="timer"></div>
+    
     <h1>{{ quizz.theme.title }}</h1>
     {% if quizz.picture %}
         <img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}" />
