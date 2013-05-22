@@ -83,10 +83,10 @@ class UserRepository extends EntityRepository
                 ORDER BY u.points DESC'
             );
             try {
-                $Userstmp = $query->getResult();
+                $userTmp = $query->getResult();
                 $users = null;
                 $i = 1;
-                foreach($Userstmp as $tmp){
+                foreach($userTmp as $tmp){
                     $users[] = Array('rang' => $i, 'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                     $i ++;    
                 }
@@ -96,9 +96,18 @@ class UserRepository extends EntityRepository
             }   
             
             $i = 0;
+            foreach ($users as $user){
+                if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
+                    $newIdUser = $i;
+                }
+                
+                $i ++;
+            }
+            
+            $i = 0;
             if($nbUsers != 0){
                 foreach ($users as $user){
-                    if($i < $newIdUser - $nbFriends || $i > $newIdUser + $nbFriends ){
+                    if($i < $newIdUser - $nbUsers || $i > $newIdUser + $nbUsers ){
                         $users[$i] = null;
                         unset($users[$i]);
 
