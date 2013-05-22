@@ -15,6 +15,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        echo $_SERVER['DOCUMENT_ROOT'];
 
         $themes = $this->showThemeAction();
         $nb_quizz = $this->countQuizzAction();;
