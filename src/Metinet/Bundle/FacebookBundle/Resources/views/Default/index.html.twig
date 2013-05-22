@@ -38,7 +38,7 @@
                     <div id="profilUser">
                         <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
                         <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
-                        <div id="userRank">     
+                        <div id="userRank">
                             <p>Votre score : {{ user.points }} pts</p>
                             <p>Votre classement : {{ classement }} {% if classement != 1 %}ème{% else %}er{% endif %}</p>
                         </div>
@@ -66,16 +66,25 @@
         </table>
     </div>
     <h2>Liste des Thèmes</h2>
+    <div style="position: relative">
+    <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px;cursor: pointer;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()-350);"/>
+    <div id="table_pagination" style="padding: 10px 0 10px 0;max-height:300px; overflow: hidden;">
+    
     <table>
         {% for theme in themes %}
             {% if theme.quizzes|length != 0 %}
+            <tr>
                 <td><img src="/uploads/images/mini/theme/mini_{{ theme.picture }}" /></td>
                 <td>{{ theme.title }}</td>
                 <td><a href="{{ path('list_quizz',{"id": theme.id}) }}">Voir les quizz</a></td>
+            </tr>
             {% endif %}
         {% endfor %}
     </table>
-    
+        
+    </div>
+    <img src="{{ asset('/bundles/metinetgalery/image/down.png') }}" style="width: 50px; position: absolute; right:0; bottom: -20px;cursor: pointer;" onclick="$('#table_pagination_general').scrollTop($('#table_pagination_general').scrollTop()+350);"/>
+    </div>
     
     {% if listeDernierQuizz %}
         <h2>Les derniers Quizz</h2>
@@ -100,9 +109,5 @@
             </tr>
             {% endfor %} 
         </table>
-    {% endif %}
-    
+    {% endif %}    
 {% endblock %}
-
-
-

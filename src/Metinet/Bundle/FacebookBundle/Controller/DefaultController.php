@@ -182,12 +182,18 @@ class DefaultController extends Controller
         
         $quizz = $this->getDoctrine()->getRepository('MetinetFacebookBundle:Quizz')->find($id);
         
-        /* nouveau quizz result */
-        $quizzResult = new \Metinet\Bundle\FacebookBundle\Entity\QuizzResult;
-        
-        $quizzResult->setDateStart(new \DateTime());
-        $quizzResult->setUser($user);        
-        $quizzResult->setQuizz($quizz);     
+        /* ON REGARDE SI USER A DEJA REPONDU AU QUIZZ */
+        $quizzResult = $this->getDoctrine()->getRepository('MetinetFacebookBundle:QuizzResult')->findOneBy(array('user' => $user->getId(), 'quizz' => $quizz->getId()));
+       
+        if(!is_object($quizzResult)){
+            $quizzResult->setDateStart(new \DateTime());
+            $quizzResult->setUser($user);        
+            $quizzResult->setQuizz($quizz); 
+        }
+        else{
+            /* nouveau quizz result */
+            $quizzResult = new \Metinet\Bundle\FacebookBundle\Entity\QuizzResult;
+        }
         
         /* ON ENREGISTRE NOUVEAU QUIZZ RESULT */
         $em = $this->getDoctrine()->getEntityManager();

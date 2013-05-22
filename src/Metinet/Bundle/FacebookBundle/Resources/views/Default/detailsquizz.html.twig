@@ -76,9 +76,9 @@
 
 		</table>
 	{% else %}
-			         <a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
+			         <p style="text-align:center;margin:5px"><a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
 			            <input type="button" value="JOUER"/>
-			         </a>
+			         </a></p>
 	{% endif %}
     {% if countclassementamis > 0 %}
     	<h4>Classement entre amis</h4>
@@ -107,8 +107,7 @@
 	    <table>
 	        <tr>
 	        	{% set counter = 1 %}
-	            {% for user in classementgeneral %}
-	           		
+	            {% for user in classementgeneral %}	           		
 	                <td>
 	                	<p class="rankNum">{{ counter }} {% if counter != 1 %}ème{% else %}er{% endif %}</p>
 	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
