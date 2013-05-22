@@ -25,8 +25,7 @@ class UserRepository extends EntityRepository
             
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
-        }
-        
+        } 
         if(is_object($users)){
             
             return 1;
