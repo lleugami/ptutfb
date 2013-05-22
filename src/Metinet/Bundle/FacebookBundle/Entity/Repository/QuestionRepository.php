@@ -13,6 +13,10 @@ use Doctrine\ORM\EntityRepository;
 class QuestionRepository extends EntityRepository
 {
 	
+	/***
+	 * Compte le nombre de questions par quizz
+	 * @id : id du quizz
+	 */
 	public function getCountQuestionsByQuizz($id) {
 		$query = $this->getEntityManager()
 		->createQuery('
