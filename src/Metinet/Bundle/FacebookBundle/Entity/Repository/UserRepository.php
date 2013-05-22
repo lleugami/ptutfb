@@ -162,6 +162,7 @@ class UserRepository extends EntityRepository
                 if($i < $newIdUser){
                     echo $user;
                     unset($user);
+                    $user = null;
                 }
             }
             
