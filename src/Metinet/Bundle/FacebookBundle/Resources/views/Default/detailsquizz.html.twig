@@ -53,11 +53,13 @@
 	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
 	                    <p>{{ user.points }} pts </p>
 	                </td>
-	            {% endfor %}
+	            {% endfor %} 
 	        </tr>
 	    </table>
 	{% else %}
 		Le classement n'est pas encore disponible ...
 	{% endif %}
-	{%  %}
+	{% if useractuel is defined  %}
+		<b>efsd</b>
+	{% endif %}
 {% endblock %}
