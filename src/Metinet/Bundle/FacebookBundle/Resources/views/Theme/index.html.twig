@@ -1,16 +1,15 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Theme list</h1><a href="{{ path('admin') }}">Tableau De Bord</a>
-
+    <img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
+    <h1>Liste des thèmes</h1>
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Picture</th>
-                <th>Shortdesc</th>
-                <th>Longdesc</th>
+                <th>Titre</th>
+                <th>Image</th>
+                <th>Description courte</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,14 +20,13 @@
                 <td>{{ entity.title }}</td>
                 <td><img src="/uploads/images/mini/theme/mini_{{ entity.picture }}" /></td>
                 <td>{{ entity.shortDesc }}</td>
-                <td>{{ entity.longDesc }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('theme_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('theme_show', { 'id': entity.id }) }}"><img src="{{asset('/bundles/metinetgalery/image/search.png')}}" title="En savoir plus..."></a>
                     </li>
                     <li>
-                        <a href="{{ path('theme_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('theme_edit', { 'id': entity.id }) }}"><img src="{{asset('/bundles/metinetgalery/image/app.png')}}" title="Modifier"></a>
                     </li>
                 </ul>
                 </td>
@@ -36,12 +34,22 @@
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('theme_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <div id="btnNewTheme">
+        <ul class="ca-menu">
+            <li>
+                <a href="{{ path('theme_new') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Créer un Thème</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Tableau De Bord</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
     {% endblock %}
