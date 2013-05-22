@@ -81,7 +81,15 @@ class UserRepository extends EntityRepository
                 ORDER BY u.points DESC'
             )->setMaxResults(10);
             try {
-                return $query->getResult();
+                $Userstmp = $query->getResult();
+                $users = null;
+                $i = 1;
+                foreach($Userstmp as $tmp){
+                    $users[] = Array('rang' => $i,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+                
+                    $i ++;
+                }
+                return $users;
                 
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
