@@ -4,29 +4,37 @@
 
 <h3>List des Quizz </h3>
 <h5><img src="/uploads/images/mini/theme/mini_{{ img_theme }}" /> <br />Thème : {{ titre_theme }} <br />Nombre de quizz : {{ nb_quizz }} quizz <br /> Description :{{ desc_theme }} </h5>
-	<ul>
-	{% for quizzs in quizz %}
-            <li><img src="/uploads/images/mini/quizz/mini_{{ quizzs.picture }}" />  {{ quizzs.title }}
-                <ol><b>Description :</b> {{ quizzs.longDesc }} </ol>
-                <ol><b>Nombre de question :</b> {{ nb_question[quizzs.id] }} </ol>
-                <ol><b>Nombre de points :</b> {{ quizzs.winPoints }} </ol>
-                {% if nb_question[quizzs.id] != 0 %}
-                <ol>
-                {% if user[quizzs.id] is defined and user[quizzs.id]|length != 0 %}
-                    Participant :
-                    {% for users in user[quizzs.id] %}
-                        <img src="{{ users }}" />
-                    {% endfor %}
-                {% endif %}
-                </ol>
-                <ol>
-                    <a href="{{ path("start_quizz", {"id":quizzs.id}) }}">Jouer</a>
-                </ol>
-                {% endif %}
-            </li>
-            <br />
-            <br />
-	{% endfor %}
-	</ul>
+
+    <table>
+        <th>
+            <td></td>
+            <td>Titre</td>
+            <td>Description</td>
+            <td>Nombre de quizz</td>
+            <td>Points</td>
+            <td>Participant</td>    
+        </th>
+    {% for quizzs in quizz %}
+        <tr>
+            <td><img src="/uploads/images/mini/quizz/mini_{{ quizzs.picture }}" /></td>
+            <td>{{ quizzs.title }}</td>
+            <td>{{ quizzs.longDesc }}</td>
+            <td>{{ nb_question[quizzs.id] }}</td>
+            <td>{{ quizzs.winPoints }}</td>
+            {% if nb_question[quizzs.id] != 0 %}
+            <td>
+            {% if user[quizzs.id] is defined and user[quizzs.id]|length != 0 %}
+                {% for users in user[quizzs.id] %}
+                    <img src="{{ users }}" />
+                {% endfor %}
+            {% endif %}
+            </td>
+            <td>
+                <a href="{{ path("start_quizz", {"id":quizzs.id}) }}">Jouer</a>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
 
 {% endblock %}
