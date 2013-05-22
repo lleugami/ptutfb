@@ -150,7 +150,6 @@ class UserRepository extends EntityRepository
             foreach ($users as $user){
                 if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
                     $newIdUser = $i;
-                    echo $i;
                 }
                 
                 $i ++;
@@ -160,9 +159,9 @@ class UserRepository extends EntityRepository
             $i = 0;
             foreach ($users as $user){
                 if($i < $newIdUser){
-                    echo $user;
-                    unset($user);
-                    $user = null;
+                    $users[$i] = null;
+                    unset($users[$i]);
+                    
                 }
             }
             
