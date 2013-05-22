@@ -311,14 +311,15 @@ class UserRepository extends EntityRepository
     	$cpt = 0;
     	$query = $this->getEntityManager()
     	->createQuery('
-                SELECT a FROM MetinetFacebookBundle:User a JOIN MetinetFacebookBundle:QuizzResult q
-                WHERE q.quizz = :id_quizz ORDER BY q.winPoints ASC'
+                SELECT u FROM MetinetFacebookBundle:User u JOIN  MetinetFacebookBundle:QuizzResult q
+                WHERE q.quizz = :id_quizz AND q.user = u.id ORDER BY q.winPoints DESC'
     	)->setParameter('id_quizz', $id)
     	 ->setMaxResults(10);
     	try {
     		$result = $query->getResult();
     		foreach ($result as $row) {
-    			//var_dump($row->getFirstname());exit;
+    			
+    			var_dump($row->getFirstname());
     			$query = $this->getEntityManager()
     			->createQuery('
                 SELECT q FROM MetinetFacebookBundle:QuizzResult q
@@ -333,8 +334,10 @@ class UserRepository extends EntityRepository
     			$users[$cpt] = array('id' => $row->getId(), 'firstname' => $row->getFirstname(), 'lastname' => $row->getLastname(), 'picture' => $row->getPicture(), 'points' => $quizzResult->getWinPoints());
     			$cpt++;
     		}
+    		
     		return $users;
     	} catch (\Doctrine\ORM\NoResultException $e) {
+    		
     		return null;
     	}
     }

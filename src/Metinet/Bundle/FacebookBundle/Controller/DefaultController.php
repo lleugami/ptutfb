@@ -86,9 +86,9 @@ class DefaultController extends Controller
     	$user = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
     	$friends = $this->container->get('metinet.manager.fbuser')->getUserFriendsUsingApp('me');
     	$classementAmis = $repositoryUsers->getClassementAvecAmisByQuizz($friends, $user->getId(), $id);
-    	$classementGénéral = $repositoryUsers->getClassementTopTenByQuizz($id);
+    	$classementGeneral = $repositoryUsers->getClassementTopTenByQuizz($id);
     	//var_dump(count($classementAmis));exit;
-    	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion, 'classementAvecAmis' => $classementAmis, 'countclassementamis' => count($classementAmis), 'classementgeneral' => $classementgeneral);
+    	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion, 'classementAvecAmis' => $classementAmis, 'countclassementamis' => count($classementAmis), 'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral),);
     }
 
  
