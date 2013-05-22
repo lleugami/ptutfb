@@ -75,21 +75,13 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
-    public function getClassementUsers($idUser,$nbUsers = 5){
-         
-        if($idUser - $nbUsers <= 0){
-            $offset = $idUser;
-        }
-        else{
-            $offset = $idUser - $nbUsers;
-        }
+    public function getClassementUsers($userTmp,$nbUsers = 5){
             
         $query = $this->getEntityManager()
             ->createQuery('
                 SELECT u FROM MetinetFacebookBundle:User u
                 ORDER BY u.points DESC'
-            )->setFirstResult($offset)
-             ->setMaxResults(11);
+            );
             try {
                 $Userstmp = $query->getResult();
                 $users = null;
@@ -98,10 +90,34 @@ class UserRepository extends EntityRepository
                     $users[] = Array('rang' => $i, 'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                     $i ++;    
                 }
-                return $users;
+                
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
-            }              
+            }   
+            
+            $i = 0;
+            foreach ($users as $user){
+                if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
+                    $newIdUser = $i;
+                }
+                
+                $i ++;
+            }
+            
+            $i = 0;
+            if($nbUsers != 0){
+                foreach ($users as $user){
+                    if($i < $newIdUser - $nbUsers || $i > $newIdUser + $nbUsers ){
+                        $users[$i] = null;
+                        unset($users[$i]);
+
+                    }
+
+                    $i ++;
+                }
+            }
+            
+            return $users;
     }
     public function getClassementAvecAmis($friends,$idUser,$nbFriends = 2){    
     
