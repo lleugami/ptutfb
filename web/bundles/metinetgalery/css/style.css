@@ -40,6 +40,12 @@ h3 {
 	font-size: 30pt;
 }
 
+h4 {
+    color: #FF3C00;
+    font-size: 36px;
+    margin: 25px 0 5px 30px;
+}
+
 li {
 	list-style-type: none;
 }
@@ -83,6 +89,10 @@ thead {
 
 td { 
 	text-align: center;
+}
+
+th {
+	font-weight: bold;
 }
 
 label {
@@ -220,6 +230,34 @@ button {
 
 #lastUser {
 	margin-left: 25px;
+}
+
+.userScore {
+    font-family: DimboRegular;
+    font-size: 24px;
+    margin: 10px;
+}
+
+.txtWin {
+    font-family: DimboRegular;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.rankNum {
+    color: #FF3C00;
+    font-family: DimboRegular;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.listInfoQuizz {
+	width: 800px;
+	margin:30px;
+	font-family: Simplicity;
+	font-size: 22px;
 }
 
 .userName {

@@ -97,9 +97,11 @@ class DefaultController extends Controller
 			$resultat = $useractuelquizz->getWinpoints() / $entity->getWinpoints();
 			$taux = $resultat * 100;
 		}
+		
 		//var_dump($useractuelquizz);exit; 
     	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion, 'classementAvecAmis' => $classementAmis, 'countclassementamis' => count($classementAmis), 
-    			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'quizzresult' => $useractuelquizz, 'taux'=>$taux, 'counter' =>$counter);
+    			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'quizzresult' => $useractuelquizz, 'taux'=>$taux, 'counter' =>$counter,
+    			'nbquizzresult' => count($useractuelquizz));
     }
 
  
@@ -355,6 +357,8 @@ class DefaultController extends Controller
             </table><h1>TOTAL : '.$totalPoints.' pts</h1><p>'.$message.'</p>';
                     
         echo "<script> publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','J\'ai répondu au Quizz : ".$quizz->getTitle()."  Mon score : ".$totalPoints." pts ') </script>";
+        
+        echo '<center><a href="#" class="button-bevel orange"><input id="button_start" type="button" value="Retour" onclick="location.reload() ;"/></a></center>';
         exit();
     
     }

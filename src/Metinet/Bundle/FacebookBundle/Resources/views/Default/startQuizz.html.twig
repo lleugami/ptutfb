@@ -99,6 +99,6 @@
     {% endif %}
     {{ quizz.longDesc }}</p>
     
-    <center><input id="button_start" class="button-bevel orange" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/></center>
+    <center><a id="button_start" href="#" class="button-bevel orange"><input type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/></a></center>
         
 {% endblock %}
