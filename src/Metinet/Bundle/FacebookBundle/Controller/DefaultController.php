@@ -119,7 +119,7 @@ class DefaultController extends Controller
             $user[$value->getId()] = null;
             foreach ($entity3 as $key => $value3) 
             {
-                $user[$value->getId()][] =  $value3->getUser()->getPicture();
+                $user[$value->getId()][] =  $value3->getUser();
             }
 
         }

@@ -6,6 +6,7 @@
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
             {% block stylesheets %}
             <link type="text/css" rel="stylesheet" href="{{ asset('/bundles/metinetgalery/css/style.css')}}" />
+            <link type="text/css" rel="stylesheet" href="{{ asset('/bundles/metinetgalery/css/animated-menu.css')}}" />
             {% endblock %}
 
             <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -45,24 +46,24 @@
                }(document, 'script', 'facebook-jssdk'));
 
 
-              function publier(){
+              function publier(name,link,picture,caption,description){
                 FB.ui(
                 {
                   method: 'feed',
-                  name: 'Nouvelle publication sur Quizz en Folie !',
-                  link: 'http://apps.facebook.com/quizzenfolie/',
-                  picture: 'http://192.168.88.132/uploads/images/quizz.jpg',
-                  caption: 'Les meilleures Quizz',
-                  description: 'Découvrez les meilleures Quizz.'
+                  name: name,
+                  link: link,
+                  picture: picture,
+                  caption: caption,
+                  description: description
                 }
                 );
               }
 
-              function rejoindre(test){
+              function rejoindre(message){
                 FB.ui(
                 {
                   method: 'apprequests',
-                  message: 'Invite tes amis pour te défier aux quizz !',
+                  message: message,
                 }, requestCallback);
               }
 

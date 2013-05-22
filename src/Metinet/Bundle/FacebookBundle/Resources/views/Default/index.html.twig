@@ -8,7 +8,6 @@
   <meta property="og:description" content="Le Quizz de folie a remplir très vite !!!" />
 {% endblock %}
 
- 
 {% block body %}
     {% set user = app.session.get('user') %}
     <h2>Bonjour {{ user.firstname }} {{ user.lastname }}</h2>
@@ -32,7 +31,7 @@
     <br />
     Bouton de publication sur son mur : <input type="button" value="Publier sur son mur" onclick="publier();" />
     <br />
-    Bouton invitation a rejoindre l'appli : <input type="button" value="Inviter vos amis" onclick="rejoindre('12');" />
+    Bouton invitation a rejoindre l'appli : <input type="button" value="Inviter vos amis" onclick="rejoindre();" />
 
 <hr>
     <div>

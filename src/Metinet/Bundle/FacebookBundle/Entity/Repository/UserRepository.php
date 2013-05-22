@@ -79,11 +79,18 @@ class UserRepository extends EntityRepository
     
         if($friends == null){
             
+            if($idUser - 2 <= 0){
+                $offset = $idUser;
+            }
+            else{
+                $offset = $idUser - 2;
+            }
+            
             $query = $this->getEntityManager()
             ->createQuery('
                 SELECT u FROM MetinetFacebookBundle:User u
                 ORDER BY u.points DESC'
-            )->setFirstResult($idUser)
+            )->setFirstResult($offset)
              ->setMaxResults(4);
             try {
                 $Userstmp = $query->getResult();
@@ -109,6 +116,7 @@ class UserRepository extends EntityRepository
                     $tmp = $query->getSingleResult();
                     if($tmp->getPoints() != 0 && $tmp->getPoints() != null){
                         $users[$i] = Array('id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+                        
                     }
 
                 } catch (\Doctrine\ORM\NoResultException $e) {
@@ -137,19 +145,26 @@ class UserRepository extends EntityRepository
             }
             
             $users = $this->sort_by_key($users, 'points');
-            
+
+            $i = 0;
             foreach ($users as $user){
                 if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
-                    $newIdUser = $user['id'];
+                    $newIdUser = $i;
                 }
+                
+                $i ++;
             }
             
             
             $i = 0;
             foreach ($users as $user){
-                if($i < $newIdUser -2 && $i > $newIdUser + 2){
-                    unset($user[$i]);
+                if($i < $newIdUser - 2 || $i > $newIdUser + 2 ){
+                    $users[$i] = null;
+                    unset($users[$i]);
+                    
                 }
+                
+                $i ++;
             }
             
             return $users;
@@ -162,7 +177,11 @@ class UserRepository extends EntityRepository
     	//var_dump($idquizz);exit;
     	$cpt = 0;
     	$users= null;
+
     	//var_dump($idUser);exit;
+		//var_dump($friends);exit;
+
+
 		//var_dump($friends);exit;
     	foreach ($friends as $friend){
     		$query = $this->getEntityManager()
@@ -176,7 +195,7 @@ class UserRepository extends EntityRepository
     			'test'  => ''
 			));
     		try {
-    			//L'éxecuton de cette requête permet de savor sz 
+    			//L'ï¿½xecuton de cette requï¿½te permet de savor sz 
     			$tmp = $query->getResult();
     			//var_dump($tmp);exit;
     			
@@ -269,9 +288,9 @@ class UserRepository extends EntityRepository
 
         return $output;
     }
-
+ 
     public function getLastTenUsers() {
-    	$query = $this->getEntityManager()
+    	$query = $this->getEntityManager() 
     	->createQuery('
                 SELECT a FROM MetinetFacebookBundle:User a
                 ORDER BY a.createdAt DESC'
