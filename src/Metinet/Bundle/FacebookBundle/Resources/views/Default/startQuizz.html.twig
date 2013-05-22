@@ -92,10 +92,13 @@
     <div id="timer"></div>
     
     <h1>{{ quizz.theme.title }}</h1>
+    <p>{{ quizz.theme.longDesc }}</p>
+    <h2>{{ quizz.title }}</h2>
+    <p>{{ quizz.longDesc }}</p>
     {% if quizz.picture %}
         <img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}" />
     {% endif %}
-    <h2>{{ quizz.title }}</h2>
+    
     
     <input id="button_start" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/>
         
