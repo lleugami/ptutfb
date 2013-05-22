@@ -15,6 +15,8 @@ Description :{{ desc_theme }}
 
     <table>
     {% for quizzs in quizz %}
+            
+        {% if quizz.questions|length != 0 %}
         
         <tr>
             <td>
@@ -52,6 +54,8 @@ Description :{{ desc_theme }}
                 <input type="button" value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizzs.id }}', 'sharer', 'width=626,height=400');" />
             </td>
         </tr>
+        
+        {% endif %}
     {% endfor %}
     </table>
 
