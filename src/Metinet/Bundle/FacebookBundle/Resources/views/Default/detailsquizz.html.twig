@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Détails d'un quizz</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Title</th>
+                <td>{{ quizz.title }}</td>
+            </tr>
+            <tr>
+                <th>Image du quizz</th>
+                <td><img src="/uploads/images/quizz/{{ quizz.picture }}" /></td>
+            </tr>
+            <tr>
+                <th>Description du quizz</th>
+                <td>{{ quizz.longDesc }}</td>
+            </tr>
+            <tr>
+            	<td>nombre de questions dans ce quizz</td>
+            	<td>{{ countQuestion }}</td>
+            </tr>
+       </tbody>
+    </table>
+    <table>
+        <tr>
+            {% for user in classementAvecAmis %}
+                <td>
+                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+                    <p>{{ user.points }} pts </p>
+                </td>
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}
