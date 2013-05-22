@@ -158,11 +158,13 @@ class UserRepository extends EntityRepository
             
             $i = 0;
             foreach ($users as $user){
-                if($i < $newIdUser){
+                if($i < $newIdUser - 2 && $i > $newIdUser + 2 ){
                     $users[$i] = null;
                     unset($users[$i]);
                     
                 }
+                
+                $i ++;
             }
             
             return $users;
