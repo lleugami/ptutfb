@@ -11,9 +11,9 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('file')
-            ->add('quizz')
+            ->add('title', 'text', array("label" => "Titre"))
+            ->add('file', 'file', array("label" => "Image"))
+            ->add('quizz', 'text', array("label" => "Quizz"))
         ;
     }
 

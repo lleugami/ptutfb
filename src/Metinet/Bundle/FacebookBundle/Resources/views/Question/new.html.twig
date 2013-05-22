@@ -1,20 +1,25 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Question creation</h1>
-
+    <img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
+    <h1>Création d'une question</h1>
+    <div id="formQuizz">
     <form action="{{ path('admin_question_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <p>
             <button type="submit">Create</button>
         </p>
     </form>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_question') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    </div>
+    <div id="btnNewTheme">
+        <ul class="ca-menu">
+            <li>
+                <a href="{{ path('admin_question') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Retourner à la liste</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
     <h1>Theme</h1>
 
     <table class="record_properties">
@@ -27,18 +28,25 @@
             </tr>
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('theme') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('theme_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
+    <div id="btnNewTheme">
+        <ul class="ca-menu">
+            <li>
+                <a href="{{ path('theme') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Retourner à la liste</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('theme_edit', { 'id': entity.id }) }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Editer</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+<ul class="record_actions">
     <li>
         <form action="{{ path('theme_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
@@ -50,16 +58,18 @@
     
 {% if listeQuizz %}
 <h2>Liste des Quizz</h2>
+    <div id="listQuestion">
 <ul>
 {% for quizz in listeQuizz %}
     <li>
         {{ quizz.title }}
         <a href="{{ path('quizz_edit', { 'id': quizz.id }) }}">
-            Editer
+            <img src="{{asset('/bundles/metinetgalery/image/app.png')}}" title="Modifier">
         </a>
     </li>
 {% endfor %}
 </ul>
+</div>
 {% endif %}
     
 {% endblock %}

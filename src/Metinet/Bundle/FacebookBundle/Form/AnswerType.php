@@ -11,10 +11,10 @@ class AnswerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', 'text', array("label" => "Titre"))
             //->add('isCorrect')
-            ->add('isCorrect', 'checkbox', array("label" => "Réponse juste à la question ?", "required" => false, "value" => "ValeurCheckbox"))
-            ->add('question')
+            ->add('isCorrect', 'checkbox', array("label" => "Bonne réponse ?", "required" => false, "value" => "ValeurCheckbox"))
+            ->add('question', 'textarea', array("label" => "Enoncé de la question"))
         ;
     }
 

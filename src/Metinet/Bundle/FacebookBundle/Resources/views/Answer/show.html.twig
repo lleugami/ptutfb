@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
     <h1>Answer</h1>
 
     <table class="record_properties">
@@ -19,18 +20,25 @@
             </tr>
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_answer') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_answer_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
+    <div id="btnNewTheme">
+        <ul class="ca-menu">
+            <li>
+                <a href="{{ path('admin_answer') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Retourner à la liste</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin_answer_edit', { 'id': entity.id }) }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Editer</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+<ul class="record_actions">
     <li>
         <form action="{{ path('admin_answer_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
