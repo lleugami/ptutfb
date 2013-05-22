@@ -160,8 +160,7 @@ class UserRepository extends EntityRepository
             $i = 0;
             foreach ($users as $user){
                 if($i < $newIdUser){
-                    echo 'lol';
-                    unset($user[$i]);
+                    $user[$id] = null;
                 }
             }
             
