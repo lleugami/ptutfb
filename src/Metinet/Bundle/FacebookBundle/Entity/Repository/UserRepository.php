@@ -138,8 +138,11 @@ class UserRepository extends EntityRepository
             try {
                 $Userstmp = $query->getResult();
                 $users = null;
+                $i = 1;
                 foreach($Userstmp as $tmp){
-                    $users[] = Array('id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+                    $users[] = Array('rang' => $i,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+                
+                    $i ++;
                 }
                 return $users;
             } catch (\Doctrine\ORM\NoResultException $e) {
@@ -195,6 +198,15 @@ class UserRepository extends EntityRepository
                     $newIdUser = $i;
                 }
                 
+                $i ++;
+            }
+            
+            /* on met le rang */
+            $i = 0;
+            foreach($users as $user){
+                
+                $users[$i] = Array('rang' => $i + 1 ,'id' => $user['id'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'], 'picture' => $user['picture'], 'points' => $user['points']);
+                        
                 $i ++;
             }
             

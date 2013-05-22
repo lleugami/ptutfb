@@ -26,7 +26,7 @@ class QuizzType extends AbstractType
             ->add('isPromoted', 'checkbox', array("label" => "Activer", "required" => false, "value" => "ValeurCheckbox"))
             ->add('createdAt', 'datetime', array("label" => "Date de création"))
             ->add('state', 'text', array("label" => "Etat"))
-            ->add('theme', 'text', array("label" => "Thème"))
+            ->add('theme')
         ;
     }
 
