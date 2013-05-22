@@ -368,7 +368,7 @@ class DefaultController extends Controller
         /* CLASSEMENT DE L'USER ET SES AMIS */
         $classementAvecAmis = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementAvecAmis($friends,$user->getId(),0);
        
-        $classement = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementUsers($user->getId());
+        $classement = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementUsers($user);
 
         return(array('classementAvecAmis' => $classementAvecAmis , 'classement' => $classement));
     }

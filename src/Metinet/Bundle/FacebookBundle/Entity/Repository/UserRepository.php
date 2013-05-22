@@ -75,7 +75,7 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
-    public function getClassementUsers($idUser,$nbUsers = 5){
+    public function getClassementUsers($userTmp,$nbUsers = 5){
             
         $query = $this->getEntityManager()
             ->createQuery('
@@ -83,10 +83,10 @@ class UserRepository extends EntityRepository
                 ORDER BY u.points DESC'
             );
             try {
-                $userTmp = $query->getResult();
+                $Userstmp = $query->getResult();
                 $users = null;
                 $i = 1;
-                foreach($userTmp as $tmp){
+                foreach($Userstmp as $tmp){
                     $users[] = Array('rang' => $i, 'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                     $i ++;    
                 }
