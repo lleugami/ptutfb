@@ -160,7 +160,8 @@ class UserRepository extends EntityRepository
             $i = 0;
             foreach ($users as $user){
                 if($i < $newIdUser){
-                    var_dump($user[$i]);
+                    var_dump($user);
+                    unset($user);
                 }
             }
             
