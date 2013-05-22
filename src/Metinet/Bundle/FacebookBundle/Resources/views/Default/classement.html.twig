@@ -13,7 +13,11 @@
     </ul>
 </div><br/>
 
-    <h1>Classement général</h1>
+    <h1>Ma position</h1>
+    <div style="position: relative">
+    <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px; cursor: pointer;" onclick="$('#table_pagination_general').scrollTop($('#table_pagination_general').scrollTop()-350);"/>
+    <div id="table_pagination_general" style="height:300px; overflow: hidden;">
+    
     <table>
     {% for user in classement %}
         <tr>
@@ -24,8 +28,16 @@
         </tr>
     {% endfor %}
     </table>
+        
+    </div>
+    <img src="{{ asset('/bundles/metinetgalery/image/down.png') }}" style="width: 50px; position: absolute; right:0; bottom: -20px;cursor: pointer;" onclick="$('#table_pagination_general').scrollTop($('#table_pagination_general').scrollTop()+350);"/>
+    </div>
     
     <h1>Top 10</h1>
+    <div style="position: relative">
+    <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px;cursor: pointer;" onclick="$('#table_pagination_top').scrollTop($('#table_pagination_top').scrollTop()-350);"/>
+    <div id="table_pagination_top" style="height:300px; overflow: hidden;">
+    
     <table>
     {% for user in classement10 %}
         <tr>
@@ -36,10 +48,14 @@
         </tr>
     {% endfor %}
     </table>
+        
+    </div>
+    <img src="{{ asset('/bundles/metinetgalery/image/down.png') }}" style="width: 50px; position: absolute; right:0; bottom: -20px;cursor: pointer;" onclick="$('#table_pagination_top').scrollTop($('#table_pagination_top').scrollTop()+350);"/>
+    </div>
     
     <h1>Classement amis</h1>
     <div style="position: relative">
-    <img src="http://static.freepik.com/photos-libre/orange-fleche-vers-le-haut_17-526113532.jpg" style="width: 50px; position: absolute; top: -10px;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()-300);"/>
+    <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px;cursor: pointer;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()-350);"/>
     <div id="table_pagination" style="height:300px; overflow: hidden;">
     <table>
     {% for user in classementAvecAmis %}
@@ -52,6 +68,6 @@
     {% endfor %}
     </table>
     </div>
-    <img src="http://images.all-free-download.com/images/graphiclarge/arrow_orange_down_clip_art_9070.jpg" style="width: 50px; position: absolute; bottom: -10px;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()+300);"/>
+    <img src="{{ asset('/bundles/metinetgalery/image/down.png') }}" style="width: 50px; position: absolute; right:0; bottom: -20px;cursor: pointer;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()+350);"/>
     </div>
 {% endblock %}
