@@ -75,7 +75,7 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
-    public function getClassementUsers($userTmp,$nbUsers = 2){
+    public function getClassementUsers($userTmp,$nbUsers = 5){
             
         $query = $this->getEntityManager()
             ->createQuery('
