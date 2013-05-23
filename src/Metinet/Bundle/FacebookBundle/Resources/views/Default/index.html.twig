@@ -38,7 +38,7 @@
                     <div id="profilUser">
                         <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
                         <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
-                        <div id="userRank">     
+                        <div id="userRank">
                             <p>Votre score : {{ user.points }} pts</p>
                             <p>Votre classement : {{ classement }} {% if classement != 1 %}ème{% else %}er{% endif %}</p>
                         </div>
@@ -69,14 +69,15 @@
     <table>
         {% for theme in themes %}
             {% if theme.quizzes|length != 0 %}
+            <tr>
                 <td><img src="/uploads/images/mini/theme/mini_{{ theme.picture }}" /></td>
                 <td>{{ theme.title }}</td>
                 <td><a href="{{ path('list_quizz',{"id": theme.id}) }}">Voir les quizz</a></td>
+            </tr>
             {% endif %}
         {% endfor %}
     </table>
-    
-    
+        
     {% if listeDernierQuizz %}
         <h2>Les derniers Quizz</h2>
         <table>
@@ -100,9 +101,5 @@
             </tr>
             {% endfor %} 
         </table>
-    {% endif %}
-    
+    {% endif %}    
 {% endblock %}
-
-
-
