@@ -58,7 +58,7 @@ ul {
 	margin: 5px;
 }
 
-table {
+table:not(#userTable) {
 	font-size: 20px;
 	font-family: Simplicity;
 	font-weight: bold;
@@ -131,6 +131,16 @@ button {
     background-color: white;
     box-shadow: 3px 3px 8px #aaa;
     width: 550px;
+}
+
+#userTable {
+    font-family: Simplicity;
+    padding: 15px;
+    width: 90%;
+}
+
+#userTable tr.classtr {
+	background-color: #FFF0B0;
 }
 
 #test {
