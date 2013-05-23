@@ -68,7 +68,7 @@
     <h2>Liste des Thèmes</h2>
     <div style="position: relative">
     <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px;cursor: pointer;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()-350);"/>
-    <div id="table_pagination" style="height:300px; overflow: hidden;">
+    <div id="table_pagination" style="padding: 10px 0 10px 0;max-height:300px; overflow: hidden;">
     
     <table>
         {% for theme in themes %}

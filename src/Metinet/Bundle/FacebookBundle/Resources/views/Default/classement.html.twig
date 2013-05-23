@@ -16,7 +16,7 @@
     <h1>Ma position</h1>
     <div style="position: relative">
     <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px; cursor: pointer;" onclick="$('#table_pagination_general').scrollTop($('#table_pagination_general').scrollTop()-350);"/>
-    <div id="table_pagination_general" style="height:300px; overflow: hidden;">
+    <div id="table_pagination_general" style="padding: 10px 0 10px 0;max-height:300px; overflow: hidden;">
     
     <table>
     {% for user in classement %}
@@ -36,7 +36,7 @@
     <h1>Top 10</h1>
     <div style="position: relative">
     <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px;cursor: pointer;" onclick="$('#table_pagination_top').scrollTop($('#table_pagination_top').scrollTop()-350);"/>
-    <div id="table_pagination_top" style="height:300px; overflow: hidden;">
+    <div id="table_pagination_top" style="padding: 10px 0 10px 0;max-height:300px; overflow: hidden;">
     
     <table>
     {% for user in classement10 %}
@@ -56,7 +56,7 @@
     <h1>Classement amis</h1>
     <div style="position: relative">
     <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px;cursor: pointer;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()-350);"/>
-    <div id="table_pagination" style="height:300px; overflow: hidden;">
+    <div id="table_pagination" style="padding: 10px 0 10px 0;max-height:300px; overflow: hidden;">
     <table>
     {% for user in classementAvecAmis %}
         <tr>
