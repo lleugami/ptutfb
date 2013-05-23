@@ -38,7 +38,7 @@
     </table>
     
     <h1>Classement amis</h1>
-    <div class="table_pagination" style="position: relative; height:200px; overflow: hidden;">
+    <div id="table_pagination" style="position: relative; height:200px; overflow: hidden;">
     <img src="http://static.freepik.com/photos-libre/orange-fleche-vers-le-haut_17-526113532.jpg" style="width: 50px; position: absolute; top: -10px;" onclick="$('#table_pagination').scrollTop(10);"/>
     <table>
     {% for user in classementAvecAmis %}
