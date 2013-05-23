@@ -12,7 +12,7 @@ class QuizzType extends AbstractType
     {
         $builder
             ->add('title', 'text', array("label" => "Titre"))
-            ->add('file')
+            ->add('file' 'file', array("label" => "Image"))
             ->add('shortDesc', 'text', array("label" => "Description courte"))
             ->add('longDesc', 'text', array("label" => "Description longue"))
             ->add('winPoints', 'text', array("label" => "Nombre de point"))
@@ -26,7 +26,7 @@ class QuizzType extends AbstractType
             ->add('isPromoted', 'checkbox', array("label" => "Activer", "required" => false, "value" => "ValeurCheckbox"))
             ->add('createdAt', 'datetime', array("label" => "Date de création"))
             ->add('state', 'text', array("label" => "Etat"))
-            ->add('theme', 'text', array("label" => "Thème"))
+            ->add('theme')
         ;
     }
 

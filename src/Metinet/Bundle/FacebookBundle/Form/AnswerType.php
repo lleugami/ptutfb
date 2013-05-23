@@ -14,7 +14,7 @@ class AnswerType extends AbstractType
             ->add('title', 'text', array("label" => "Titre"))
             //->add('isCorrect')
             ->add('isCorrect', 'checkbox', array("label" => "Bonne réponse ?", "required" => false, "value" => "ValeurCheckbox"))
-            ->add('question', 'text', array("label" => "Numéro de la question"))
+            ->add('question')
         ;
     }
 
