@@ -232,6 +232,11 @@ button {
 	margin-left: 25px;
 }
 
+.txtWin {
+	font-size: 24px;
+	font-weight: bold;
+}
+
 .rankNum {
     color: #FF3C00;
     font-family: DimboRegular;
