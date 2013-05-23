@@ -32,18 +32,18 @@
 
     {% set user = app.session.get('user') %}
     <div id="profilUser">
-<<<<<<< HEAD
-        <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /> <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
-        <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>        
-=======
-        <h2><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /><br/>
-        {{ user.firstname }} {{ user.lastname }}</h2>
-        <p>Votre score : {{ user.points }} pts</p>
->>>>>>> 697135ddc238ace6349981737e96a284efc46768
-        <p>Votre classement : {{ classement }}</p>
+        <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+        <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
+        <div id="userRank">     
+            <p>Votre score : {{ user.points }} pts</p>
+            <p>Votre classement : {{ classement }} {% if classement != 1 %}ème{% else %}er{% endif %}</p>
+        </div>
         <hr/>
-        <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
+        <div id="btnInvit">
+        <a href="#" class="button-bevel orange"><input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" /></a>
+        </div>
     </div>
+
   <h2>Classement amis</h2>
     <table>
       <tr>

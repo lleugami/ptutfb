@@ -93,6 +93,16 @@ label {
 	padding:0 5px 0 0
 }
 
+input[type=button]{
+	background: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Simplicity;
+    color: white;
+    float:right;
+}
+
 button {
     background: transparent;
     border: none;
@@ -106,6 +116,10 @@ button {
 #btnNewTheme {
 	height:50px;
 	margin-left: 25px;
+}
+
+#btnInvit {
+	text-align: center;
 }
 
 #formQuizz {
@@ -131,6 +145,14 @@ button {
     background-color: white;
     box-shadow: 3px 3px 8px #aaa;
     width: 750px;
+}
+
+#userRank {
+	margin-top: 70px;
+}
+
+#userRank p {
+	margin: 5px 0;
 }
 
 #profilUser {
