@@ -355,6 +355,8 @@ class DefaultController extends Controller
             </table><h1>TOTAL : '.$totalPoints.' pts</h1><p>'.$message.'</p>';
                     
         echo "<script> publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleures Quizz','J\'ai répondu au Quizz : ".$quizz->getTitle()."  Mon score : ".$totalPoints." pts ') </script>";
+        
+        echo '<center><a href="/" class="button-bevel orange"><input id="button_start" type="button" value="Retour"/></a></center>';
         exit();
     
     }
