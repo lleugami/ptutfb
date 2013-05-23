@@ -222,6 +222,13 @@ button {
 	margin-left: 25px;
 }
 
+.listInfoQuizz {
+	width: 800px;
+	margin:30px;
+	font-family: Simplicity;
+	font-size: 22px;
+}
+
 .userName {
 	float:left;
 	margin-top: 0;
