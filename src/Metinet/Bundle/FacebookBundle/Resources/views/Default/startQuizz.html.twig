@@ -8,7 +8,7 @@
     var nbQuestion = 0;
     var questionArray = null;
     var tmpQuestionIndex = 0;
-    var seconde = -1;
+    var seconde = 0;
     var minute = 0;
     var timer;
     
@@ -64,7 +64,7 @@
     function getResult(){
     
     window.clearInterval(timer);
-    $('#timer').remove();
+    //$('#timer').remove();
     
         $.ajax({
             url: "{{ path('get_result')}}",
@@ -84,12 +84,12 @@
           minute ++;
           seconde = 0;
         }
-       $('#timer').html(minute+' : '+seconde);
+       $('#timer').html(minute+' " '+seconde);
     }
 
 </script>
     
-    <span style="position: relative; background-color: white; border-radius: 5px; padding: 10px; z-index: 20;"><img src="/bundles/metinetgalery/image/Temporary.png"/><span id="timer">0:0</span></span>
+    <span style="position: relative; background-color: white; border-radius: 5px; padding: 10px; z-index: 20;"><img src="/bundles/metinetgalery/image/Temporary.png"/><span id="timer">0 " 0</span></span>
     
     <h1>{{ quizz.theme.title }} > {{ quizz.title }}</h1>
     <p>
