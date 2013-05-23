@@ -36,8 +36,9 @@ Description :{{ desc_theme }}
                 <p> Nombre de quizz : {{ nb_question[quizzs.id] }}<br/>
                 Nombre de points : {{ quizzs.winPoints }}</p>
             </td>
-            {% if nb_question[quizzs.id] != 0 %}
+           
             <td>
+             {% if nb_question[quizzs.id] != 0 %}
                 <p>Participants :<br/>
                     {% if user[quizzs.id] is defined and user[quizzs.id]|length != 0 %}
                         {% for users in user[quizzs.id] %}
@@ -45,8 +46,9 @@ Description :{{ desc_theme }}
                         {% endfor %}
                     {% endif %}
                 </p>
+                {% endif %}
             </td>
-            {% endif %}
+            
             <td>
                 <div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizzs.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
             </td>
