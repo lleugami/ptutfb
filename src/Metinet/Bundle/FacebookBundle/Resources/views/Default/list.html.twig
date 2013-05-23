@@ -2,11 +2,25 @@
 
 {% block body %}
 
-<script>
-   
-</script>
-
-<h3>List des Quizz </h3><a href="{{ path("index") }}">Accueil</a>
+<div id="menu-gestion" style="margin: auto">
+    <ul class="ca-menu">
+        <li>
+            <a href="{{ path('index') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Accueil</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('classement') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Classement</h3>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div><br/>
+<h3>List des Quizz </h3>
 <p><img src="/uploads/images/mini/theme/mini_{{ img_theme }}" /> <br />
 Thème : {{ titre_theme }} <br />
 Nombre de quizz : {{ nb_quizz }} <br /> 
