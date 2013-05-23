@@ -96,7 +96,8 @@ class DefaultController extends Controller
 		if(isset($useractuelquizz)) {
 			$resultat = $useractuelquizz->getWinpoints() / $entity->getWinpoints();
 			$taux = $resultat * 100;
-		} 
+		}
+		//var_dump($useractuelquizz);exit; 
     	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion, 'classementAvecAmis' => $classementAmis, 'countclassementamis' => count($classementAmis), 
     			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'useractuel' => $useractuelquizz, 'taux'=>$taux, 'counter' =>$counter);
     }
@@ -376,7 +377,9 @@ class DefaultController extends Controller
         $classementAvecAmis = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementAvecAmis($friends,$user->getId(),0);
        
         $classement = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementUsers($user);
-
-        return(array('classementAvecAmis' => $classementAvecAmis , 'classement' => $classement));
+        
+        $classement10 = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementTopTen();
+        
+        return(array('classementAvecAmis' => $classementAvecAmis , 'classement' => $classement, 'classement10' => $classement10));
     }
 }

@@ -25,14 +25,31 @@
     {% endfor %}
     </table>
     
-    <h1>Classement amis</h1>
+    <h1>Top 10</h1>
     <table>
-    {% for user in classementAvecAmis %}
+    {% for user in classement10 %}
         <tr>
+            <td>{{ user.rang }}</td>
             <td><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /></td>
             <td><p>{{ user.firstname }} {{ user.lastname }}</p></td> 
             <td><p>{{ user.points }} pts </p></td>
         </tr>
     {% endfor %}
     </table>
+    
+    <h1>Classement amis</h1>
+    <div id="table_pagination" style="position: relative; height:200px; overflow: hidden;">
+    <img src="http://static.freepik.com/photos-libre/orange-fleche-vers-le-haut_17-526113532.jpg" style="width: 50px; position: absolute; top: -10px;" onclick="$('#table_pagination').scrollTop(10);"/>
+    <table>
+    {% for user in classementAvecAmis %}
+        <tr>
+            <td>{{ user.rang }}</td>
+            <td><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /></td>
+            <td><p>{{ user.firstname }} {{ user.lastname }}</p></td> 
+            <td><p>{{ user.points }} pts </p></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <img src="http://images.all-free-download.com/images/graphiclarge/arrow_orange_down_clip_art_9070.jpg" style="width: 50px; position: absolute; bottom: -10px;" onclick="$('#table_pagination').scrollTop(-10);"/>
+    </div>
 {% endblock %}
