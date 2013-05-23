@@ -91,11 +91,14 @@ class DefaultController extends Controller
     	$classementAmis = $repositoryUsers->getClassementAvecAmisByQuizz($friends, $user->getId(), $id);
 		$useractuelquizz = $this->getDoctrine()->getRepository('MetinetFacebookBundle:QuizzResult')->findOneBy(array('user' => $user->getId(), 'quizz' => $id));
     	$classementGeneral = $repositoryUsers->getClassementTopTenByQuizz($id);
-
-    	
-
+		$counter = 1;
+    	$taux = 0;
+		if(isset($useractuelquizz)) {
+			$resultat = $useractuelquizz->getWinpoints() / $entity->getWinpoints();
+			$taux = $resultat * 100;
+		} 
     	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion, 'classementAvecAmis' => $classementAmis, 'countclassementamis' => count($classementAmis), 
-    			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'useractuel' => $useractuelquizz);
+    			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'useractuel' => $useractuelquizz, 'taux'=>$taux, 'counter' =>$counter);
     }
 
  
