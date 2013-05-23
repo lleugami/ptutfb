@@ -20,7 +20,7 @@
     </ul>
 </div><br/>
 
-    <h1>D&eacute;tails du quizz {{ quizz.title }}</h1>
+    <h3>D&eacute;tails du quizz {{ quizz.title }}</h3>	<div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
     <table class="record_properties">
         <tbody>
             <tr>
@@ -42,9 +42,9 @@
             
        </tbody>
     </table>
-	<div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+
     <br/>{% if quizzresult != null  %}
-		<b>D&eacute;tails utilisateur</b>
+		<h3>D&eacute;tails utilisateur</h3>
 		<table>
 			<tr>
 				<th>Taux de R&eacute;ussite: </th>
@@ -83,7 +83,7 @@
          </center>
 	{% endif %}
     {% if countclassementamis > 0 %}
-    	<h4>Classement entre amis</h4>
+    	<h3>Classement entre amis</h3>
 	    <table>
 	        <tr>
 	        	
@@ -103,7 +103,7 @@
 	<center> <a class="button-bevel orange"><input type="button"  value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'sharer', 'width=626,height=400');" /></a></center>
 	{% if countclassement > 0 %}
 
-    	<h4>Classement G&eacute;n&eacute;ral</h4>
+    	<h"4">Classement G&eacute;n&eacute;ral</h3>
 	    <table>
 	        <tr>
 	        	{% set counter = 1 %}
