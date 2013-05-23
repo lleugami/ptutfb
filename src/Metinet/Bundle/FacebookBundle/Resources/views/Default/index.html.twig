@@ -9,6 +9,25 @@
 {% endblock %}
 
 {% block body %}
+  <div id="menu-gestion" style="margin: auto">
+    <ul class="ca-menu">
+        <li>
+            <a href="{{ path('index') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Accueil</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('classement') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Classement</h3>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div><br/>
+
     {% set user = app.session.get('user') %}
     <div id="profilUser">
         <h2><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /><br/>
@@ -17,17 +36,6 @@
         <p>Votre classement : {{ classement }}</p>
         <hr/>
         <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
-    </div>
-    <div id="menu-gestion">
-            <ul class="ca-menu">
-                <li>
-                    <a href="{{ path('classement') }}">
-                        <div class="ca-content">
-                            <h3 class="ca-sub">Classement</h3>
-                        </div>
-                    </a>
-                </li>
-            </ul>
     </div>
   <h2>Classement amis</h2>
     <table>
