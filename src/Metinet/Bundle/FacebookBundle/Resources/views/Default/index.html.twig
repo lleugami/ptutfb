@@ -38,8 +38,9 @@
                     <div id="profilUser">
                         <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
                         <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
-                        <div id="userRank">     
-                            <p>Votre score : {{ user.points }} pts</p>
+                        <div id="userRank">
+                            <p class="userScore">Votre score : {{ user.points }} pts </p>
+                            <p>Votre score : <b>{{ user.points }}</b> pts</p>
                             <p>Votre classement : {{ classement }} {% if classement != 1 %}ème{% else %}er{% endif %}</p>
                         </div>
                         <div id="btnInvit">
