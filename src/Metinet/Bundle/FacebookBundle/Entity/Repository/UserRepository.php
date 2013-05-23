@@ -200,10 +200,10 @@ class UserRepository extends EntityRepository
             }
             
             /* on met le rang */
-            $i = 1;
+            $i = 0;
             foreach($users as $user){
                 
-                $users[$i] = Array('rang' => $i ,'id' => $user['id'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'], 'picture' => $user['picture'], 'points' => $user['points']);
+                $users[$i] = Array('rang' => $i + 1 ,'id' => $user['id'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'], 'picture' => $user['picture'], 'points' => $user['points']);
                         
                 $i ++;
             }
