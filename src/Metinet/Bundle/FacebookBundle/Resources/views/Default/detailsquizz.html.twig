@@ -47,13 +47,13 @@
 			<tr>
 				<td colspan="2">
 					{% if taux < 25 %}
-					<img src="{{asset('/bundles/metinetgalery/image/txtwin1.png')}}"><p class="txtWin">{{ quizz.txtWin1 }}</p>
+					<p class="txtWin">{{ quizz.txtWin1 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin1.png')}}">
 					{% elseif taux >= 25 and taux <50 %}
-					<img src="{{asset('/bundles/metinetgalery/image/txtwin2.png')}}"><p class="txtWin">{{ quizz.txtWin2 }}</p>
+					<p class="txtWin">{{ quizz.txtWin2 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin2.png')}}">
 					{% elseif taux >= 50 and taux <75 %}
-					<img src="{{asset('/bundles/metinetgalery/image/txtwin3.png')}}"><p class="txtWin">{{ quizz.txtWin3 }}</p>
+					<p class="txtWin">{{ quizz.txtWin3 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin3.png')}}">
 					{% elseif taux >= 75 %}
-					<img src="{{asset('/bundles/metinetgalery/image/txtwin4.png')}}"><p class="txtWin">{{ quizz.txtWin4 }}</p>
+					<p class="txtWin">{{ quizz.txtWin4 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin4.png')}}">
 					{% endif %}
 					{% else %}
 			         <a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
@@ -87,7 +87,7 @@
                 <td>
                 	<p class="rankNum">{{ counter }} {% if counter != 1 %}ème{% else %}er{% endif %}</p>
                     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-                    <p><b>{{ user.points }}</b> pts </p>
+                    <p class="userScore">{{ user.points }} pts </p>
                 </td>
 	            {% set counter = counter +1 %}
 	            {% endfor %}
@@ -102,7 +102,6 @@
 	{% endif %}
 	<center> </center>
 	{% if countclassement > 0 %}
-
     	<h4>Classement G&eacute;n&eacute;ral</h4>
 	    <table>
 	        <tr>
@@ -112,7 +111,7 @@
 	                <td>
 	                	<p class="rankNum">{{ counter }} {% if counter != 1 %}ème{% else %}er{% endif %}</p>
 	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-	                    <p><b>{{ user.points }}</b> pts </p>
+	                    <p class="userScore">{{ user.points }} pts </p>
 	                </td>
 	                 {% set counter = counter +1 %}
 	            {% endfor %} 

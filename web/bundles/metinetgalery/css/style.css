@@ -232,9 +232,15 @@ button {
 	margin-left: 25px;
 }
 
+.userScore {
+	font-family: DimboRegular;
+}
+
 .txtWin {
-	font-size: 24px;
-	font-weight: bold;
+    font-family: DimboRegular;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .rankNum {
