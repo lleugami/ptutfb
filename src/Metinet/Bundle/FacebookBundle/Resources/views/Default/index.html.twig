@@ -17,6 +17,7 @@
         <tr>
             {% for user in classementAvecAmis %}
                 <td>
+                    <p>{{ user.rang }}</p>
                     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
                     <p>{{ user.points }} pts </p>
                 </td>
@@ -43,9 +44,11 @@
         <h2>Les derniers Quizz</h2>
         <table>
             {% for quizz in listeDernierQuizz %}
-                <tr>
-                <td><img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}"/></td><td><a href="{{ path("detail", {"id":quizz.id}) }}">{{ quizz.title }}</a></td>
-                </tr>
+                {% if quizz.questions|length != 0 %}
+                    <tr>
+                    <td><img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}"/></td><td><a href="{{ path("detail", {"id":quizz.id}) }}">{{ quizz.title }}</a></td>
+                    </tr>
+                {% endif %}
             {% endfor %}
         </table>
     {% endif %}
