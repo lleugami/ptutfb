@@ -74,6 +74,20 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
+    public function getClassementTopTen(){
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT u FROM MetinetFacebookBundle:User u
+                ORDER BY u.points DESC'
+            )->setMaxResults(10);
+            try {
+                return $query->getResult();
+                
+            } catch (\Doctrine\ORM\NoResultException $e) {
+                return null;
+            }   
+        
+    }
     public function getClassementUsers($userTmp,$nbUsers = 5){
             
         $query = $this->getEntityManager()

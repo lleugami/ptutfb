@@ -373,7 +373,9 @@ class DefaultController extends Controller
         $classementAvecAmis = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementAvecAmis($friends,$user->getId(),0);
        
         $classement = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementUsers($user);
-
-        return(array('classementAvecAmis' => $classementAvecAmis , 'classement' => $classement));
+        
+        $classement10 = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->getClassementTopTen();
+        
+        return(array('classementAvecAmis' => $classementAvecAmis , 'classement' => $classement, 'classement10' => $classement10));
     }
 }

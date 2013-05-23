@@ -25,10 +25,23 @@
     {% endfor %}
     </table>
     
+    <h1>Top 10</h1>
+    <table>
+    {% for user in classement10 %}
+        <tr>
+            <td>{{ user.rang }}</td>
+            <td><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /></td>
+            <td><p>{{ user.firstname }} {{ user.lastname }}</p></td> 
+            <td><p>{{ user.points }} pts </p></td>
+        </tr>
+    {% endfor %}
+    </table>
+    
     <h1>Classement amis</h1>
     <table>
     {% for user in classementAvecAmis %}
         <tr>
+            <td>{{ user.rang }}</td>
             <td><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /></td>
             <td><p>{{ user.firstname }} {{ user.lastname }}</p></td> 
             <td><p>{{ user.points }} pts </p></td>
