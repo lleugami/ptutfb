@@ -70,6 +70,7 @@ class QuizzRepository extends EntityRepository
         $query = $this->getEntityManager()
         ->createQuery('
             SELECT q FROM MetinetFacebookBundle:Quizz q
+            WHERE q.state != 0
             ORDER BY q.id ASC'
         )->setMaxResults(4);
         
@@ -85,7 +86,7 @@ class QuizzRepository extends EntityRepository
         $query = $this->getEntityManager()
         ->createQuery('
             SELECT q FROM MetinetFacebookBundle:Quizz q
-            WHERE q.isPromoted = 1'
+            WHERE q.isPromoted = 1 AND q.state != 0'
         )->setMaxResults(1);
 
         try {
