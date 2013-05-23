@@ -93,6 +93,11 @@ label {
 	padding:0 5px 0 0
 }
 
+button {
+    background: transparent;
+    border: none;
+}
+
 #formQuizz {
 	padding: 30px;
 	margin: 30px;

@@ -44,14 +44,25 @@
                     </div>
                 </a>
             </li>
+                <li>
+        <form action="{{ path('theme_delete', { 'id': entity.id }) }}" method="post">
+            <a href="#"><input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit"><div class="ca-content">
+                        <h3 class="ca-sub">Supprimer</h3>
+                    </div></button></a>
+        </form>
+    </li>
         </ul>
     </div>
 <ul class="record_actions">
     <li>
         <form action="{{ path('theme_delete', { 'id': entity.id }) }}" method="post">
+        <a href="#" class="button-bevel orange">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit">Supprimer</button>
+        </a>
         </form>
     </li>
 </ul>
