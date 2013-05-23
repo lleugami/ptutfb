@@ -199,6 +199,15 @@ class UserRepository extends EntityRepository
                 $i ++;
             }
             
+            /* on met le rang */
+            $i = 0;
+            foreach($users as $user){
+                
+                $users[$i] = Array('rang' => $i ,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+                        
+                $i ++;
+            }
+            
             
             $i = 0;
             if($nbFriends != 0){

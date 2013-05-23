@@ -17,6 +17,7 @@
         <tr>
             {% for user in classementAvecAmis %}
                 <td>
+                    <p>{{ user.rang }}</p>
                     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
                     <p>{{ user.points }} pts </p>
                 </td>
