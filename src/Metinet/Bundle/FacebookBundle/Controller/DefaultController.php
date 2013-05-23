@@ -213,7 +213,7 @@ class DefaultController extends Controller
                     $return .= '<p>'.$question->getTitle().'</p>';
                     foreach ($question->getAnswers() as $answer){
                         $return .= '<div style="width:auto">';
-                        $return .= '<label for="answer'.$answer->getId().'">'.$answer->getTitle().'</label>';
+                        $return .= '<label for="answer'.$answer->getId().'" style="text-align:left; width:auto;">'.$answer->getTitle().'</label>';
                         $return .= '<input onclick="ajaxSetAnswer()" id="answer'.$answer->getId().'" type="radio" name="answer" value="'.$answer->getId().'" id="answer'.$answer->getId().'"/>';
                         $return .= '</div>';
                     }
