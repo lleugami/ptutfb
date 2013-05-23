@@ -3,6 +3,24 @@
 {% block body -%}
     <img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
     <h1>Liste des réponses</h1>
+        <div id="btnNewTheme">
+        <ul class="ca-menu">
+            <li>
+                <a href="{{ path('admin_answer_new') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Créer une réponse</h3>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Tableau De Bord</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
     <table class="records_list">
         <thead>
             <tr>
@@ -30,22 +48,4 @@
         {% endfor %}
         </tbody>
     </table>
-    <div id="btnNewTheme">
-        <ul class="ca-menu">
-            <li>
-                <a href="{{ path('admin_answer_new') }}">
-                    <div class="ca-content">
-                        <h3 class="ca-sub">Créer une réponse</h3>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('admin') }}">
-                    <div class="ca-content">
-                        <h3 class="ca-sub">Tableau De Bord</h3>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
     {% endblock %}
