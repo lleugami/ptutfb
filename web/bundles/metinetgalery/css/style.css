@@ -93,9 +93,33 @@ label {
 	padding:0 5px 0 0
 }
 
+input[type=button]{
+	background: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Simplicity;
+    color: white;
+    float:right;
+}
+
 button {
     background: transparent;
     border: none;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Simplicity;
+    color: white;
+    float:right;
+}
+
+#btnNewTheme {
+	height:50px;
+	margin-left: 25px;
+}
+
+#btnInvit {
+	text-align: center;
 }
 
 #formQuizz {
@@ -107,6 +131,20 @@ button {
     background-color: white;
     box-shadow: 3px 3px 8px #aaa;
     width: 550px;
+}
+
+#test {
+	display: inline;
+}
+
+#friendRank {
+    float: left;
+    width: 550px;
+}
+
+#container {
+    display: inline-block;
+    width: 100%;
 }
 
 #listQuestion {
@@ -123,12 +161,20 @@ button {
     width: 750px;
 }
 
+#userRank {
+	margin-top: 70px;
+}
+
+#userRank p {
+	margin: 5px 0;
+}
+
 #profilUser {
 	font-size: 24px;
 	font-weight: normal;
 	font-family: Simplicity;
 	padding: 10px;
-	margin: 20px 0 0 30px;
+	margin: 40px 0 0 30px;
 	-moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -166,6 +212,11 @@ button {
 	margin-left: 25px;
 }
 
+.userName {
+	float:left;
+	margin-top: 0;
+}
+
 .listQuizz {
 	width: 300px;
 	color: #ff7800;
@@ -176,6 +227,10 @@ button {
 	-moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
+}
+
+.userPic {
+	float: left;
 }
 
 .rankQuizz {

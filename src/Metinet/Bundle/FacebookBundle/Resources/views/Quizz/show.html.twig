@@ -71,6 +71,23 @@
                 <td>{{ entity.state }}</td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <ul class="record_actions">
+                        <li>
+                            <form action="{{ path('quizz_delete', { 'id': entity.id }) }}" method="post">
+                                <a href="#" class="button-bevel orange">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    {{ form_widget(delete_form) }}
+                                    <button type="submit">Supprimer</button>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tfoot>
     </table>
     <div id="btnNewTheme">
         <ul class="ca-menu">
@@ -90,18 +107,10 @@
             </li>
         </ul>
     </div>
-<ul class="record_actions">
-        <form action="{{ path('quizz_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
 
 {% if listeQuestion %}
-    <h2>Liste des Questions</h2>
     <div id="listQuestion">
+    <h2>Liste des Questions</h2>
     <ul>
     {% for question in listeQuestion %}
         <li>
