@@ -208,7 +208,7 @@ class DefaultController extends Controller
                           
             if($nope != 1){
                 if( count($question->getAnswers()) >= 1){
-                    $return .= '<form id="form_question" action="#" method="post">';
+                    $return .= '<form id="form_question" action="#" method="post" style="background-color: white; padding: 10px; margin:auto;">';
                     $return .= '<input id="id" type="hidden" value="'.$quizz->getId().'"/>';
                     $return .= '<img src="/uploads/images/mini/question/mini_'.$question->getPicture().'" alt="'.$question->getTitle().'" />';
                     $return .= '<p>'.$question->getTitle().'</p>';
