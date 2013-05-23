@@ -88,8 +88,8 @@ class DefaultController extends Controller
     	$userFb= $this->container->get('metinet.manager.fbuser')->getUserFb();
     	$userconnect = $this->getDoctrine()->getRepository('MetinetFacebookBundle:User')->findOneBy(array('fbUid' => $userFb['id']));
     	$friends = $this->container->get('metinet.manager.fbuser')->getUserFriendsUsingApp('me');
-    	$classementAmis = $repositoryUsers->getClassementAvecAmisByQuizz($friends, $user->getId(), $id);
-		$useractuelquizz = $this->getDoctrine()->getRepository('MetinetFacebookBundle:QuizzResult')->findOneBy(array('user' => $user->getId(), 'quizz' => $id));
+    	$classementAmis = $repositoryUsers->getClassementAvecAmisByQuizz($friends, $userconnect->getId(), $id);
+		$useractuelquizz = $this->getDoctrine()->getRepository('MetinetFacebookBundle:QuizzResult')->findOneBy(array('user' => $userconnect->getId(), 'quizz' => $id));
     	$classementGeneral = $repositoryUsers->getClassementTopTenByQuizz($id);
 		$counter = 1;
     	$taux = 0;
