@@ -62,8 +62,9 @@ table {
 	font-size: 20px;
 	font-family: Simplicity;
 	font-weight: bold;
-	width:100%;
+	width: 95%;
 	padding: 15px;
+	margin-left: 30px;
 	-moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -104,6 +105,9 @@ label {
 }
 
 #listQuestion {
+	font-size: 24px;
+	font-weight: bold;
+	font-family: Simplicity;
 	padding: 10px;
 	margin: 20px 0 0 30px;
 	-moz-border-radius: 10px;
@@ -111,7 +115,7 @@ label {
     border-radius: 10px;
     background-color: white;
     box-shadow: 3px 3px 8px #aaa;
-    width: 300px;
+    width: 750px;
 }
 
 #menu-gestion {
