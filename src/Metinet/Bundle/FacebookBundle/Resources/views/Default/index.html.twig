@@ -32,7 +32,6 @@
 
     {% set user = app.session.get('user') %}
     <div id="container">
-<<<<<<< HEAD
     <table id="userTable">
             <tr class="classtr">
                 <td>
@@ -65,31 +64,6 @@
                     </div>
                 </td>
             </tr>
-=======
-        <div id="profilUser">
-            <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-            <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
-            <div id="userRank">     
-                <p>Votre score : {{ user.points }} pts</p>
-                <p>Votre classement : {{ classement }} {% if classement != 1 %}ème{% else %}er{% endif %}</p>
-            </div>
-            <div id="btnInvit">
-            <a href="#" class="button-bevel orange"><input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" /></a>
-            </div>
-        </div>
-        <div id="friendRank">
-        <h2>Classement amis</h2>
-        <table>
-          <tr>
-              {% for user in classementAvecAmis %}
-                  <td>
-                      <p>{{ user.rang }}<br/>
-                      <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /><br/>
-                      {{ user.points }} pts </p>
-                  </td>
-              {% endfor %}
-          </tr>
->>>>>>> ef71bd6293347b71bfca4c0240db1df716ae4f6d
         </table>
     </div>
     <h2>Liste des Thèmes</h2>
