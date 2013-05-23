@@ -19,7 +19,6 @@
 	        </li>
 	    </ul>
 	</div>
-	<br/>
     <h4>D&eacute;tails du quizz : {{ quizz.title }} <div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div></h4>
     <table class="record_properties">
         <tbody>
@@ -38,12 +37,11 @@
             <tr>
             	<td>nombre de questions dans ce quizz</td>
             	<td>{{ countQuestion }}</td>
-            </tr>
-            
+            </tr>            
        </tbody>
     </table>
 
-    <br/>{% if quizzresult != null  %}
+    {% if quizzresult != null  %}
 		<h4>D&eacute;tails utilisateur</h4>
 		<table>
 			<tr>
@@ -58,22 +56,23 @@
 				<th>Temps du joueur / Temps total du quizz: </th>
 				<td>{{ quizzresult.average }} sec / {{ quizz.averageTime }} sec</td>
 			</tr>
+			<tr>
+				<td colspan="2">
+					{% if taux < 25 %}
+					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin1.png')}}">{{ quizz.txtWin1 }}
+					{% elseif taux >= 25 and taux <50 %}
+					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin2.png')}}">{{ quizz.txtWin2 }}
+					{% elseif taux >= 50 and taux <75 %}
+					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin3.png')}}">{{ quizz.txtWin3 }}
+					{% elseif taux >= 75 %}
+					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin4.png')}}">{{ quizz.txtWin4 }}
+					{% endif %}
+				</td>
+			</tr>
 			<tr>				
 				<td colspan  = 2> <a class="button-bevel orange"><input type="button" value="Partagez !" onclick="publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleurs Quizz','J\'ai répondu au Quizz : {{ quizz.title }} Mon score : {{ quizzresult.winpoints }} pts ')" /></a></td>
 			</tr>
 		</table>
-		{% if taux < 25 %}
-
-					<center>{{ quizz.txtWin1 }}</center>
-		{% elseif taux >= 25 and taux <50 %}
-
-					<center>{{ quizz.txtWin2 }}</center>
-		{% elseif taux >= 50 and taux <75 %}
-
-					<center>{{ quizz.txtWin3 }}</center>
-		{% elseif taux >= 75 %}
-					<center>{{ quizz.txtWin4 }}</center>
-		{% endif %}
 	{% else %}
 		<center>
          <a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
@@ -81,15 +80,16 @@
          </a>
          </center>
 	{% endif %}
+
     {% if countclassementamis > 0 %}
     	<h4>Classement entre amis</h4>
 	    <table>
 	        <tr>	        	
 	            {% for user in classementAvecAmis %}
                 <td>
-                	<p class="rankNum">{{ counter }} {% if counter != 1 %}er{% else %}ème{% endif %}</p>
+                	<p class="rankNum">{{ counter }} {% if counter != 1 %}ème{% else %}er{% endif %}</p>
                     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-                    <p>{{ user.points }} pts </p>
+                    <p><b>{{ user.points }}</b> pts </p>
                 </td>
 	            {% set counter = counter +1 %}
 	            {% endfor %}
@@ -112,10 +112,9 @@
 	            {% for user in classementgeneral %}
 	           		
 	                <td>
-	                	<p>{{ counter }}</p>
+	                	<p class="rankNum">{{ counter }} {% if counter != 1 %}ème{% else %}er{% endif %}</p>
 	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-	                     <p>{{ user.points }} pts </p>
-
+	                    <p><b>{{ user.points }}</b> pts </p>
 	                </td>
 	                 {% set counter = counter +1 %}
 	            {% endfor %} 

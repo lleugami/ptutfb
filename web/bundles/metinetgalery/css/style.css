@@ -43,7 +43,7 @@ h3 {
 h4 {
     color: #FF3C00;
     font-size: 36px;
-    margin: 15px 0 5px 30px;
+    margin: 25px 0 5px 30px;
 }
 
 li {
@@ -89,6 +89,10 @@ thead {
 
 td { 
 	text-align: center;
+}
+
+th {
+	font-weight: bold;
 }
 
 label {
@@ -229,10 +233,11 @@ button {
 }
 
 .rankNum {
-	font-size: 30px;
-	font-family: DimboRegular;
-	font-weight: bold;
-	color: #C71B00;
+    color: #FF3C00;
+    font-family: DimboRegular;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 5px;
 }
 
 .listInfoQuizz {
