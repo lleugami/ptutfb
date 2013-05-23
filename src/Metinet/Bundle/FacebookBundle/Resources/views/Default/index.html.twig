@@ -11,8 +11,8 @@
 {% block body %}
     {% set user = app.session.get('user') %}
     <div id="profilUser">
-        <h2>{{ user.firstname }} {{ user.lastname }}</h2>
-        <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /> <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
+        <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /> <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
+        <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>        
         <p>Votre classement : {{ classement }}</p>
         <table>
             <tr>
