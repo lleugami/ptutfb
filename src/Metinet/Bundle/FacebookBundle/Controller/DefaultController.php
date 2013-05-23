@@ -209,7 +209,7 @@ class DefaultController extends Controller
             if($nope != 1){
                 if( count($question->getAnswers()) >= 1){
                     $return .= '<div style="position:absolute; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0,0.5); z-index: 0;">';
-                    $return .= '<form id="form_question" action="#" method="post" style="position:absolute; top: 15%; left: 33%; right: 33%; background-color: white; padding: 33%; margin:auto; border-radius: 10px; box-shadow: 0 0 2px black; width: 300px; z-index: 10;">';
+                    $return .= '<form id="form_question" action="#" method="post" style="position:absolute; top: 100px; background-color: white; padding: 400px; margin:auto; border-radius: 10px; box-shadow: 0 0 2px black; width: 300px; z-index: 10;">';
                     $return .= '<center><img src="/uploads/images/mini/question/mini_'.$question->getPicture().'" alt="'.$question->getTitle().'" /></center>';
                     $return .= '<p>'.$question->getTitle().'</p>';
                     foreach ($question->getAnswers() as $answer){
