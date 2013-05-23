@@ -11,21 +11,34 @@
 {% block body %}
     {% set user = app.session.get('user') %}
     <div id="profilUser">
-        <h2>{{ user.firstname }} {{ user.lastname }}</h2>
         <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /> <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
+        <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+        <p>Votre score : {{ user.points }}</p>
         <p>Votre classement : {{ classement }}</p>
-        <table>
-            <tr>
-                {% for user in classementAvecAmis %}
-                    <td>
-                        <p>{{ user.rang }}</p>
-                        <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-                        <p>{{ user.points }} pts </p>
-                    </td>
-                {% endfor %}
-            </tr>
-        </table>
     </div>
+    <div id="menu-gestion">
+            <ul class="ca-menu">
+                <li>
+                    <a href="{{ path('classement') }}">
+                        <div class="ca-content">
+                            <h3 class="ca-sub">Classement</h3>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+    </div>
+  <h2>Classement amis</h2>
+    <table>
+      <tr>
+          {% for user in classementAvecAmis %}
+              <td>
+                  <p>{{ user.rang }}</p>
+                  <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+                  <p>{{ user.points }} pts </p>
+              </td>
+          {% endfor %}
+      </tr>
+  </table>
    
     <h2>Liste des Thèmes</h2>
     <table>
