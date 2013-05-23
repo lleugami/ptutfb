@@ -39,9 +39,10 @@
 	            {% endfor %}
 	        </tr>
 	    </table>
-	{% else %}
-		<input type="button" value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'sharer', 'width=626,height=400');" />
+
+		
 	{% endif %}
+	<input type="button" value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'sharer', 'width=626,height=400');" />
 	{% if countclassement > 0 %}
     	<h4>Classement G&eacute;n&eacute;ral</h4>
 	    <table>
@@ -52,10 +53,13 @@
 	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
 	                    <p>{{ user.points }} pts </p>
 	                </td>
-	            {% endfor %}
+	            {% endfor %} 
 	        </tr>
 	    </table>
 	{% else %}
 		Le classement n'est pas encore disponible ...
+	{% endif %}
+	{% if useractuel is defined  %}
+		<b>efsd</b>
 	{% endif %}
 {% endblock %}

@@ -8,7 +8,7 @@
     var nbQuestion = 0;
     var questionArray = null;
     var tmpQuestionIndex = 0;
-    var seconde = -1;
+    var seconde = 0;
     var minute = 0;
     var timer;
     
@@ -64,7 +64,7 @@
     function getResult(){
     
     window.clearInterval(timer);
-    $('#timer').remove();
+    //$('#timer').remove();
     
         $.ajax({
             url: "{{ path('get_result')}}",
@@ -84,19 +84,21 @@
           minute ++;
           seconde = 0;
         }
-       $('#timer').html(minute+' : '+seconde);
+       $('#timer').html(minute+' " '+seconde);
     }
 
 </script>
     
-    <div id="timer"></div>
+    <span style="position: relative; background-color: white; border-radius: 5px; padding: 10px; z-index: 20;"><img src="/bundles/metinetgalery/image/Temporary.png"/><span id="timer">0 " 0</span></span>
     
-    <h1>{{ quizz.theme.title }}</h1>
+    <h1>{{ quizz.theme.title }} > {{ quizz.title }}</h1>
+    <p>
     {% if quizz.picture %}
         <img src="/uploads/images/mini/quizz/mini_{{ quizz.picture }}" alt="{{ quizz.title }}" />
+        <br/>
     {% endif %}
-    <h2>{{ quizz.title }}</h2>
+    {{ quizz.longDesc }}</p>
     
-    <input id="button_start" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/>
+    <center><input id="button_start" class="button-bevel orange" type="button" onclick="ajaxGetQuestions({{ quizz.id }});" value=">> START <<"/></center>
         
 {% endblock %}
