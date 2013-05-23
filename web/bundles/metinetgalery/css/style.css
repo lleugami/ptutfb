@@ -118,6 +118,20 @@ label {
     width: 750px;
 }
 
+#profilUser {
+	font-size: 24px;
+	font-weight: normal;
+	font-family: Simplicity;
+	padding: 10px;
+	margin: 20px 0 0 30px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 3px 3px 8px #aaa;
+    width: 400px;
+}
+
 #menu-gestion {
 	display: block;
 	margin: 0 0 100px 40px;
