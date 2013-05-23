@@ -228,6 +228,13 @@ button {
 	margin-left: 25px;
 }
 
+.rankNum {
+	font-size: 20px;
+	font-family: Simplicity;
+	font-weight: bold;
+	color: #C71B00;
+}
+
 .listInfoQuizz {
 	width: 800px;
 	margin:30px;
