@@ -1,6 +1,25 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+  <div id="menu-gestion" style="margin: auto">
+    <ul class="ca-menu">
+        <li>
+            <a href="{{ path('index') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Accueil</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('classement') }}">
+                <div class="ca-content">
+                    <h3 class="ca-sub">Classement</h3>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div><br/>
+
     <h1>D&eacute;tails du quizz {{ quizz.title }}</h1><a href="{{ path("index") }}">Accueil</a>
     <table class="record_properties">
         <tbody>
