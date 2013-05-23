@@ -233,8 +233,9 @@ button {
 }
 
 .userScore {
-	font-family: DimboRegular;
-	margin: 10px;
+    font-family: DimboRegular;
+    font-size: 24px;
+    margin: 10px;
 }
 
 .txtWin {
