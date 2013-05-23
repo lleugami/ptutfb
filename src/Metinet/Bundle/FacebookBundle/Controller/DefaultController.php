@@ -215,7 +215,7 @@ class DefaultController extends Controller
 
                     foreach ($question->getAnswers() as $answer){
                         $return .= '<label for="answer'.$answer->getId().'">'.$answer->getTitle().'</label>';
-                        $return .= '<input onclick="ajaxSetAnswer()" id="answer" type="radio" name="answer" value="'.$answer->getId().'" id="answer'.$answer->getId().'"/>';
+                        $return .= '<input onclick="ajaxSetAnswer()" id="answer'.$answer->getId().'" type="radio" name="answer" value="'.$answer->getId().'" id="answer'.$answer->getId().'"/>';
 
                     }
                     $return .= '</form>|';
