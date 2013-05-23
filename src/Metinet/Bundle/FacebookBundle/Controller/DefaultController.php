@@ -97,6 +97,7 @@ class DefaultController extends Controller
 			$resultat = $useractuelquizz->getWinpoints() / $entity->getWinpoints();
 			$taux = $resultat * 100;
 		}
+		
 		//var_dump($useractuelquizz);exit; 
     	return array('quizz' => $entity, 'countQuestion' =>	$countQuestion, 'classementAvecAmis' => $classementAmis, 'countclassementamis' => count($classementAmis), 
     			'classementgeneral' => $classementGeneral, 'countclassement' => count($classementGeneral), 'quizzresult' => $useractuelquizz, 'taux'=>$taux, 'counter' =>$counter);
