@@ -11,10 +11,12 @@
 {% block body %}
     {% set user = app.session.get('user') %}
     <div id="profilUser">
-        <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /> <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
+        <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
         <h2>{{ user.firstname }} {{ user.lastname }}</h2>
-        <p>Votre score : {{ user.points }}</p>
+        <p>Votre score : {{ user.points }} pts</p>
         <p>Votre classement : {{ classement }}</p>
+        <hr/>
+        <input type="button" value="Inviter vos amis" onclick="rejoindre('Participez aux Quizzs et défiez vos amis');" />
     </div>
     <div id="menu-gestion">
             <ul class="ca-menu">
