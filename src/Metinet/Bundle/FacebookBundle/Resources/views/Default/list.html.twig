@@ -49,7 +49,7 @@
                 
             </td>
             <td>               
-                <p> Nombre de quizz : {{ nb_question[quizzs.id] }}<br/>
+                <p> Nombre de questions : {{ nb_question[quizzs.id] }}<br/>
                 Nombre de points : {{ quizzs.winPoints }}</p>
             </td>
            
@@ -69,9 +69,7 @@
                 <div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizzs.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
             </td>
             <td>
-                <a href="#" class="button-bevel orange">
-                <input type="button" value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + '{{ quizzs.shareWallTitle }}<br/>{{ quizz.shareWallDesc }}', 'sharer', 'width=626,height=400');" />
-                </a>
+                <div class="fb-send button-bevel orange" data-href="http://apps.facebook.com/quizz_en_folie/"></div>
             </td>
         </tr>
         

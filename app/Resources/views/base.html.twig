@@ -13,15 +13,24 @@
             <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
             {% block boutonjaime %}
-              <meta property="og:title" content="Quizz en folie" />
+              {#<meta property="og:title" content="Quizz en folie" />
               <meta property="og:type" content="game" />
               <meta property="og:url" content="http://apps.facebook.com/quizzenfolie/" />
               <meta property="og:image" content="http://apps.facebook.com/uploads/images/quizz.jpg" />
-              <meta property="og:description" content="Le Quizz de folie a remplir très vite !!!" />
+              <meta property="og:description" content="Le Quizz de folie a remplir très vite !!!" />#}
+
             {% endblock %}
         </head>
         <body>
             <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=595726013784390";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+                
             {% block body %}{% endblock %}
             {% block javascripts %}
             <script type="text/javascript">
@@ -36,15 +45,6 @@
      
                 FB.Canvas.setAutoGrow();
               };
-     
-              // Load the SDK asynchronously
-              (function(d, s, id){
-                 var js, fjs = d.getElementsByTagName(s)[0];
-                 if (d.getElementById(id)) {return;}
-                 js = d.createElement(s); js.id = id;
-                 js.src = "//connect.facebook.net/fr_FR/all.js";
-                 fjs.parentNode.insertBefore(js, fjs);
-               }(document, 'script', 'facebook-jssdk'));
 
 
               function publier(name,link,picture,caption,description){
