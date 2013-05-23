@@ -27,19 +27,16 @@
         </table>
     </div>
    
-    <div>
-    <h3>Liste des Thèmes</h3>
-    	<ul>
-            <table>
-            {% for theme in themes %}
+    <h2>Liste des Thèmes</h2>
+    <table>
+        {% for theme in themes %}
             {% if theme.quizzes|length != 0 %}
                 <td><img src="/uploads/images/mini/theme/mini_{{ theme.picture }}" /></td>
                 <td>{{ theme.title }}</td>
                 <td><a href="{{ path('list_quizz',{"id": theme.id}) }}">Voir les quizz</a></td>
             {% endif %}
-            {% endfor %}
-            </table>
-    </div>
+        {% endfor %}
+    </table>
     
     
     {% if listeDernierQuizz %}
