@@ -203,7 +203,7 @@ class UserRepository extends EntityRepository
             $i = 0;
             foreach($users as $user){
                 
-                $users[$i] = Array('rang' => $i ,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
+                $users[$i] = Array('rang' => $i ,'id' => $user['id'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'], 'picture' => $user['picture'], 'points' => $user['points']);
                         
                 $i ++;
             }
