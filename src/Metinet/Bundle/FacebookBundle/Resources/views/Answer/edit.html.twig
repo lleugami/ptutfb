@@ -26,9 +26,9 @@
     <ul class="record_actions">
     <li>
         <form action="{{ path('admin_answer_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
+            <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit">Delete</button></a>
         </form>
     </li>
 </ul>
