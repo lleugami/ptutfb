@@ -1,22 +1,29 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Quizz edit</h1>
-
+<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/logo-pt.png')}}">
+    <h1>Edition d'un quizz</h1>
+    <div id="formQuizz">
     <form action="{{ path('quizz_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
         <p>
-            <button type="submit">Edit</button>
+            <button type="submit">Modifier</button>
         </p>
     </form>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('quizz') }}">
-            Back to the list
-        </a>
-    </li>
+    </div>
+    <div id="btnNewTheme">
+        <ul class="ca-menu">
+            <li>
+                <a href="{{ path('quizz') }}">
+                    <div class="ca-content">
+                        <h3 class="ca-sub">Retourner à la liste</h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+<ul class="record_actions">
     <li>
         <form action="{{ path('quizz_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />

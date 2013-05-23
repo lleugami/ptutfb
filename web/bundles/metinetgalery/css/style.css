@@ -86,11 +86,11 @@ td {
 }
 
 label {
-  display:block;
-  float:left;
-  width:250px;
-  text-align:right;
-  padding:0 5px 0 0
+	display:block;
+	float:left;
+	width:250px;
+	text-align:right;
+	padding:0 5px 0 0
 }
 
 #formQuizz {
