@@ -59,13 +59,13 @@
 			<tr>
 				<td colspan="2">
 					{% if taux < 25 %}
-					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin1.png')}}">{{ quizz.txtWin1 }}
+					<img src="{{asset('/bundles/metinetgalery/image/txtwin1.png')}}"><b>{{ quizz.txtWin1 }}</b>
 					{% elseif taux >= 25 and taux <50 %}
-					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin2.png')}}">{{ quizz.txtWin2 }}
+					<img src="{{asset('/bundles/metinetgalery/image/txtwin2.png')}}"><b>{{ quizz.txtWin2 }}</b>
 					{% elseif taux >= 50 and taux <75 %}
-					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin3.png')}}">{{ quizz.txtWin3 }}
+					<img src="{{asset('/bundles/metinetgalery/image/txtwin3.png')}}"><b>{{ quizz.txtWin3 }}</b>
 					{% elseif taux >= 75 %}
-					<img class="logoSmall" src="{{asset('/bundles/metinetgalery/image/txtwin4.png')}}">{{ quizz.txtWin4 }}
+					<img src="{{asset('/bundles/metinetgalery/image/txtwin4.png')}}"><b>{{ quizz.txtWin4 }}</b>
 					{% endif %}
 				</td>
 			</tr>
