@@ -87,7 +87,7 @@
 	        <tr>	        	
 	            {% for user in classementAvecAmis %}
                 <td>
-                	<p class="rankNum">{{ counter }} {% if counter = 1 %}er{% else %}ème{% endif %}</p>
+                	<p class="rankNum">{{ counter }} {% if counter != 1 %}er{% else %}ème{% endif %}</p>
                     <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
                     <p>{{ user.points }} pts </p>
                 </td>
