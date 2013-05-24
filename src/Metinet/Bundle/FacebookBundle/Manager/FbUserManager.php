@@ -47,7 +47,6 @@ class FbUserManager
         $std->bindParam(':picture', $user['picture'], \PDO::PARAM_STR);
         $std->bindParam(':firstname', $myNull, \PDO::PARAM_NULL);
         $std->bindParam(':lastname', $myNull, \PDO::PARAM_NULL);
-       
 
         $fbDatas = $this->facebook->api('/me');
         if (!empty($fbDatas)) {
