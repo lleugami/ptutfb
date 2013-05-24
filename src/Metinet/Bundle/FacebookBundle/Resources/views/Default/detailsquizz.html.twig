@@ -76,6 +76,10 @@
 			</tr>
 
 		</table>
+            {% else %}
+                <p style="text-align:center;margin:5px"><a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
+			            <input type="button" value="JOUER"/>
+			         </a></p>
             {% endif %}
 	{% else %}
 			         <p style="text-align:center;margin:5px"><a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
