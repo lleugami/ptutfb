@@ -357,9 +357,7 @@ class UserRepository extends EntityRepository
     					$tmp2 = $query2->getResult();
     				
     					foreach($tmp2 as $row2){
-                                             if($row2->getPoints() == null){
-                                                $row2->setPoints(0);
-                                             }
+                                       
     						$users[$cpt] = array('id' => $row["user"]->getId(), 'firstname' => $row["user"]->getFirstname(), 'lastname' => $row["user"]->getLastname(), 'picture' => $row["user"]->getPicture(), 'points' => $row2->getWinPoints());
     					}
     					$cpt++;
