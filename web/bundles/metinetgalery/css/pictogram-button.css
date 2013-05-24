@@ -16,6 +16,13 @@
   transition: 0.1s linear;
 }
 
+.button-bevel .pluginButton{
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 13px !important;
+}
+
 .button {
   border-radius: 2px;
   box-shadow: inset rgba(255,255,255,0.3) 1px 1px 0;
