@@ -308,7 +308,7 @@ class DefaultController extends Controller
         /* CALCULE BONUS OU MALUS */
         if($average <= $quizz->getAverageTime()){
             $messageAverage = "Bonus de temps";
-            $pointAverage = 0.75 * $quizz->getWinPoints();
+            $pointAverage = 0.25 * $quizz->getWinPoints();
         }
         else{
             $messageAverage = "Malus de temps";
