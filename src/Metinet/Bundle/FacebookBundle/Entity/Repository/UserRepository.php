@@ -171,7 +171,7 @@ class UserRepository extends EntityRepository
     
         if(count($friends) == 0){
             
-            echo 'pas amis';
+            //echo 'pas amis';
             if($idUser - 2 <= 0){
                 $offset = $idUser;
             }
@@ -200,7 +200,7 @@ class UserRepository extends EntityRepository
             }              
         } else{
             
-            echo 'amis';
+            //echo 'amis';
             $i = 0;
             foreach ($friends as $friend){
                 
@@ -217,7 +217,7 @@ class UserRepository extends EntityRepository
                     }
 
                 } catch (\Doctrine\ORM\NoResultException $e) {
-                    return null;
+                    
                 }
                 
                 $i ++;
