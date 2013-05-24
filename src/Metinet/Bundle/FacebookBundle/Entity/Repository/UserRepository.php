@@ -208,6 +208,7 @@ class UserRepository extends EntityRepository
             foreach ($users as $user){
                 if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
                     $newIdUser = $i;
+                    echo $i;
                 }
                 
                 $i ++;
