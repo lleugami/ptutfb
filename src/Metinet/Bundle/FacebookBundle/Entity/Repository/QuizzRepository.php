@@ -100,7 +100,7 @@ class QuizzRepository extends EntityRepository
         ->createQuery('
             SELECT q FROM MetinetFacebookBundle:Quizz q
             WHERE q.isPromoted = 1 AND q.state != 0
-            ORDER BY RAND()'
+            ORDER BY RAND'
         )->setMaxResults(1);
 
         try {
