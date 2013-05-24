@@ -1,26 +1,25 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-  <div id="menu-gestion" style="margin: auto">
-    <ul class="ca-menu">
-        <li>
-            <a href="{{ path('index') }}">
-                <div class="ca-content">
-                    <h3 class="ca-sub">Accueil</h3>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('classement') }}">
-                <div class="ca-content">
-                    <h3 class="ca-sub">Classement</h3>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div><br/>
-
-    <h3>D&eacute;tails du quizz {{ quizz.title }}</h3>	<div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+	<div id="menu-gestion" style="margin: auto">
+	    <ul class="ca-menu">
+	        <li>
+	            <a href="{{ path('index') }}">
+	                <div class="ca-content">
+	                    <h3 class="ca-sub">Accueil</h3>
+	                </div>
+	            </a>
+	        </li>
+	        <li>
+	            <a href="{{ path('classement') }}">
+	                <div class="ca-content">
+	                    <h3 class="ca-sub">Classement</h3>
+	                </div>
+	            </a>
+	        </li>
+	    </ul>
+	</div><br />
+    <h4>D&eacute;tails du quizz : {{ quizz.title }} <div class="fb-like" data-href="http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div></h4>
     <table class="record_properties">
         <tbody>
             <tr>
@@ -38,14 +37,27 @@
             <tr>
             	<td>nombre de questions dans ce quizz</td>
             	<td>{{ countQuestion }}</td>
-            </tr>
-            
+            </tr>            
        </tbody>
     </table>
 
-    <br/>{% if quizzresult != null  %}
-		<h3>D&eacute;tails utilisateur</h3>
+    {% if quizzresult != null %}
+		<h4>D&eacute;tails utilisateur</h4>
 		<table>
+			<tr>
+				<td colspan="2">
+					{% if taux < 25 %}
+						<p class="txtWin">{{ quizz.txtWin1 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin1.png')}}">
+					{% elseif taux >= 25 and taux <50 %}
+						<p class="txtWin">{{ quizz.txtWin2 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin2.png')}}">
+					{% elseif taux >= 50 and taux <75 %}
+						<p class="txtWin">{{ quizz.txtWin3 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin3.png')}}">
+					{% elseif taux >= 75 %}
+						<p class="txtWin">{{ quizz.txtWin4 }}</p><img src="{{asset('/bundles/metinetgalery/image/txtwin4.png')}}">
+					{% endif %}
+					
+				</td>
+			</tr> 
 			<tr>
 				<th>Taux de R&eacute;ussite: </th>
 				<td>{{ taux }} %</td>
@@ -58,62 +70,49 @@
 				<th>Temps du joueur / Temps total du quizz: </th>
 				<td>{{ quizzresult.average }} sec / {{ quizz.averageTime }} sec</td>
 			</tr>
-			<tr>
-				
+			<tr>				
 				<td colspan  = 2> <a class="button-bevel orange"><input type="button" value="Partagez !" onclick="publier('Quizz en Folie', 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'http://ptutfb1.hebergearea.com/uploads/images/quizz.jpg','Les meilleurs Quizz','J\'ai répondu au Quizz : {{ quizz.title }} Mon score : {{ quizzresult.winpoints }} pts ')" /></a></td>
 			</tr>
+
 		</table>
-		{% if taux < 25 %}
-
-					<center>{{ quizz.txtWin1 }}</center>
-		{% elseif taux >= 25 and taux <50 %}
-
-					<center>{{ quizz.txtWin2 }}</center>
-		{% elseif taux >= 50 and taux <75 %}
-
-					<center>{{ quizz.txtWin3 }}</center>
-		{% elseif taux >= 75 %}
-					<center>{{ quizz.txtWin4 }}</center>
-		{% endif %}
 	{% else %}
-		<center>
-         <a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
-            <input type="button" value="JOUER"/>
-         </a>
-         </center>
+			         <a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
+			            <input type="button" value="JOUER"/>
+			         </a>
 	{% endif %}
     {% if countclassementamis > 0 %}
-    	<h3>Classement entre amis</h3>
+    	<h4>Classement entre amis</h4>
 	    <table>
-	        <tr>
-	        	
+	        <tr>	        	
 	            {% for user in classementAvecAmis %}
-	                <td>
-	                	<p>{{ counter }}</p>
-	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-	                    <p>{{ user.points }} pts </p>
-	                </td>
-	                {% set counter = counter +1 %}
+                <td>
+                	<p class="rankNum">{{ counter }} {% if counter != 1 %}ème{% else %}er{% endif %}</p>
+                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+                    <p class="userScore">{{ user.points }} pts </p>
+                </td>
+	            {% set counter = counter +1 %}
 	            {% endfor %}
 	        </tr>
+	        <tr>			
+				<td colspan  = 5>
+					<a class="button-bevel orange"><input type="button"  value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'sharer', 'width=626,height=400');" /></a>
+				</td>
+	        </tr>
 	    </table>
-
 		
 	{% endif %}
-	<center> <a class="button-bevel orange"><input type="button"  value="Défier ses amis" onclick="var sharer = 'https://www.facebook.com/sharer/sharer.php?u='; window.open(sharer + 'http://apps.facebook.com/quizz_en_folie/detailquizz/{{ quizz.id }}', 'sharer', 'width=626,height=400');" /></a></center>
+	<center> </center>
 	{% if countclassement > 0 %}
-
-    	<h"4">Classement G&eacute;n&eacute;ral</h3>
+    	<h4>Classement G&eacute;n&eacute;ral</h4>
 	    <table>
 	        <tr>
 	        	{% set counter = 1 %}
 	            {% for user in classementgeneral %}
 	           		
 	                <td>
-	                	<p>{{ counter }}</p>
+	                	<p class="rankNum">{{ counter }} {% if counter != 1 %}ème{% else %}er{% endif %}</p>
 	                    <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
-	                     <p>{{ user.points }} pts </p>
-
+	                    <p class="userScore">{{ user.points }} pts </p>
 	                </td>
 	                 {% set counter = counter +1 %}
 	            {% endfor %} 

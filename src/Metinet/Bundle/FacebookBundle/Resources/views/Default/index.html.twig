@@ -38,7 +38,7 @@
                     <div id="profilUser">
                         <img class="userPic" src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
                         <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
-                        <div id="userRank">     
+                        <div id="userRank">
                             <p>Votre score : {{ user.points }} pts</p>
                             <p>Votre classement : {{ classement }} {% if classement != 1 %}ème{% else %}er{% endif %}</p>
                         </div>
@@ -53,10 +53,9 @@
                         <table>
                           <tr>
                               {% for user in classementAvecAmis %}
-                                  <td>
-                                      <p>{{ user.rang }}<br/>
-                                      <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /><br/>
-                                      {{ user.points }} pts </p>
+                                  <td><p class="rankNum">{{ user.rang }} {% if user.rang != 1 %}ème{% else %}er{% endif %}</p>
+                                      <img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" />
+                                      <p class="userScore">{{ user.points }} pts </p>
                                   </td>
                               {% endfor %}
                           </tr>
@@ -74,9 +73,11 @@
     <table>
         {% for theme in themes %}
             {% if theme.quizzes|length != 0 %}
+            <tr>
                 <td><img src="/uploads/images/mini/theme/mini_{{ theme.picture }}" /></td>
                 <td>{{ theme.title }}</td>
                 <td><a href="{{ path('list_quizz',{"id": theme.id}) }}">Voir les quizz</a></td>
+            </tr>
             {% endif %}
         {% endfor %}
     </table>
@@ -84,7 +85,6 @@
     </div>
     <img src="{{ asset('/bundles/metinetgalery/image/down.png') }}" style="width: 50px; position: absolute; right:0; bottom: -20px;cursor: pointer;" onclick="$('#table_pagination_general').scrollTop($('#table_pagination_general').scrollTop()+350);"/>
     </div>
-    
     
     {% if listeDernierQuizz %}
         <h2>Les derniers Quizz</h2>
@@ -109,9 +109,5 @@
             </tr>
             {% endfor %} 
         </table>
-    {% endif %}
-    
+    {% endif %}    
 {% endblock %}
-
-
-

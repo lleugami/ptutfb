@@ -21,10 +21,10 @@
     <table>
     {% for user in classement %}
         <tr>
-            <td>{{ user.rang }}</td>
+            <td><p class="rankNum">{{ user.rang }} {% if user.rang != 1 %}ème{% else %}er{% endif %}</p></td>
             <td><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /></td>
             <td><p>{{ user.firstname }} {{ user.lastname }}</p></td> 
-            <td><p>{{ user.points }} pts </p></td>
+            <td><p class="userScore">{{ user.points }} pts </p></td>
         </tr>
     {% endfor %}
     </table>
@@ -41,10 +41,10 @@
     <table>
     {% for user in classement10 %}
         <tr>
-            <td>{{ user.rang }}</td>
+            <td><p class="rankNum">{{ user.rang }} {% if user.rang != 1 %}ème{% else %}er{% endif %}</p></td>
             <td><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /></td>
             <td><p>{{ user.firstname }} {{ user.lastname }}</p></td> 
-            <td><p>{{ user.points }} pts </p></td>
+            <td><p class="userScore">{{ user.points }} pts </p></td>
         </tr>
     {% endfor %}
     </table>
@@ -60,10 +60,10 @@
     <table>
     {% for user in classementAvecAmis %}
         <tr>
-            <td>{{ user.rang }}</td>
+            <td><p class="rankNum">{{ user.rang }} {% if user.rang != 1 %}ème{% else %}er{% endif %}</p></td>
             <td><img src="{{ user.picture }}" alt="{{ user.firstname }} {{ user.lastname }}" /></td>
             <td><p>{{ user.firstname }} {{ user.lastname }}</p></td> 
-            <td><p>{{ user.points }} pts </p></td>
+            <td><p class="userScore">{{ user.points }} pts </p></td>
         </tr>
     {% endfor %}
     </table>
