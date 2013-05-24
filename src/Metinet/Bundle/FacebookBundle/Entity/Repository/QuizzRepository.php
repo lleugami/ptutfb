@@ -98,7 +98,7 @@ class QuizzRepository extends EntityRepository
     {   
         $em = $this->getEntityManager();
         $max = $em->createQuery('
-            SELECT MAX(q.id) FROM EnzimQuestionBundle:Question q
+            SELECT MAX(q.id) FROM MetinetFacebookBundle:Quizz q
         ')
         ->getSingleScalarResult();
          
