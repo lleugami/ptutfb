@@ -199,6 +199,7 @@ class UserRepository extends EntityRepository
             try {
                 $tmp = $query->getSingleResult();
                 $userTmp = $tmp;
+                echo $userTmp->getId();
                 
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
