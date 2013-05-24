@@ -171,21 +171,11 @@ class UserRepository extends EntityRepository
     
         if(count($friends) > 0){
             
-            echo 'pas amis';
-            if($idUser - 2 <= 0){
-                $offset = $idUser;
-            }
-            else{
-                $offset = $idUser - 2;
-            }
-            
-            echo $offset;
-            
             $query = $this->getEntityManager()
             ->createQuery('
                 SELECT u FROM MetinetFacebookBundle:User u
                 ORDER BY u.points DESC'
-            )->setFirstResult($offset);
+            );
 
             try {
                 $Userstmp = $query->getResult();
@@ -200,7 +190,30 @@ class UserRepository extends EntityRepository
                 return $users;
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
-            }              
+            }  
+            
+            $i = 0;
+            foreach ($users as $user){
+                if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
+                    $newIdUser = $i;
+                }
+                
+                $i ++;
+            }
+            
+            $i = 0;
+            if($nbFriends != 0){
+                foreach ($users as $user){
+                    if($i < $newIdUser - $nbFriends || $i > $newIdUser + $nbFriends ){
+                        $users[$i] = null;
+                        unset($users[$i]);
+
+                    }
+
+                    $i ++;
+                }
+            }
+            
         } else{
             
             //echo 'amis';
