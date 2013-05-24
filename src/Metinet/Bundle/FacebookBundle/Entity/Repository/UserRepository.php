@@ -169,9 +169,9 @@ class UserRepository extends EntityRepository
      */
     public function getClassementAvecAmis($friends,$idUser,$nbFriends = 2){    
     
-        if(count($friends) == 0){
+        if(count($friends) > 0){
             
-            //echo 'pas amis';
+            echo 'pas amis';
             if($idUser - 2 <= 0){
                 $offset = $idUser;
             }
