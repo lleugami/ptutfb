@@ -42,6 +42,7 @@
     </table>
 
     {% if quizzresult != null %}
+        {% if quizzresult.average != null %}
 		<h4>D&eacute;tails utilisateur</h4>
 		<table>
 			<tr>
@@ -75,6 +76,7 @@
 			</tr>
 
 		</table>
+            {% endif %}
 	{% else %}
 			         <p style="text-align:center;margin:5px"><a class="button-bevel orange" href="{{ path('start_quizz', {'id' : quizz.id}) }}">
 			            <input type="button" value="JOUER"/>
