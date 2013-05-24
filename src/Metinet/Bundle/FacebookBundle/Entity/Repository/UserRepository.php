@@ -179,6 +179,8 @@ class UserRepository extends EntityRepository
                 $offset = $idUser - 2;
             }
             
+            echo $offset;
+            
             $query = $this->getEntityManager()
             ->createQuery('
                 SELECT u FROM MetinetFacebookBundle:User u
