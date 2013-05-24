@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class QuizzRepository extends EntityRepository
 {
 	/***
-	 * récupère le nombre de participants par quizz
+	 * rï¿½cupï¿½re le nombre de participants par quizz
 	 * @id : id du quizz
 	 */
     public function getNbUserByQuizz($id)
@@ -34,9 +34,9 @@ class QuizzRepository extends EntityRepository
     }
     
     /***
-     * Récupère le taux moyen de réussite sur un quizz
+     * Rï¿½cupï¿½re le taux moyen de rï¿½ussite sur un quizz
      * @id : id du quizz
-     * @nbQuizzResult: nombre de quizz lancé
+     * @nbQuizzResult: nombre de quizz lancï¿½
      */
     public function getTauxReussiteMoyen($nbQuizzResult,$id)
     {
@@ -74,7 +74,7 @@ class QuizzRepository extends EntityRepository
 
     }
     /***
-     * Récupère les 4 derniers quizz
+     * Rï¿½cupï¿½re les 4 derniers quizz
      */
     public function quatreDernierQuizz()
     {
@@ -92,14 +92,15 @@ class QuizzRepository extends EntityRepository
         }
     }
     /***
-     * Récupère le dernier quizz en promo
+     * Rï¿½cupï¿½re le dernier quizz en promo
      */
     public function dernierQuizzPromo()
     {
         $query = $this->getEntityManager()
         ->createQuery('
             SELECT q FROM MetinetFacebookBundle:Quizz q
-            WHERE q.isPromoted = 1 AND q.state != 0'
+            WHERE q.isPromoted = 1 AND q.state != 0
+            ORDER BY RAND()'
         )->setMaxResults(1);
 
         try {
@@ -110,7 +111,7 @@ class QuizzRepository extends EntityRepository
     }   
     
 	/***
-	 * Récupère le nombre total de quizz
+	 * Rï¿½cupï¿½re le nombre total de quizz
 	 */
     public function getCountTotQuizz() {    	
     	$query = $this->getEntityManager()
@@ -128,7 +129,7 @@ class QuizzRepository extends EntityRepository
 
 
 	/***
-	 * Récupère la liste des derniers quizz
+	 * Rï¿½cupï¿½re la liste des derniers quizz
 	 */
     public function getQuizzTrier($id) {
 
