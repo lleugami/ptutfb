@@ -11,6 +11,11 @@
             <a href="#" class="button-bevel orange"><button type="submit">Modifier</button></a>
         </p>
     </form>
+    <form action="{{ path('quizz_delete', { 'id': entity.id }) }}" method="post">
+        <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button type="submit">Delete</button></a>
+    </form>
     </div>
     <div id="btnNewTheme">
         <ul class="ca-menu">
@@ -23,13 +28,4 @@
             </li>
         </ul>
     </div>
-<ul class="record_actions">
-    <li>
-        <form action="{{ path('quizz_delete', { 'id': entity.id }) }}" method="post">
-            <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button></a>
-        </form>
-    </li>
-</ul>
 {% endblock %}

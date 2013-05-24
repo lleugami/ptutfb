@@ -8,8 +8,13 @@
         <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
         <p>
-            <a href="#" class="button-bevel orange"><button type="submit">Edit</button></a>
+            <a href="#" class="button-bevel orange"><button type="submit">Modifier</button></a>
         </p>
+    </form>
+    <form action="{{ path('admin_answer_delete', { 'id': entity.id }) }}" method="post">
+        <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button type="submit">Supprimer</button></a>
     </form>
     </div>
     <div id="btnNewTheme">
@@ -23,13 +28,4 @@
             </li>
         </ul>
     </div>
-    <ul class="record_actions">
-    <li>
-        <form action="{{ path('admin_answer_delete', { 'id': entity.id }) }}" method="post">
-            <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button></a>
-        </form>
-    </li>
-</ul>
 {% endblock %}
