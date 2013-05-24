@@ -192,6 +192,7 @@ class UserRepository extends EntityRepository
                 $users = null;
                 $i = 1;
                 foreach($Userstmp as $tmp){
+                    echo 'lol';
                     $users[] = Array('rang' => $i,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                 
                     $i ++;
