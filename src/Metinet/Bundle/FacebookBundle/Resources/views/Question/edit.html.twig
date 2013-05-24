@@ -10,13 +10,11 @@
         <p>
             <a href="#" class="button-bevel orange"><button type="submit">Modifier</button></a>
         </p>
-        <p>
-            <form action="{{ path('admin_question_delete', { 'id': entity.id }) }}" method="post">
-            <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Supprimer</button></a>
-            </form>
-        </p>
+    </form>
+    <form action="{{ path('admin_question_delete', { 'id': entity.id }) }}" method="post">
+        <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button type="submit">Supprimer</button></a>
     </form>
     </div>
     <div id="btnNewTheme">
