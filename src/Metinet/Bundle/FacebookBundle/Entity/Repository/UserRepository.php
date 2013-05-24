@@ -186,7 +186,7 @@ class UserRepository extends EntityRepository
                 
                     $i ++;
                 }
-                return $users;
+                
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
             }  
