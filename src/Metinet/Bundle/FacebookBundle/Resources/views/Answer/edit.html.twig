@@ -9,14 +9,9 @@
         {{ form_widget(edit_form) }}
         <p>
             <a href="#" class="button-bevel orange"><button type="submit">Edit</button></a>
-                    <form action="{{ path('admin_answer_delete', { 'id': entity.id }) }}" method="post">
-            <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button></a>
-        </form>
         </p>
     </form>
-    </div></div>
+    </div>
     <div id="btnNewTheme">
         <ul class="ca-menu">
             <li>
