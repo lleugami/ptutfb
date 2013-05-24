@@ -82,7 +82,7 @@ class QuizzRepository extends EntityRepository
         ->createQuery('
             SELECT q FROM MetinetFacebookBundle:Quizz q
             WHERE q.state != 0
-            ORDER BY q.id ASC'
+            ORDER BY q.id DESC'
         )->setMaxResults(4);
         
         try {
