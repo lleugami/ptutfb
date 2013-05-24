@@ -171,6 +171,7 @@ class UserRepository extends EntityRepository
     
         if(count($friends) == 0){
             
+            echo 'pas amis';
             if($idUser - 2 <= 0){
                 $offset = $idUser;
             }
@@ -199,6 +200,7 @@ class UserRepository extends EntityRepository
             }              
         } else{
             
+            echo 'amis';
             $i = 0;
             foreach ($friends as $friend){
                 
