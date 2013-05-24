@@ -99,6 +99,9 @@ class UserRepository extends EntityRepository
                 $users = null;
                 $i = 1;
                 foreach($Userstmp as $tmp){
+                     if($tmp->getPoints() == null){
+                        $tmp->setPoints(0);
+                     }
                     $users[] = Array('rang' => $i,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                 
                     $i ++;
@@ -129,6 +132,9 @@ class UserRepository extends EntityRepository
                 $users = null;
                 $i = 1;
                 foreach($Userstmp as $tmp){
+                     if($tmp->getPoints() == null){
+                        $tmp->setPoints(0);
+                     }
                     $users[] = Array('rang' => $i, 'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                     $i ++;    
                 }
@@ -351,6 +357,9 @@ class UserRepository extends EntityRepository
     					$tmp2 = $query2->getResult();
     				
     					foreach($tmp2 as $row2){
+                                             if($row2->getPoints() == null){
+                                                $row2->setPoints(0);
+                                             }
     						$users[$cpt] = array('id' => $row["user"]->getId(), 'firstname' => $row["user"]->getFirstname(), 'lastname' => $row["user"]->getLastname(), 'picture' => $row["user"]->getPicture(), 'points' => $row2->getWinPoints());
     					}
     					$cpt++;
@@ -464,7 +473,7 @@ class UserRepository extends EntityRepository
     					'id_quizz'  => $id
     			));
     			$quizzResult = $query->getSingleResult();
-
+                        
     			$users[$cpt] = array('id' => $row->getId(), 'firstname' => $row->getFirstname(), 'lastname' => $row->getLastname(), 'picture' => $row->getPicture(), 'points' => $quizzResult->getWinPoints());
     			$cpt++;
     		}
