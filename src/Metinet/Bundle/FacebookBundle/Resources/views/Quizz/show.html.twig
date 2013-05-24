@@ -109,23 +109,21 @@
     </div>
 
 {% if listeQuestion %}
-    <div id="listQuestion">
-    <h2>Liste des Questions</h2>
-    <table>
-        {% for question in listeQuestion %}
-        <tr>
-            <td>
-                {{ question.title }}
-            </td>
-            <td>            
-                <a href="{{ path('admin_question_edit', { 'id': question.id }) }}">
-                    <img src="{{asset('/bundles/metinetgalery/image/app.png')}}" title="Modifier">
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    </div>
+<h2>Liste des Questions</h2>
+<table>
+    {% for question in listeQuestion %}
+    <tr>
+        <td>
+            {{ question.title }}
+        </td>
+        <td>            
+            <a href="{{ path('admin_question_edit', { 'id': question.id }) }}">
+                <img src="{{asset('/bundles/metinetgalery/image/app.png')}}" title="Modifier">
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 {% endif %}
 
 {% endblock %}
