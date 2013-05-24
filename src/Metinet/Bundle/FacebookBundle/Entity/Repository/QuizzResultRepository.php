@@ -12,6 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuizzResultRepository extends EntityRepository
 {
+	/***
+	 * Récupère la liste des quizz les plus populaires
+	 */
 	public function getTopQuizzPopulaires($limit, $ordre){
 		
 		if(isset($limit) && $limit > 0 && isset($ordre) && ($ordre == "ASC" || $ordre == "DESC")){
@@ -37,6 +40,9 @@ class QuizzResultRepository extends EntityRepository
 		return $arrayQuizz;
 	}
 	
+	/***
+	 * Récupère la somme des points total de tous les quizz
+	 */
 	public function getSommePoint() {
 		
 		$query = $this->getEntityManager()
@@ -52,6 +58,9 @@ class QuizzResultRepository extends EntityRepository
 		return $bal;
 	}
 	
+	/***
+	 * Récupère une liste des quizz en cours d'éxecution
+	 */
 	public function getCountQuizzLancer() {
 
 		$query = $this->getEntityManager()

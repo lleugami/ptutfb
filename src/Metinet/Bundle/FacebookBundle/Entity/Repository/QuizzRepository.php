@@ -12,6 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuizzRepository extends EntityRepository
 {
+	/***
+	 * récupère le nombre de participants par quizz
+	 * @id : id du quizz
+	 */
     public function getNbUserByQuizz($id)
     {
         $query = $this->getEntityManager()
@@ -29,6 +33,11 @@ class QuizzRepository extends EntityRepository
         
     }
     
+    /***
+     * Récupère le taux moyen de réussite sur un quizz
+     * @id : id du quizz
+     * @nbQuizzResult: nombre de quizz lancé
+     */
     public function getTauxReussiteMoyen($nbQuizzResult,$id)
     {
         if(count($nbQuizzResult) != 0){
@@ -64,7 +73,9 @@ class QuizzRepository extends EntityRepository
         
 
     }
-    
+    /***
+     * Récupère les 4 derniers quizz
+     */
     public function quatreDernierQuizz()
     {
         $query = $this->getEntityManager()
@@ -80,7 +91,9 @@ class QuizzRepository extends EntityRepository
             return null;
         }
     }
-    
+    /***
+     * Récupère le dernier quizz en promo
+     */
     public function dernierQuizzPromo()
     {
         $query = $this->getEntityManager()
@@ -96,7 +109,9 @@ class QuizzRepository extends EntityRepository
         }
     }   
     
-
+	/***
+	 * Récupère le nombre total de quizz
+	 */
     public function getCountTotQuizz() {    	
     	$query = $this->getEntityManager()
     	->createQuery('
@@ -112,7 +127,9 @@ class QuizzRepository extends EntityRepository
     }
 
 
-
+	/***
+	 * Récupère la liste des derniers quizz
+	 */
     public function getQuizzTrier($id) {
 
         $query = $this->getEntityManager()

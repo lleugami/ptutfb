@@ -12,6 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+	/***
+	 * Permet d'obtenir le classement Globale
+	 * 
+	 */
     public function getClassement($id){
         
         $query = $this->getEntityManager()
@@ -42,6 +46,9 @@ class UserRepository extends EntityRepository
         }
     }
     
+    /***
+     * Compte le nombre total d'utilisateurs
+     */
     public function getCountAllUsers() {
     	
     	$query = $this->getEntityManager()
@@ -57,6 +64,10 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
+    /***
+     * Compte le nombre d'utilisateurs inscrit en fonction d'une date (inscrit les 7 derniers jours etc)
+     * @date : date d'inscription
+     */
     public function getCountDateAllUsers($date) {
     	 
     		$query = $this->getEntityManager()
@@ -74,6 +85,9 @@ class UserRepository extends EntityRepository
     	return $bal;
     }
     
+    /***
+     * Permet d'obtenir  le top 10 tout quizz confondu
+     */
     public function getClassementTopTen(){
         $query = $this->getEntityManager()
             ->createQuery('
@@ -96,6 +110,13 @@ class UserRepository extends EntityRepository
             }   
         
     }
+    
+    /***
+     * Récupère le classement de l'utilisateur (2 devant, 2 derrière)
+     * @userTmp : Utilisateur connecté
+     * @nbUsers : Nombre maximum d'utilisateur
+     * 
+     */
     public function getClassementUsers($userTmp,$nbUsers = 5){
             
         $query = $this->getEntityManager()
@@ -140,6 +161,12 @@ class UserRepository extends EntityRepository
             
             return $users;
     }
+    
+    /***
+     * Récupère le classement tout quizz confondu 
+     * @friends : liste des amis de l'utilisateur
+     * @idUser : id de l'utilisateur actuel
+     */
     public function getClassementAvecAmis($friends,$idUser,$nbFriends = 2){    
     
         if($friends == null){
@@ -251,6 +278,12 @@ class UserRepository extends EntityRepository
         
     }
     
+    /***
+     * Récupère le classement amis selon un quizz
+     * @friend : amis de l'utilisateur
+     * @idUser: id de l'utilisateur
+     * @idquizz : id du quizz
+     */
     public function getClassementAvecAmisByQuizz($friends,$idUser, $idquizz) {
     	$i = 0;
     	$cpt = 0;
@@ -320,6 +353,12 @@ class UserRepository extends EntityRepository
 	    return $users;
     }
     
+    /***
+     * Permet de classer un tableau
+     * @array : tableau
+     * @index : filtre de classement
+     * @desc : 1 pour décroissant 0 pour croissant
+     */
     function sort_by_key($array, $index, $desc = 1) {
         $sort = array();
 
@@ -362,8 +401,8 @@ class UserRepository extends EntityRepository
     }
     
     /***
-     * Rï¿½cupï¿½re les 10 premiers Joueurs du quizz
-     * 
+     * Récupère les 10 premiers Joueurs du quizz
+     * @id : id du quizz
      */
     public function getClassementTopTenByQuizz($id) {
     	$cpt = 0;
