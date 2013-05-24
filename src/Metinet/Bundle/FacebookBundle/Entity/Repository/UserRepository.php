@@ -169,7 +169,7 @@ class UserRepository extends EntityRepository
      */
     public function getClassementAvecAmis($friends,$idUser,$nbFriends = 2){    
     
-        if(count($friends) == 0){
+        if(count($friends) > 0){
             
             $query = $this->getEntityManager()
             ->createQuery('
@@ -182,6 +182,9 @@ class UserRepository extends EntityRepository
                 $users = null;
                 $i = 1;
                 foreach($Userstmp as $tmp){
+                    if($tmp->getPoints() == null){
+                        $tmp->setPoints(0);
+                    }
                     $users[] = Array('rang' => $i,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                 
                     $i ++;
