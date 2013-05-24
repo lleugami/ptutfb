@@ -199,7 +199,6 @@ class UserRepository extends EntityRepository
             try {
                 $tmp = $query->getSingleResult();
                 $userTmp = $tmp;
-                echo $userTmp->getId();
                 
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
@@ -209,7 +208,6 @@ class UserRepository extends EntityRepository
             foreach ($users as $user){
                 if($user['lastname'] == $userTmp->getLastname() && $user['firstname'] == $userTmp->getFirstname()){
                     $newIdUser = $i;
-                    echo $i;
                 }
                 
                 $i ++;
@@ -227,6 +225,8 @@ class UserRepository extends EntityRepository
                     $i ++;
                 }
             }
+            
+            return $users;
             
         } else{
             
