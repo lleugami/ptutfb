@@ -40,7 +40,11 @@
                         <h2 class="userName">{{ user.firstname }} {{ user.lastname }}</h2>
                         <div id="userRank">
                             {% if user.points is defined %}
-                            <p>Votre score : {{ user.points }} pts</p>
+                                {% if user.points == null %}
+                                    <p>Votre score : 0 pts</p>
+                                {% else %}
+                                    <p>Votre score : {{ user.points }} pts</p>
+                                {% endif %}
                             {% else %}
                             <p>Votre score : 0 pts</p>
                             {% endif %}
