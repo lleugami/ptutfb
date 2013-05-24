@@ -182,7 +182,6 @@ class UserRepository extends EntityRepository
                 $users = null;
                 $i = 1;
                 foreach($Userstmp as $tmp){
-                    echo 'lol';
                     $users[] = Array('rang' => $i,'id' => $tmp->getId(), 'firstname' => $tmp->getFirstname(), 'lastname' => $tmp->getLastname(), 'picture' => $tmp->getPicture(), 'points' => $tmp->getPoints());
                 
                     $i ++;
@@ -191,6 +190,19 @@ class UserRepository extends EntityRepository
             } catch (\Doctrine\ORM\NoResultException $e) {
                 return null;
             }  
+            
+            $query = $this->getEntityManager()
+            ->createQuery('
+            SELECT u FROM MetinetFacebookBundle:User u
+            WHERE u.id = :id'
+            )->setParameter('id',$idUser);
+            try {
+                $tmp = $query->getSingleResult();
+                $userTmp = $tmp;
+                
+            } catch (\Doctrine\ORM\NoResultException $e) {
+                return null;
+            }
             
             $i = 0;
             foreach ($users as $user){
