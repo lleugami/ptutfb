@@ -67,6 +67,10 @@
         </table>
     </div>
     <h2>Liste des Thèmes</h2>
+    <div style="position: relative">
+    <img src="{{ asset('/bundles/metinetgalery/image/up.png') }}" style="width: 50px; position: absolute; right: 0; top: -20px;cursor: pointer;" onclick="$('#table_pagination').scrollTop($('#table_pagination').scrollTop()-350);"/>
+    <div id="table_pagination" style="height:300px; overflow: hidden;">
+    
     <table>
         {% for theme in themes %}
             {% if theme.quizzes|length != 0 %}
@@ -76,6 +80,10 @@
             {% endif %}
         {% endfor %}
     </table>
+        
+    </div>
+    <img src="{{ asset('/bundles/metinetgalery/image/down.png') }}" style="width: 50px; position: absolute; right:0; bottom: -20px;cursor: pointer;" onclick="$('#table_pagination_general').scrollTop($('#table_pagination_general').scrollTop()+350);"/>
+    </div>
     
     
     {% if listeDernierQuizz %}
