@@ -306,7 +306,7 @@ class DefaultController extends Controller
         $average = $quizzResult->getDateEnd()->getTimestamp() - $quizzResult->getDateStart()->getTimestamp();
         
         /* CALCULE BONUS OU MALUS */
-        if($average <= $quizz->getAverageTime()){
+        if($average <= $quizz->getAverageTime() && $tauxReussite >= 75){
             $messageAverage = "Bonus de temps";
             $pointAverage = 0.25 * $quizz->getWinPoints();
         }
