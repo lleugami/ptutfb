@@ -28,13 +28,4 @@
             </li>
         </ul>
     </div>
-    <ul class="record_actions">
-    <li>
-        <form action="{{ path('admin_question_delete', { 'id': entity.id }) }}" method="post">
-            <a href="#" class="button-bevel orange"><input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Supprimer</button></a>
-        </form>
-    </li>
-</ul>
 {% endblock %}
