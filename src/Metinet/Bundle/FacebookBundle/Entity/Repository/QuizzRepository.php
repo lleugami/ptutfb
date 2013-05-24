@@ -95,13 +95,20 @@ class QuizzRepository extends EntityRepository
      * R�cup�re le dernier quizz en promo
      */
     public function dernierQuizzPromo()
-    {
+    {   
+        $em = $this->getEntityManager();
+        $max = $em->createQuery('
+            SELECT MAX(q.id) FROM EnzimQuestionBundle:Question q
+        ')
+        ->getSingleScalarResult();
+         
         $query = $this->getEntityManager()
         ->createQuery('
             SELECT q FROM MetinetFacebookBundle:Quizz q
-            WHERE q.isPromoted = 1 AND q.state != 0
-            ORDER BY RAND'
-        )->setMaxResults(1);
+            WHERE q.isPromoted = 1 AND q.state != 0 AND q.id >= :rand
+           '
+        ) ->setParameter('rand',rand(0,$max))
+        ->setMaxResults(1);
 
         try {
             return $query->getResult();
