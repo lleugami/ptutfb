@@ -66,16 +66,20 @@
 {% if listeQuizz %}
 <div id="listQuestion">
 <h2>Liste des Quizz</h2>
-    <ul>
+<table>
     {% for quizz in listeQuizz %}
-        <li>
-            {{ quizz.title }}
-            <a href="{{ path('quizz_edit', { 'id': quizz.id }) }}">
-                <img src="{{asset('/bundles/metinetgalery/image/app.png')}}" title="Modifier">
-            </a>
-        </li>
+        <tr>
+            <td>
+                {{ quizz.title }}
+            </td>
+            <td>
+                <a href="{{ path('quizz_edit', { 'id': quizz.id }) }}">
+                    <img src="{{asset('/bundles/metinetgalery/image/app.png')}}" title="Modifier">
+                </a>
+            </td>
+        </tr>
     {% endfor %}
-    </ul>
+</table>
 </div>
 {% endif %}
     
