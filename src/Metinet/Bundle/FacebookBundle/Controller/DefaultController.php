@@ -310,7 +310,7 @@ class DefaultController extends Controller
             $messageAverage = "Bonus de temps";
             $pointAverage = 0.25 * $quizz->getWinPoints();
         }
-        else{
+        else if($average > $quizz->getAverageTime()){
             $messageAverage = "Malus de temps";
             $pointAverage = (-0.15 * $quizz->getWinPoints());
             
