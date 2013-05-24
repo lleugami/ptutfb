@@ -123,6 +123,10 @@ button {
     float:right;
 }
 
+select {
+	max-width: 500px;
+}
+
 #btnNewTheme {
 	height:50px;
 	margin-left: 25px;
