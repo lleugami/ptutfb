@@ -185,8 +185,8 @@ class UserRepository extends EntityRepository
             ->createQuery('
                 SELECT u FROM MetinetFacebookBundle:User u
                 ORDER BY u.points DESC'
-            )->setFirstResult($offset)
-             ->setMaxResults(5);
+            )->setFirstResult($offset);
+
             try {
                 $Userstmp = $query->getResult();
                 $users = null;
