@@ -112,8 +112,8 @@ class UserRepository extends EntityRepository
     }
     
     /***
-     * Récupère le classement de l'utilisateur (2 devant, 2 derrière)
-     * @userTmp : Utilisateur connecté
+     * Rï¿½cupï¿½re le classement de l'utilisateur (2 devant, 2 derriï¿½re)
+     * @userTmp : Utilisateur connectï¿½
      * @nbUsers : Nombre maximum d'utilisateur
      * 
      */
@@ -163,13 +163,13 @@ class UserRepository extends EntityRepository
     }
     
     /***
-     * Récupère le classement tout quizz confondu 
+     * Rï¿½cupï¿½re le classement tout quizz confondu 
      * @friends : liste des amis de l'utilisateur
      * @idUser : id de l'utilisateur actuel
      */
     public function getClassementAvecAmis($friends,$idUser,$nbFriends = 2){    
     
-        if($friends == null){
+        if(count($friends) == 0){
             
             if($idUser - 2 <= 0){
                 $offset = $idUser;
@@ -279,7 +279,7 @@ class UserRepository extends EntityRepository
     }
     
     /***
-     * Récupère le classement amis selon un quizz
+     * Rï¿½cupï¿½re le classement amis selon un quizz
      * @friend : amis de l'utilisateur
      * @idUser: id de l'utilisateur
      * @idquizz : id du quizz
@@ -357,7 +357,7 @@ class UserRepository extends EntityRepository
      * Permet de classer un tableau
      * @array : tableau
      * @index : filtre de classement
-     * @desc : 1 pour décroissant 0 pour croissant
+     * @desc : 1 pour dï¿½croissant 0 pour croissant
      */
     function sort_by_key($array, $index, $desc = 1) {
         $sort = array();
@@ -401,7 +401,7 @@ class UserRepository extends EntityRepository
     }
     
     /***
-     * Récupère les 10 premiers Joueurs du quizz
+     * Rï¿½cupï¿½re les 10 premiers Joueurs du quizz
      * @id : id du quizz
      */
     public function getClassementTopTenByQuizz($id) {
